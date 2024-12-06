@@ -99,7 +99,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900">Location</h3>
-                    <p className="text-gray-600">123 Ayurveda Street, Raipur, India</p>
+                    <p className="text-gray-600">Sarona, Raipur, India</p>
                   </div>
                 </div>
               </div>
