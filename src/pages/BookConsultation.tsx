@@ -1,69 +1,76 @@
 // client/src/pages/BookConsultation.tsx
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useAuth } from '../contexts/AuthContext';
-import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Textarea } from '../components/ui/textarea';
-import { Calendar } from '../components/ui/calendar';
-import { Clock, User, CalendarDays, Stethoscope, FileText } from 'lucide-react';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useAuth } from "../contexts/AuthContext";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { Calendar } from "../components/ui/calendar";
+import { User, CalendarDays, Stethoscope, FileText } from "lucide-react";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../components/ui/select';
-import doctorsData from '../doctors.json';
-import { consultationService } from '../services/consultationService';
-import { toast } from 'react-hot-toast';
-import { ConsultationData } from '../api/consultationApi';
-import { useNavigate } from 'react-router-dom';
-import { getErrorMessage } from '../utils/apiErrorHandler';
+} from "../components/ui/select";
+import doctorsData from "../doctors.json";
+import { consultationService } from "../services/consultationService";
+import { toast } from "react-hot-toast";
+import { ConsultationData } from "../api/consultationApi";
+import { useNavigate } from "react-router-dom";
+import { getErrorMessage } from "../utils/apiErrorHandler";
 
 export default function BookConsultation() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [date, setDate] = useState<Date | undefined>(undefined);
-  const [timeSlot, setTimeSlot] = useState('');
-  const [symptoms, setSymptoms] = useState('');
-  const [consultationType, setConsultationType] = useState('');
-  const [selectedDoctor, setSelectedDoctor] = useState('');
+  const [timeSlot, setTimeSlot] = useState("");
+  const [symptoms, setSymptoms] = useState("");
+  const [consultationType, setConsultationType] = useState("");
+  const [selectedDoctor, setSelectedDoctor] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-        if (!date) {
-            toast.error('Please select a date');
-            return;
-        }
+      if (!date) {
+        toast.error("Please select a date");
+        return;
+      }
 
-        await consultationService.createConsultation({
-            doctorId: selectedDoctor,
-            consultationType: consultationType as ConsultationData['consultationType'],
-            date: date,
-            timeSlot,
-            symptoms
-        });
-        
-        toast.success('Consultation booked successfully!');
-        navigate('/appointments');  // Redirect to appointments page
+      await consultationService.createConsultation({
+        doctorId: selectedDoctor,
+        consultationType:
+          consultationType as ConsultationData["consultationType"],
+        date: date,
+        timeSlot,
+        symptoms,
+      });
+
+      toast.success("Consultation booked successfully!");
+      navigate("/appointments"); // Redirect to appointments page
     } catch (error) {
-        toast.error(getErrorMessage(error));
-        console.error('Booking error:', error);
+      toast.error(getErrorMessage(error));
+      console.error("Booking error:", error);
     }
   };
 
   const timeSlots = [
-      '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM',
-      '11:00 AM', '11:30 AM', '12:00 PM', '02:00 PM',
-    ];
+    "09:00 AM",
+    "09:30 AM",
+    "10:00 AM",
+    "10:30 AM",
+    "11:00 AM",
+    "11:30 AM",
+    "12:00 PM",
+    "02:00 PM",
+  ];
 
   const consultationTypes = [
-    'General Consultation',
-    'Follow-up',
-    'Specific Treatment',
-    'Emergency'
+    "General Consultation",
+    "Follow-up",
+    "Specific Treatment",
+    "Emergency",
   ];
 
   return (
@@ -76,9 +83,12 @@ export default function BookConsultation() {
       {/* Hero Section */}
       <div className="bg-primary-500 text-white py-8">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-center text-white">Book Your Consultation</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-center text-white">
+            Book Your Consultation
+          </h1>
           <p className="text-center mt-2 text-primary-100 max-w-2xl mx-auto">
-            Schedule your appointment with our experienced Ayurvedic practitioners
+            Schedule your appointment with our experienced Ayurvedic
+            practitioners
           </p>
         </div>
       </div>
@@ -95,12 +105,24 @@ export default function BookConsultation() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                  <Input value={user?.name || ''} disabled className="bg-gray-50" />
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Name
+                  </label>
+                  <Input
+                    value={user?.name || ""}
+                    disabled
+                    className="bg-gray-50"
+                  />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Patient ID</label>
-                  <Input value={user?._id || ''} disabled className="bg-gray-50" />
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Patient ID
+                  </label>
+                  <Input
+                    value={user?._id || ""}
+                    disabled
+                    className="bg-gray-50"
+                  />
                 </div>
               </div>
             </div>
@@ -113,21 +135,33 @@ export default function BookConsultation() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
-                  <Select onValueChange={setConsultationType} value={consultationType}>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Type
+                  </label>
+                  <Select
+                    onValueChange={setConsultationType}
+                    value={consultationType}
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Select consultation type" />
                     </SelectTrigger>
                     <SelectContent>
                       {consultationTypes.map((type) => (
-                        <SelectItem key={type} value={type}>{type}</SelectItem>
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Doctor</label>
-                  <Select onValueChange={setSelectedDoctor} value={selectedDoctor}>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Doctor
+                  </label>
+                  <Select
+                    onValueChange={setSelectedDoctor}
+                    value={selectedDoctor}
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Choose a doctor" />
                     </SelectTrigger>
@@ -151,26 +185,34 @@ export default function BookConsultation() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Date
+                  </label>
                   <div className="border rounded-lg p-3">
                     <Calendar
                       mode="single"
                       selected={date}
                       onSelect={setDate}
                       className="rounded-md"
-                      disabled={(date) => date < new Date() || date.getDay() === 0}
+                      disabled={(date) =>
+                        date < new Date() || date.getDay() === 0
+                      }
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Time Slot</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Time Slot
+                  </label>
                   <Select onValueChange={setTimeSlot} value={timeSlot}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select time slot" />
                     </SelectTrigger>
                     <SelectContent>
                       {timeSlots.map((slot) => (
-                        <SelectItem key={slot} value={slot}>{slot}</SelectItem>
+                        <SelectItem key={slot} value={slot}>
+                          {slot}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -197,11 +239,22 @@ export default function BookConsultation() {
 
             {/* Important Notes */}
             <div className="bg-blue-50 rounded-lg p-4 border border-blue-100">
-              <h3 className="font-medium text-blue-800 mb-2">Important Notes:</h3>
+              <h3 className="font-medium text-blue-800 mb-2">
+                Important Notes:
+              </h3>
               <ul className="list-disc list-inside space-y-1 text-sm text-blue-700">
-                <li>Your preferred doctor may not be available in the selected time slot.</li>
-                <li>We will confirm the appointment and send details to your email.</li>
-                <li>Please arrive 15 minutes before your scheduled appointment time.</li>
+                <li>
+                  Your preferred doctor may not be available in the selected
+                  time slot.
+                </li>
+                <li>
+                  We will confirm the appointment and send details to your
+                  email.
+                </li>
+                <li>
+                  Please arrive 15 minutes before your scheduled appointment
+                  time.
+                </li>
               </ul>
             </div>
 
@@ -209,7 +262,13 @@ export default function BookConsultation() {
             <Button
               type="submit"
               className="w-full py-6 text-lg"
-              disabled={!date || !timeSlot || !consultationType || !symptoms || !selectedDoctor}
+              disabled={
+                !date ||
+                !timeSlot ||
+                !consultationType ||
+                !symptoms ||
+                !selectedDoctor
+              }
             >
               Confirm Booking
             </Button>

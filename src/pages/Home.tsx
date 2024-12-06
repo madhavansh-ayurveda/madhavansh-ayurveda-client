@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calendar, Users, Phone, Clock, Star, Shield, Heart, Award } from 'lucide-react';
+import { Calendar, Users, Phone, Clock, Star} from 'lucide-react';
 import AnimatedStat from '../components/AnimatedStat';
 import { WhatweCard } from '../components/WhatweCard';
 import ShimmerButton from '../components/ui/shimmer-button';
