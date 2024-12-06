@@ -71,6 +71,7 @@ export default function AppNavbar() {
       const user = localStorage.getItem('user');
       setIsUser(user);
     };
+    isMenuVisible;
 
     checkUser();
 
