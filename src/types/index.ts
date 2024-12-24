@@ -1,35 +1,82 @@
 export interface User {
-  id: string;
-  patientId: string;
+  _id: string;
   name: string;
-  email: string;
-  age: number;
-  phone: string;
+  contact: string;
+  email?: string;
   role?: string;
+  age?: number;
+  address?: string;
 }
+export interface Consultation {
+  name: string;
+  contact: string;
+  consultationType: 'General Consultation' | 'Follow-up' | 'Specific Treatment' | 'Emergency';
+  doctor: {
+    doctorId: string;
+    doctorName: string;
+  };
+  previousConsultationId?: string;
+  date: Date;
+  timeSlot: string;
+  symptoms?: string;
+}
+
+export interface ConsultationResponse extends Consultation {
+  _id: string;
+  status: 'pending' | 'confirmed' | 'completed' | 'cancelled';
+  amount: number;
+  notes: string;
+  pescription: {
+    instructions: string;
+    file: [string];
+  }
+  paymentStatus: 'pending' | 'completed' | 'refunded';
+  additionalInfo: {
+    img: [String],
+    file: [String],
+  }
+  createdAt: string;
+  updatedAt: string;
+}
+
+
+export interface Prescription {
+  medicines: Array<{
+    name: string;
+    dosage: string;
+    duration: string;
+  }>;
+  instructions: string;
+}
+
 
 export interface Doctor {
-  id: string;
+  _id: string;
   name: string;
+  email: string;
+  phone: string;
   specialization: string;
   experience: number;
-  image: string;
-  availability: string[];
+  profileImage: string;
+  qualification: string;
+  registrationNumber: string;
+  status: 'active' | 'inactive';
+  availability: Array<{}>;
 }
 
-export interface Appointment {
-  id: string;
-  doctorId: string;
-  userId: string;
-  date: string;
-  time: string;
-  status: 'pending' | 'confirmed' | 'cancelled';
-}
-
-export interface Event {
-  id: string;
-  title: string;
-  date: string;
-  description: string;
-  image: string;
+export interface ApiDoctorSchema {
+  _id: string;
+  name: string;
+  email: string;
+  phone: string;
+  experience: number;
+  profileImage: string;
+  qualification: string;
+  registrationNumber: string;
+  specialization: string;
+  status: 'active' | 'inactive';
+  availability: Array<{}>;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
 }

@@ -95,9 +95,9 @@ export default function About() {
       {/* Mission Section */}
       <motion.section
         variants={itemVariants}
-        className="bg-gradient-to-r from-primary-500 to-primary-600 text-white p-12 rounded-2xl"
+        className="bg-gradient-to-l from-primary-500 to-primary-600 text-white p-12 rounded-2xl"
       >
-        <div className="relative bg-primary-500 text-white overflow-hidden">
+        <div className="relative text-white overflow-hidden">
           <div className="relative flex h-[200px] w-full flex-col items-center justify-center">
             <Meteors number={20} />
 

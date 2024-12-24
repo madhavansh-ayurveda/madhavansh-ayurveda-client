@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, User, Phone, Calendar, AlertCircle } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
 import { useDialog } from '../hooks/useDialog';
 import Dialog from '../components/Dialog';
 import { authService } from '../services/authService';
@@ -18,7 +17,6 @@ export default function Register() {
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { setUser } = useAuth();
   const dialog = useDialog(false, 5000);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +59,6 @@ export default function Register() {
         throw new Error('Registration failed: No user data received');
       }
       
-      setUser(user);
       navigate('/');
     } catch (err) {
       setError(typeof err === 'string' ? err : 'Registration failed. Please try again.');
@@ -85,7 +82,7 @@ export default function Register() {
             className="h-24 w-24 mb-8"
           />
           <h1 className="text-4xl font-bold text-white text-center mb-4">
-            Join Madhav Ayurved
+            Join Madhavash Ayurved
           </h1>
           <p className="text-primary-50 text-center text-lg max-w-md">
             Begin your journey towards holistic wellness with traditional Ayurvedic healing.

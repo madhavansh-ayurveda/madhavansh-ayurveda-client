@@ -21,9 +21,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-// import { useAuth } from "@/contexts/AuthContext";
-import { authService } from '../services/authService';
 import { toast } from 'react-hot-toast';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { logout } from '../store/features/authSlice';
+import { authService } from '../services/authService';
+import Cookies from 'js-cookie';
 
 const treatments: { title: string; href: string; description: string }[] = [
   {
@@ -60,28 +62,17 @@ const mobileMenuTransition = "transition-all duration-300 ease-in-out";
 export default function AppNavbar() {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isUser, setIsUser] = useState<string | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  // const { logout } = useAuth();
+  const { user, isAuthenticated } = useAppSelector(state => state.auth);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const checkUser = () => {
-      const user = localStorage.getItem('user');
-      setIsUser(user);
-    };
-    isMenuVisible;
+    console.log('Updated User:', user);;
+  }, [user]);
 
-    checkUser();
-
-    // Check user on route change
-    window.addEventListener('storage', checkUser);
-
-    return () => {
-      window.removeEventListener('storage', checkUser);
-    };
-  }, [location]);
 
   useEffect(() => {
     if (isDropdownOpen) {
@@ -109,7 +100,10 @@ export default function AppNavbar() {
 
   const handleLogout = async () => {
     try {
-      await authService.logout();
+      localStorage.removeItem('authToken');
+      Cookies.remove('authToken');
+      dispatch(logout());
+      toast.success('Logged out successfully');
     } catch (error) {
       console.error('Logout failed:', error);
       toast.error('Failed to logout. Please try again.');
@@ -252,7 +246,7 @@ export default function AppNavbar() {
                 </Link>
 
                 <div className="pt-3 border-t">
-                  {isUser ? (
+                  {user ? (
                     <>
                       <div className="flex flex-col gap-2">
                         <Link to="/appointments" onClick={() => setIsMobileMenuOpen(false)}>
@@ -300,12 +294,14 @@ export default function AppNavbar() {
 
         <NavigationMenu className="ml-auto mr-4 hidden md:block">
           <NavigationMenuList>
+            {/* Home */}
             <NavigationMenuItem>
               <Link to="/" className={navigationMenuTriggerStyle()}>
                 Home
               </Link>
             </NavigationMenuItem>
 
+            {/* Services */}
             <NavigationMenuItem>
               <NavigationMenuTrigger>
                 <p className={" text-[#006d77] hover:text-primary"}> Services </p>
@@ -341,6 +337,7 @@ export default function AppNavbar() {
               </NavigationMenuContent>
             </NavigationMenuItem>
 
+            {/* Treatment */}
             <NavigationMenuItem>
               <NavigationMenuTrigger><p className="text-[#006d77] hover:text-primary">Treatments</p></NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -358,11 +355,21 @@ export default function AppNavbar() {
               </NavigationMenuContent>
             </NavigationMenuItem>
 
+            {/* Consultations */}
+            <NavigationMenuItem>
+              <Link to="/consultation" className={navigationMenuTriggerStyle()}>
+                Consultations
+              </Link>
+            </NavigationMenuItem>
+
+            {/* About */}
             <NavigationMenuItem>
               <Link to="/about" className={navigationMenuTriggerStyle()}>
                 About
               </Link>
             </NavigationMenuItem>
+
+            {/* Contact */}
             <NavigationMenuItem>
               <Link to="/contact" className={navigationMenuTriggerStyle()}>
                 Contact
@@ -371,8 +378,9 @@ export default function AppNavbar() {
           </NavigationMenuList>
         </NavigationMenu>
 
+        {/* Login-Signup-Accounts */}
         <div className="hidden md:flex items-center gap-2">
-          {isUser ? (
+          {user ? (
             <DropdownMenu onOpenChange={setIsDropdownOpen}>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -413,11 +421,11 @@ export default function AppNavbar() {
             </DropdownMenu>
           ) : (
             <>
-              <Link to="/login">
+              {/* <Link to="/login">
                 <Button variant="ghost">Login</Button>
-              </Link>
-              <Link to="/register">
-                <Button>Sign Up</Button>
+              </Link> */}
+              <Link to="/login">
+                <Button>Register</Button>
               </Link>
             </>
           )}
@@ -427,29 +435,27 @@ export default function AppNavbar() {
   )
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & { to: string }
->(({ className, title, children, to, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          ref={ref as any}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          to={to}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  )
-})
+const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a">
+  & { to: string }>(({ className, title, children, to, ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink asChild>
+          <Link
+            ref={ref as any}
+            className={cn(
+              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+              className
+            )}
+            to={to}
+            {...props}
+          >
+            <div className="text-sm font-medium leading-none">{title}</div>
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+              {children}
+            </p>
+          </Link>
+        </NavigationMenuLink>
+      </li>
+    )
+  })
 ListItem.displayName = "ListItem"

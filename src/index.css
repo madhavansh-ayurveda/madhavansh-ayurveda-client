@@ -21,9 +21,15 @@
     @apply text-primary-500 hover:text-primary-600 transition-colors;
   }
 
+  .custom-toast {
+    margin-top: 50px;
+    /* Adjust this value to move the toast lower */
+  }
+
   button {
     @apply transition-all duration-200;
   }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
@@ -51,6 +57,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -86,33 +93,18 @@
 /* Smooth scrolling */
 html {
   transition: all 1s ease;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
+  scroll-snap-type: none;
 }
 
 body {
   transition: all 1s ease;
+  overflow: hidden;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: #EDF6F9;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #2B6777;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:active {
-  background: #004C5A;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #006D77;
+  display: none;
 }
 
 /* Component styles */
@@ -173,10 +165,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   .animate-float {
     animation: none;
   }
@@ -186,6 +174,7 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

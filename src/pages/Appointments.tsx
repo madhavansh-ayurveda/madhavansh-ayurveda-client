@@ -7,33 +7,37 @@ import { Badge } from '../components/ui/badge';
 import { consultationService } from '../services/consultationService';
 import { toast } from 'react-hot-toast';
 import { format } from 'date-fns';
-import { useAuth } from '../contexts/AuthContext';
 import { ConsultationDetails } from "../components/ConsultationDetails";
+import { useAppSelector } from '../store/hooks';
 
 interface Appointment {
   _id: string;
-  doctorId: string;
-  doctorName?: string;
+  doctor: {
+    doctorId: string;
+    doctorName?: string;
+  }
   date: string;
   timeSlot: string;
   consultationType: string;
   status: 'pending' | 'confirmed' | 'completed' | 'cancelled';
+  pescription: { file: string[] },
   symptoms: string;
   amount: number;
+  additionalInfo: { img: string[], file: string[] },
 }
 
 export default function Appointments() {
-  const { user } = useAuth();
+  const user = useAppSelector(state => state.auth.user);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
   const [selectedConsultation, setSelectedConsultation] = useState<Appointment | null>(null);
 
   useEffect(() => {
-    if (user?._id) {
-      fetchAppointments(user._id);
+    if (user?.contact) {
+      fetchAppointments(user.contact);
     }
-  }, [user?._id]);
+  }, [user]);
 
   const fetchAppointments = async (userId: string) => {
     try {
@@ -158,7 +162,7 @@ export default function Appointments() {
                         </div>
                         <div>
                           <h3 className="font-semibold text-gray-900">
-                            {appointment.doctorName || `Doctor ID: ${appointment.doctorId}`}
+                            {`Doctor: ${appointment.doctor.doctorName}`}
                           </h3>
                           <p className="text-sm text-gray-600">{appointment.consultationType}</p>
                           <div className="flex items-center gap-3 mt-2">
@@ -177,8 +181,8 @@ export default function Appointments() {
                         <Badge className={`${getStatusColor(appointment.status)} capitalize`}>
                           {appointment.status}
                         </Badge>
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="sm"
                           onClick={() => setSelectedConsultation(appointment)}
                         >
@@ -205,7 +209,7 @@ export default function Appointments() {
               <div>
                 <h3 className="font-medium text-blue-900">Important Notice</h3>
                 <p className="mt-1 text-sm text-blue-700">
-                  Please arrive 15 minutes before your scheduled appointment time. If you need to cancel or reschedule, 
+                  Please arrive 15 minutes before your scheduled appointment time. If you need to cancel or reschedule,
                   please do so at least 24 hours in advance.
                 </p>
               </div>

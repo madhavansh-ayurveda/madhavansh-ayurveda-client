@@ -1,8 +1,10 @@
-import { consultationApi, ConsultationData, Prescription } from '../api/consultationApi';
+import { consultationApi } from '../api/consultationApi';
+import { Consultation, Prescription } from '../types/index';
+
 import { getErrorMessage } from '../utils/apiErrorHandler';
 
 export const consultationService = {
-    createConsultation: async (consultationData: ConsultationData) => {
+    createConsultation: async (consultationData: Consultation) => {
         try {
             const response = await consultationApi.create(consultationData);
             return response.data;

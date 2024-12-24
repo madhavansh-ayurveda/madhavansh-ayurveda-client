@@ -1,8 +1,10 @@
 import { authApi } from '../api/authApi';
 import { getErrorMessage } from '../utils/apiErrorHandler';
+import { User } from '@/types';
+import { AuthResponse } from '@/types/api';
 
 export const authService = {
-    register: async (email: string, password: string, name: string, age: number, phone: string) => {
+    register: async (email: string, password: string, name: string, age: number, phone: string): Promise<AuthResponse> => {
         try {
             const response = await authApi.register({
                 email,
@@ -11,65 +13,53 @@ export const authService = {
                 age,
                 phone
             });
-            if (response.user) {
-                localStorage.setItem('user', JSON.stringify(response.user));
-                return response;
+            
+            if (!response.success) {
+                throw new Error(response.message || 'Registration failed');
             }
-            throw new Error('Registration failed: No user data received');
+            
+            return response.data;
         } catch (error) {
-            localStorage.removeItem('user');
             throw getErrorMessage(error);
         }
     },
 
-    login: async (email: string, password: string) => {
+    login: async (email: string, password: string): Promise<AuthResponse> => {
         try {
             const response = await authApi.login({ email, password });
-            if (response.user) {
-                localStorage.setItem('user', JSON.stringify(response.user));
-                return response;
+            
+            if (!response.success) {
+                throw new Error(response.message || 'Login failed');
             }
-            throw new Error('Login failed: No user data received');
+            return response.data;
         } catch (error) {
-            localStorage.removeItem('user');
             throw getErrorMessage(error);
         }
     },
 
-    logout: async () => {
+    logout: async (): Promise<void> => {
         try {
-            await authApi.logout();
-            localStorage.removeItem('user');
-            window.location.href = '/login';
+            const response = await authApi.logout();
+            
+            if (!response.success) {
+                throw new Error(response.message || 'Logout failed');
+            }
         } catch (error) {
-            console.error('Logout error:', error);
-            localStorage.removeItem('user');
-            window.location.href = '/login';
             throw getErrorMessage(error);
         }
     },
 
-    checkAuth: async () => {
+    checkAuth: async (): Promise<User> => {
         try {
             const response = await authApi.checkAuth();
-            if (response.user) {
-                localStorage.setItem('user', JSON.stringify(response.user));
-                return response;
+            
+            if (!response.success) {
+                throw new Error(response.message || 'Auth check failed');
             }
-            throw new Error('Auth check failed: No user data received');
+            
+            return response.data.user;
         } catch (error) {
-            localStorage.removeItem('user');
-            throw error;
-        }
-    },
-
-    getCurrentUser: () => {
-        try {
-            const userStr = localStorage.getItem('user');
-            return userStr ? JSON.parse(userStr) : null;
-        } catch (error) {
-            localStorage.removeItem('user');
-            return null;
+            throw getErrorMessage(error);
         }
     }
 }; 

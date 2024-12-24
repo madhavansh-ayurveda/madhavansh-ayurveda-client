@@ -1,30 +1,38 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, AlertCircle } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAppDispatch } from '../store/hooks';
+import { loginStart, loginSuccess, loginFailure } from '../store/features/authSlice';
 import { authService } from '../services/authService';
+import AuthVerification from '@/components/AuthVerification';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    
+    dispatch(loginStart());
+
     try {
-        const { user } = await authService.login(email, password);
-        if (!user) {
-            throw new Error('Login failed: No user data received');
-        }
-        setUser(user);
-        navigate('/');
+      const response = await authService.login(email, password);
+      console.log(response);
+
+      dispatch(loginSuccess({
+        user: response.user,
+        token: response.token
+      }));
+      navigate('/');
     } catch (err) {
-        setError(typeof err === 'string' ? err : 'Login failed. Please check your credentials.');
-        setPassword('');
+      const errorMessage = err instanceof Error ? err.message : 'Login failed';
+      console.log(errorMessage);
+
+      dispatch(loginFailure(errorMessage));
+      setError(errorMessage);
+      setPassword('');
     }
   };
 
@@ -39,7 +47,7 @@ export default function Login() {
             className="h-24 w-24 mb-8"
           />
           <h1 className="text-4xl font-bold text-white text-center mb-4">
-            Welcome to Madhav Ayurved
+            Welcome to Madhavash Ayurved
           </h1>
           <p className="text-primary-50 text-center text-lg max-w-md">
             Experience the perfect blend of ancient Ayurvedic wisdom and modern healthcare practices.
@@ -63,66 +71,10 @@ export default function Login() {
               </div>
             </div>
           )}
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+            <AuthVerification />
+          </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                  placeholder="Enter your password"
-                  required
-                />
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="w-full bg-primary-500 text-white py-3 rounded-lg font-medium
-                  transition-all duration-200 
-                  hover:bg-primary-600 hover:shadow-lg
-                  active:transform active:scale-[0.98]"
-              >
-                Sign in
-              </button>
-            </div>
-
-            <p className="text-center text-gray-600">
-              Don't have an account?{' '}
-              <Link
-                to="/register"
-                className="text-primary-600 font-medium hover:text-primary-700"
-              >
-                Sign up
-              </Link>
-            </p>
-          </form>
         </div>
       </div>
     </div>

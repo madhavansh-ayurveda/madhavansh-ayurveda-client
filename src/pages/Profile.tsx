@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import { motion } from 'framer-motion';
 import { User, Mail, Phone, Calendar, Shield, IdCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'react-hot-toast';
+import { useAppSelector } from '../hooks/useAppSelector';
 
 export default function Profile() {
-  const { user } = useAuth();
+  const { user } = useAppSelector(state => state.auth);
   const [isEditing, setIsEditing] = useState(false);
 
   if (!user) {
@@ -44,7 +44,7 @@ export default function Profile() {
                 </div>
                 <div>
                   <h2 className="text-xl font-semibold text-gray-900">{user.name}</h2>
-                  <p className="text-sm text-gray-500 capitalize">{user.role}</p>
+                  {/* <p className="text-sm text-gray-500 capitalize">{user.role}</p> */}
                 </div>
               </div>
               <Button
@@ -64,7 +64,11 @@ export default function Profile() {
                 <Mail className="w-5 h-5 text-gray-400" />
                 <div>
                   <p className="text-sm text-gray-500">Email Address</p>
-                  <p className="text-gray-900">{user.email}</p>
+                  {user && 'email' in user ? (
+                    <p className="text-gray-900">{user.email}</p>
+                  ) : (
+                    <p className="text-gray-900">Email not available</p>
+                  )}
                 </div>
               </div>
 
@@ -73,7 +77,7 @@ export default function Profile() {
                 <Phone className="w-5 h-5 text-gray-400" />
                 <div>
                   <p className="text-sm text-gray-500">Phone Number</p>
-                  <p className="text-gray-900">{user.phone}</p>
+                  <p className="text-gray-900">{user.contact}</p>
                 </div>
               </div>
 
@@ -82,7 +86,12 @@ export default function Profile() {
                 <Calendar className="w-5 h-5 text-gray-400" />
                 <div>
                   <p className="text-sm text-gray-500">Age</p>
-                  <p className="text-gray-900">{user.age} years</p>
+                  {/* Check if user is of type User and has an age property */}
+                  {user && 'age' in user ? (
+                    <p className="text-gray-900">{user.age} years</p>
+                  ) : (
+                    <p className="text-gray-900">Not provided</p>
+                  )}
                 </div>
               </div>
 
@@ -91,7 +100,7 @@ export default function Profile() {
                 <Shield className="w-5 h-5 text-gray-400" />
                 <div>
                   <p className="text-sm text-gray-500">Account Type</p>
-                  <p className="text-gray-900 capitalize">{user.role}</p>
+                  <p className="text-gray-900 capitalize">Patient</p>
                 </div>
               </div>
 
@@ -100,7 +109,12 @@ export default function Profile() {
                 <IdCard className="w-5 h-5 text-gray-400" />
                 <div>
                   <p className="text-sm text-gray-500">User ID</p>
-                  <p className="text-gray-900 font-mono text-sm">{user._id}</p>
+                  {/* Check if user is of type User and has an _id property */}
+                  {user && '_id' in user ? (
+                    <p className="text-gray-900 font-mono text-sm">{user._id}</p>
+                  ) : (
+                    <p className="text-gray-900">Not provided</p>
+                  )}
                 </div>
               </div>
             </div>

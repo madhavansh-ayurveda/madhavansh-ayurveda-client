@@ -1,12 +1,21 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calendar, Users, Phone, Clock, Star} from 'lucide-react';
+import { Calendar, Users, Phone, Clock, Star } from 'lucide-react';
 import AnimatedStat from '../components/AnimatedStat';
 import { WhatweCard } from '../components/WhatweCard';
 import ShimmerButton from '../components/ui/shimmer-button';
+import { useAppDispatch, useAppSelector } from '@/hooks/useAppSelector';
+import { useEffect } from 'react';
+// import { api } from '@/api/axios';
+import { authApi } from '@/api/authApi';
+import { toast } from 'react-hot-toast';
+import { logout } from '@/store/features/authSlice';
+import Cookies from 'js-cookie';
 
 
 export default function Home() {
+  const dispatch = useAppDispatch();
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -20,6 +29,30 @@ export default function Home() {
       }
     }
   };
+  const { user, isAuthenticated } = useAppSelector(state => state.auth);
+  useEffect(() => {
+    console.log();
+    const checkUserFunc = async () => {
+      if (user) {
+        console.log("checking auth");
+
+        const checkUser = await authApi.checkAuth();
+        if (!checkUser.success) {
+          try {
+            localStorage.removeItem('authToken');
+            Cookies.remove('authToken');
+            dispatch(logout());
+            toast.success('Logged out successfully');
+          } catch (error) {
+            console.error('Logout failed:', error);
+            toast.error('Failed to logout. Please try again.');
+          }
+        }
+      }
+    }
+    checkUserFunc();
+  }, [])
+
 
   return (
     <>
