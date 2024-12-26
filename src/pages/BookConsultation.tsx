@@ -1,5 +1,5 @@
 // client/src/pages/BookConsultation.tsx
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
@@ -33,7 +33,7 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 interface FormData {
   name: string;
   contact: string;
-  doctor: { doctorName: string; doctorId: string; };
+  doctor: { doctorName: string; doctorId: string };
   consultationType: Consultation["consultationType"];
   date: Date;
   timeSlot: string;
@@ -114,13 +114,15 @@ export default function BookConsultation() {
 
       console.log(formdata);
 
-      const consultation = await consultationService.createConsultation(formdata);
+      const consultation = await consultationService.createConsultation(
+        formdata
+      );
       console.log(consultation);
 
       // Dispatch the action to store the consultation ID
       dispatch(storeConsultationId(consultation._id));
 
-      console.log(user, consultationId)
+      console.log(user, consultationId);
 
       toast.success("Consultation booked successfully!");
       navigate(`/consultation/${consultation._id}`);
@@ -131,7 +133,6 @@ export default function BookConsultation() {
       setLoading(false);
     }
   };
-
 
   const timeSlots = [
     "09:00 AM",
