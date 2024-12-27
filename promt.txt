@@ -1,0 +1,7 @@
+display the slots of the doctors availibility according to the data from the doctorsslice available in the doctorsdata, after choosing the data check the day and display the time slots accordingly
+
+
+bookconsu
+doctors.js
+adddoctorform
+doctorsapi

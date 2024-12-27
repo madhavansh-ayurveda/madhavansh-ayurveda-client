@@ -10,6 +10,7 @@ import {
   fetchDoctorsFailure,
 } from '@/store/features/doctorsSlice';
 import { toast } from 'react-hot-toast';
+import { Availability } from '@/types';
 
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 
@@ -19,8 +20,8 @@ export default function Doctors() {
 
   useEffect(() => {
     console.log(doctors);
+    console.log(doctors[0].availability);
     const fetchDoctors = async () => {
-      // Check if we have cached data that's still fresh
       if (doctors.length > 0 && lastFetched && Date.now() - lastFetched < CACHE_DURATION) {
         return; // Use cached data
       }
@@ -29,6 +30,7 @@ export default function Doctors() {
       dispatch(fetchDoctorsStart());
       try {
         const data = await doctorsService.getAllActiveDoctors();
+        // console.log(data);
 
         dispatch(fetchDoctorsSuccess(data));
       } catch (err) {
@@ -65,29 +67,35 @@ export default function Doctors() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
+            {/* 
             <div className="relative h-64">
-              {/* <img
+              <img
                 src={doctor.image}
                 alt={doctor.name}
                 className="w-full h-full object-cover"
-              /> */}
+              />
             </div>
+               */}
             <div className="p-6">
               <h3 className="text-xl font-semibold text-gray-900">{doctor.name}</h3>
               <p className="text-primary-600 font-medium">{doctor.specialization}</p>
               <p className="text-gray-600 mt-2">{doctor.experience} years experience</p>
               <div className="mt-4">
-                <p className="text-sm font-medium text-gray-900">Expertise:</p>
-                {/* <div className="mt-2 flex flex-wrap gap-2">
-                  {doctor.expertise.map((skill, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div> */}
+                <p className="text-sm font-medium text-gray-900">Availability:</p>
+                {doctor?.availability && (
+                  <div key={doctor.availability._id} className="mt-2">
+                    <p className="font-medium">{doctor.availability.days.join(', ')}</p>
+                    {/* {doctor.availability.slots.map((slot, slotIndex) => (
+                      <div key={slotIndex} className="text-gray-600">
+                        {slot.map((time, timeIndex) => (
+                          <span key={timeIndex} className="mr-2">
+                            {time.startTime}-{time.endTime} ,
+                          </span>
+                        ))}
+                      </div>
+                    ))} */}
+                  </div>
+                )}
               </div>
               <Link
                 to={`/book-consultation?doctor=${doctor._id}`}

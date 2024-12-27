@@ -50,6 +50,18 @@ export interface Prescription {
 }
 
 
+export interface Slot {
+  startTime: string
+  endTime: string
+  isBooked?: boolean
+}
+
+export interface Availability {
+  days: string[]
+  slots: Slot[][]
+  _id?: string
+}
+
 export interface Doctor {
   _id: string;
   name: string;
@@ -61,7 +73,7 @@ export interface Doctor {
   qualification: string;
   registrationNumber: string;
   status: 'active' | 'inactive';
-  availability: Array<{}>;
+  availability: Availability;
 }
 
 export interface ApiDoctorSchema {
@@ -75,7 +87,7 @@ export interface ApiDoctorSchema {
   registrationNumber: string;
   specialization: string;
   status: 'active' | 'inactive';
-  availability: Array<{}>;
+  availability: Availability;
   createdAt: string;
   updatedAt: string;
   __v: number;

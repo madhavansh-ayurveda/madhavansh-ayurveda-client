@@ -55,6 +55,8 @@ export default function BookConsultation() {
   const { doctors: doctorsData, lastFetched } = useAppSelector(
     (state) => state.doctors
   );
+  console.log(doctorsData);
+
   const [timeSlot, setTimeSlot] = useState("");
   const [prevConsultId, setPrevConsultId] = useState("");
   const dispatch = useAppDispatch();

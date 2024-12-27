@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { doctorApi } from '../../api/doctorsApi'; // Adjust the import based on your API setup
+import { doctorsApi } from '../../api/doctorsApi'; // Adjust the import based on your API setup
 import { Doctor } from '@/types';
 
 interface DoctorsState {
@@ -18,7 +18,7 @@ const initialState: DoctorsState = {
 
 // Async thunk for fetching doctors
 export const fetchDoctors = createAsyncThunk('doctors/fetchDoctors', async () => {
-    const response = await doctorApi.getAll(); // Adjust the API call as needed
+    const response = await doctorsApi.getAllActiveDoctors(); // Adjust the API call as needed
     return response.data;
 });
 
@@ -34,7 +34,8 @@ const doctorsSlice = createSlice({
             })
             .addCase(fetchDoctors.fulfilled, (state, action) => {
                 state.loading = false;
-                state.doctors = action.payload;
+                console.log(action.payload);
+                state.doctors = (action.payload as any).doctors as Doctor[];
             })
             .addCase(fetchDoctors.rejected, (state, action) => {
                 state.loading = false;
