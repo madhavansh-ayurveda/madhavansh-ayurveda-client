@@ -10,7 +10,6 @@ import {
   fetchDoctorsFailure,
 } from '@/store/features/doctorsSlice';
 import { toast } from 'react-hot-toast';
-import { Availability } from '@/types';
 
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 

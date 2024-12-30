@@ -1,41 +1,9 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, AlertCircle } from 'lucide-react';
-import { useAppDispatch } from '../store/hooks';
-import { loginStart, loginSuccess, loginFailure } from '../store/features/authSlice';
-import { authService } from '../services/authService';
+import { AlertCircle } from 'lucide-react';
 import AuthVerification from '@/components/AuthVerification';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    dispatch(loginStart());
-
-    try {
-      const response = await authService.login(email, password);
-      console.log(response);
-
-      dispatch(loginSuccess({
-        user: response.user,
-        token: response.token
-      }));
-      navigate('/');
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Login failed';
-      console.log(errorMessage);
-
-      dispatch(loginFailure(errorMessage));
-      setError(errorMessage);
-      setPassword('');
-    }
-  };
-
   return (
     <div className="min-h-screen flex">
       {/* Left Side - Image */}

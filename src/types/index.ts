@@ -18,6 +18,7 @@ export interface Consultation {
   previousConsultationId?: string;
   date: Date;
   timeSlot: string;
+  mode: 'online' | 'offline';
   symptoms?: string;
 }
 

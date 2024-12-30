@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select";
+import { Doctor, Slot } from "../types/index";
 import { consultationService } from "../services/consultationService";
 import { toast } from "react-hot-toast";
 import { Consultation } from "../types/index";
@@ -26,9 +27,8 @@ import {
   fetchDoctorsFailure,
 } from "@/store/features/doctorsSlice";
 import AuthVerification from "@/components/AuthVerification";
-import { storeConsultationId } from "@/store/features/authSlice";
-import { api } from "@/api/axios";
-import { log } from "node:console";
+import { storeConsultationId } from "@/store/features/consultationSlice";
+import { Separator } from "@/components/ui/separator";
 
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 
@@ -41,7 +41,18 @@ interface FormData {
   timeSlot: string;
   symptoms: string;
   previousConsultationId?: string; // Add this property to the type definition
+  mode: "online" | "offline";
 }
+
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 export default function BookConsultation() {
   const navigate = useNavigate();
@@ -63,9 +74,16 @@ export default function BookConsultation() {
   const [prevConsultId, setPrevConsultId] = useState("");
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
-
-  // Retrieve user data from Redux
   const { user, consultationId } = useAppSelector((state) => state.auth);
+  const [mode, setMode] = useState<"online" | "offline">("offline");
+  const [timeSlots, setTimeSlots] = useState<Slot[] | undefined>(undefined);
+  const consultationTypesList = [
+    "General Consultation",
+    "Follow-up",
+    "Specific Treatment",
+    "Emergency",
+  ];
+  const [doctor, setDoctor] = useState<Doctor | undefined>(undefined);
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -92,6 +110,20 @@ export default function BookConsultation() {
     fetchDoctors();
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log(selectedDoctor);
+    setDoctor(
+      doctorsData.find((doctor) => doctor._id === selectedDoctor.doctorId)
+    );
+    console.log(doctor);
+    const DaySlots =
+      doctor?.availability.slots[
+        doctor?.availability.days?.indexOf(days[date?.getDay() || 0])
+      ];
+    const availableDaySlots = DaySlots?.filter((slot) => !slot.isBooked);
+    console.log(availableDaySlots);
+    setTimeSlots(availableDaySlots);
+  }, [selectedDoctor, date]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -110,6 +142,7 @@ export default function BookConsultation() {
         date: date,
         timeSlot,
         symptoms,
+        mode,
       };
 
       if (prevConsultId.length > 0) {
@@ -129,40 +162,28 @@ export default function BookConsultation() {
       console.log(user, consultationId);
 
       toast.success("Consultation booked successfully!");
-      navigate(`/consultation/${consultation._id}`);
+      // navigate(`/consultation/${consultation._id}`);
+
+      // After successful consultation creation, navigate to payment
+      setName("");
+      setContact("");
+      navigate("/payment", {
+        state: {
+          paymentDetails: {
+            amount: consultation.amount,
+            consultationId: consultation._id,
+            doctorName: selectedDoctor.doctorName,
+            date: date,
+            timeSlot: timeSlot,
+          },
+        },
+      });
     } catch (error) {
       toast.error(getErrorMessage(error));
       console.error("Booking error:", error);
     } finally {
       setLoading(false);
     }
-  };
-
-  const timeSlots = [
-    "09:00 AM",
-    "09:30 AM",
-    "10:00 AM",
-    "10:30 AM",
-    "11:00 AM",
-    "11:30 AM",
-    "12:00 PM",
-    "02:00 PM",
-  ];
-
-  const consultationTypesList = [
-    "General Consultation",
-    "Follow-up",
-    "Specific Treatment",
-    "Emergency",
-  ];
-
-  const [qrCode, setQrCode] = useState("");
-
-  const generateQR = async () => {
-    const response = await api("/generate-qr");
-    // const data = await response.json();
-    console.log(response);
-    setQrCode(response.data.qrCodeData);
   };
 
   return (
@@ -288,6 +309,21 @@ export default function BookConsultation() {
                   <CalendarDays className="w-5 h-5 text-primary-500" />
                   <h2 className="text-xl font-semibold">Schedule</h2>
                 </div>
+                <div className="availableDays flex gap-10 p-5 items-center">
+                  Available Days:
+                  <div className="availableDaysList flex flex-wrap p-2 border rounded-lg">
+                    {doctor?.availability.days.map((day, index) => (
+                      <>
+                        <div key={day} className="flex">
+                          {index !== 0 && (
+                            <Separator className="mx-2" orientation="vertical" />
+                          )}
+                          {day}
+                        </div>
+                      </>
+                    ))}
+                  </div>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="flex-1">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -313,25 +349,77 @@ export default function BookConsultation() {
                       />
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Time Slot
-                    </label>
-                    <Select onValueChange={setTimeSlot} value={timeSlot}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select time slot" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {timeSlots.map((slot) => (
-                          <SelectItem key={slot} value={slot}>
-                            {slot}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <p className="mt-2 text-sm text-gray-500">
-                      Available slots are shown based on doctor's schedule
-                    </p>
+                  <div className="flex-1 flex flex-col gap-10">
+                    <div className="timeSlot">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Time Slot
+                      </label>
+                      <Select onValueChange={setTimeSlot} value={timeSlot}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select time slot" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {timeSlots?.map((slot) => (
+                            <SelectItem
+                              key={slot.startTime}
+                              value={slot.startTime}
+                            >
+                              {slot.startTime}-{slot.endTime}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <p className="mt-2 text-sm text-gray-500">
+                        Available slots are shown based on doctor's schedule
+                      </p>
+                    </div>
+                    <div className="mode">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Consultation Mode
+                      </label>
+                      <div className="flex gap-4">
+                        <Button
+                          type="button"
+                          onClick={() => setMode("offline")}
+                          variant={mode === "offline" ? "default" : "outline"}
+                          className={`flex-1 ${
+                            mode === "offline"
+                              ? "bg-primary-500 text-white"
+                              : "bg-white text-gray-700"
+                          }`}
+                        >
+                          <span className="flex items-center gap-2">
+                            🏥 In-Person
+                          </span>
+                        </Button>
+                        <Button
+                          type="button"
+                          onClick={() => setMode("online")}
+                          variant={mode === "online" ? "default" : "outline"}
+                          className={`flex-1 ${
+                            mode === "online"
+                              ? "bg-primary-500 text-white"
+                              : "bg-white text-gray-700"
+                          }`}
+                        >
+                          <span className="flex items-center gap-2">
+                            💻 Online
+                          </span>
+                        </Button>
+                      </div>
+                      {mode === "online" && (
+                        <p className="mt-2 text-sm text-gray-500">
+                          Online consultations will be conducted via video call.
+                          Link will be shared before the appointment.
+                        </p>
+                      )}
+                      {mode === "offline" && (
+                        <p className="mt-2 text-sm text-gray-500">
+                          Please arrive 15 minutes before your scheduled
+                          appointment time at our clinic.
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -387,9 +475,6 @@ export default function BookConsultation() {
           </div>
         </div>
       </div>
-
-      <button onClick={generateQR}>Pay</button>
-      {qrCode && <img src={qrCode} alt="UPI QR Code" />}
 
       {/* Loader component */}
       {loading && (

@@ -1,23 +1,31 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Clock, Calendar, User, FileText, CheckCircle } from 'lucide-react';
-import { api } from "../api/axios"
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { toast } from 'react-hot-toast';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  Clock,
+  Calendar,
+  User,
+  FileText,
+  CheckCircle,
+  WifiOff,
+  Wifi,
+} from "lucide-react";
+import { api } from "../api/axios";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "react-hot-toast";
 
-import { ConsultationResponse } from "../types/index"
+import { ConsultationResponse } from "../types/index";
 
 export default function ConsultationTracker() {
-  const [consultationId, setConsultationId] = useState('');
+  const [consultationId, setConsultationId] = useState("");
   const [fetchComplete, setFetchComplete] = useState(false);
-  const [consultation, setConsultation] = useState<ConsultationResponse | null>(null);
+  const [consultation, setConsultation] = useState<ConsultationResponse | null>(
+    null
+  );
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const { id } = useParams();
   console.log(id);
-
 
   useEffect(() => {
     console.log(id);
@@ -29,7 +37,7 @@ export default function ConsultationTracker() {
 
   const handleFetchConsultation = async () => {
     if (!consultationId.trim()) {
-      toast.error('Please enter a consultation ID');
+      toast.error("Please enter a consultation ID");
       return;
     }
 
@@ -39,8 +47,10 @@ export default function ConsultationTracker() {
       console.log(response);
       setConsultation(response.data.data);
     } catch (error) {
-      console.error('Error fetching consultation:', error);
-      toast.error('Failed to fetch consultation. Please check the ID and try again.');
+      console.error("Error fetching consultation:", error);
+      toast.error(
+        "Failed to fetch consultation. Please check the ID and try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -63,7 +73,8 @@ export default function ConsultationTracker() {
             Consultation not found
           </h2>
           <p className="mt-2 text-gray-600">
-            The consultation you're looking for doesn't exist or has been removed.
+            The consultation you're looking for doesn't exist or has been
+            removed.
           </p>
         </div>
       </div>
@@ -71,10 +82,10 @@ export default function ConsultationTracker() {
   }
 
   const statusColors = {
-    pending: 'bg-yellow-100 text-yellow-800',
-    confirmed: 'bg-blue-100 text-blue-800',
-    completed: 'bg-green-100 text-green-800',
-    cancelled: 'bg-red-100 text-red-800',
+    pending: "bg-yellow-100 text-yellow-800",
+    confirmed: "bg-blue-100 text-blue-800",
+    completed: "bg-green-100 text-green-800",
+    cancelled: "bg-red-100 text-red-800",
   };
 
   return (
@@ -85,7 +96,9 @@ export default function ConsultationTracker() {
       className="container mx-auto px-4 py-8"
     >
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">Track Your Consultation</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+          Track Your Consultation
+        </h1>
         <div className="mb-6">
           <Input
             type="text"
@@ -94,7 +107,12 @@ export default function ConsultationTracker() {
             onChange={(e) => setConsultationId(e.target.value)}
             className="mb-4"
           />
-          <Button onClick={() => { handleFetchConsultation() }} className="w-full">
+          <Button
+            onClick={() => {
+              handleFetchConsultation();
+            }}
+            className="w-full"
+          >
             Fetch Consultation
           </Button>
         </div>
@@ -106,15 +124,32 @@ export default function ConsultationTracker() {
               <h1 className="text-2xl font-semibold text-gray-900">
                 Consultation Details
               </h1>
-              <p className="mt-2 text-sm text-gray-600">
-                ID: {consultation._id}
-              </p>
-              <p className="mt-2 text-sm text-gray-600">
-                Name: {consultation.name}
-              </p>
-              <p className="mt-2 text-sm text-gray-600">
-                Payment Status: {consultation.paymentStatus}
-              </p>
+              <div className="flex gap-20">
+                <div className="">
+                  <p className="mt-2 text-sm text-gray-600">
+                    ID: {consultation._id}
+                  </p>
+                  <p className="mt-2 text-sm text-gray-600">
+                    Name: {consultation.name}
+                  </p>
+                  <p className="mt-2 text-sm text-gray-600">
+                    Payment Status:
+                    <span className="text-green-900 mx-2">
+                      {consultation.paymentStatus}
+                    </span>
+                  </p>
+                </div>
+                <div className="mode flex gap-3">
+                  {consultation.mode === "online" ? (
+                    <Wifi className="h-5 w-5 text-gray-400 mt-1" />
+                  ) : (
+                    <WifiOff className="h-5 w-5 text-gray-400 mt-1" />
+                  )}
+                  <p className="mt-2 text-sm text-gray-600">
+                    Mode: <span>{consultation.mode}</span>
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Status Banner */}
@@ -122,7 +157,9 @@ export default function ConsultationTracker() {
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5" />
                 <span className="font-medium">
-                  Status: {consultation.status.charAt(0).toUpperCase() + consultation.status.slice(1)}
+                  Status:{" "}
+                  {consultation.status.charAt(0).toUpperCase() +
+                    consultation.status.slice(1)}
                 </span>
               </div>
             </div>
@@ -136,7 +173,9 @@ export default function ConsultationTracker() {
                     <Calendar className="h-5 w-5 text-gray-400 mt-1" />
                     <div>
                       <p className="text-sm font-medium text-gray-500">Date</p>
-                      <p className="text-gray-900">{new Date(consultation.date).toLocaleDateString()}</p>
+                      <p className="text-gray-900">
+                        {new Date(consultation.date).toLocaleDateString()}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -152,15 +191,23 @@ export default function ConsultationTracker() {
                   <div className="flex items-start gap-3">
                     <User className="h-5 w-5 text-gray-400 mt-1" />
                     <div>
-                      <p className="text-sm font-medium text-gray-500">Doctor</p>
-                      <p className="text-gray-900">{consultation.doctor.doctorName}</p>
+                      <p className="text-sm font-medium text-gray-500">
+                        Doctor
+                      </p>
+                      <p className="text-gray-900">
+                        {consultation.doctor.doctorName}
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <FileText className="h-5 w-5 text-gray-400 mt-1" />
                     <div>
-                      <p className="text-sm font-medium text-gray-500">Consultation Type</p>
-                      <p className="text-gray-900">{consultation.consultationType}</p>
+                      <p className="text-sm font-medium text-gray-500">
+                        Consultation Type
+                      </p>
+                      <p className="text-gray-900">
+                        {consultation.consultationType}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -179,4 +226,4 @@ export default function ConsultationTracker() {
       </div>
     </motion.div>
   );
-} 
+}

@@ -19,6 +19,7 @@ import { Toaster } from "react-hot-toast";
 import ConsultationTracker from "./pages/ConsultationTracker";
 import Profile from "./pages/Profile";
 import Appointments from "./pages/Appointments";
+import PaymentGateway from './pages/PaymentGateway';
 
 const App = () => {
   return (
@@ -51,6 +52,7 @@ const App = () => {
                     path="/consultation/"
                     element={<ConsultationTracker />}
                   />
+                  <Route path="/payment" element={<PaymentGateway />} />
                 </Routes>
               </AnimatePresence>
             </main>

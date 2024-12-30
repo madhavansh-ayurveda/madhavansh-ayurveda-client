@@ -72,14 +72,8 @@ const authSlice = createSlice({
         tempUser.contact = undefined;
       }
     },
-    storeConsultationId: (state, action: PayloadAction<string>) => {
-      if (!Array.isArray(state.consultationId)) {
-        state.consultationId = [];
-      }
-      state.consultationId.push(action.payload);
-    },
   },
 });
 
-export const { loginStart, loginSuccess, loginFailure, logout, updateUser, clearTempUser, storeTempUser, storeConsultationId } = authSlice.actions;
+export const { loginStart, loginSuccess, loginFailure, logout, updateUser, clearTempUser, storeTempUser } = authSlice.actions;
 export default authSlice.reducer; 
