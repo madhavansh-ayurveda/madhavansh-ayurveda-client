@@ -27,6 +27,8 @@ import {
 } from "@/store/features/doctorsSlice";
 import AuthVerification from "@/components/AuthVerification";
 import { storeConsultationId } from "@/store/features/authSlice";
+import { api } from "@/api/axios";
+import { log } from "node:console";
 
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 
@@ -153,6 +155,15 @@ export default function BookConsultation() {
     "Specific Treatment",
     "Emergency",
   ];
+
+  const [qrCode, setQrCode] = useState("");
+
+  const generateQR = async () => {
+    const response = await api("/generate-qr");
+    // const data = await response.json();
+    console.log(response);
+    setQrCode(response.data.qrCodeData);
+  };
 
   return (
     <motion.div
@@ -376,6 +387,9 @@ export default function BookConsultation() {
           </div>
         </div>
       </div>
+
+      <button onClick={generateQR}>Pay</button>
+      {qrCode && <img src={qrCode} alt="UPI QR Code" />}
 
       {/* Loader component */}
       {loading && (

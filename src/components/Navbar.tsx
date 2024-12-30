@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { cn } from "@/lib/utils"
 import {
   NavigationMenu,
@@ -24,7 +24,6 @@ import {
 import { toast } from 'react-hot-toast';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { logout } from '../store/features/authSlice';
-import { authService } from '../services/authService';
 import Cookies from 'js-cookie';
 
 const treatments: { title: string; href: string; description: string }[] = [
@@ -60,7 +59,6 @@ const collapsed = "grid-rows-[0fr]";
 const mobileMenuTransition = "transition-all duration-300 ease-in-out";
 
 export default function AppNavbar() {
-  const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
