@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { toast } from "react-hot-toast";
 import { api } from "@/api/axios";
+import { useAppSelector } from "@/hooks/useAppSelector";
 
 interface PaymentDetails {
   amount: number;
@@ -18,6 +19,8 @@ export const PaymentGateway = () => {
   const [qrCode, setQrCode] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [paymentVerified, setPaymentVerified] = useState(false);
+  const { contactNote } = useParams();
+  console.log(contactNote);
 
   const paymentDetails: PaymentDetails = location.state?.paymentDetails;
 
@@ -38,7 +41,7 @@ export const PaymentGateway = () => {
 
   const generateQRCode = async () => {
     try {
-      const response = await api("/generate-qr");
+      const response = await api(`/generate-qr/${contactNote}`);
       // const data = await response.json();
       console.log(response);
       setQrCode(response.data.qrCodeData);
@@ -62,13 +65,23 @@ export const PaymentGateway = () => {
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       setPaymentVerified(true);
-      toast.success("Payment verified successfully!", {
+      toast.success("Consultation booked successfully!", {
         duration: 4000,
         style: {
           background: "#4caf50",
           color: "#fff",
         },
       });
+      toast.success(
+        "Payment completed! We will verify your payment and get back to you.",
+        {
+          duration: 10000,
+          style: {
+            background: "#4caf50",
+            color: "#fff",
+          },
+        }
+      );
 
       // Navigate to success page or consultation details
       navigate(`/consultation/${paymentDetails.consultationId}`);

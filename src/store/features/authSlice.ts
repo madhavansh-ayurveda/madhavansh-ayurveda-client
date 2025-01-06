@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from "@/types"
-import Cookies from 'js-cookie';
-
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "@/types";
+import Cookies from "js-cookie";
 
 interface TempUser {
   name: string | undefined;
+  email?: string;
   contact?: string;
 }
 
@@ -19,7 +19,7 @@ interface AuthState {
 
 const initialState: AuthState = {
   user: null,
-  token: localStorage.getItem('token'),
+  token: localStorage.getItem("token"),
   isAuthenticated: false,
   isLoading: false,
   error: null,
@@ -27,20 +27,23 @@ const initialState: AuthState = {
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     loginStart: (state) => {
       state.isLoading = true;
       state.error = null;
     },
-    loginSuccess: (state, action: PayloadAction<{ user: User; token: string }>) => {
+    loginSuccess: (
+      state,
+      action: PayloadAction<{ user: User; token: string }>
+    ) => {
       state.isLoading = false;
       state.isAuthenticated = true;
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.error = null;
-      localStorage.setItem('token', action.payload.token);
+      localStorage.setItem("token", action.payload.token);
     },
     loginFailure: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
@@ -55,9 +58,9 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.error = null;
       state.consultationId = undefined;
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
       Cookies.remove("authToken");
-      Cookies.remove("token")
+      Cookies.remove("token");
     },
     updateUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
@@ -66,7 +69,7 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
     clearTempUser: (state) => {
-      if (state.user && 'contact' in state.user) {
+      if (state.user && "contact" in state.user) {
         const tempUser = state.user as TempUser;
         tempUser.name = undefined;
         tempUser.contact = undefined;
@@ -75,5 +78,13 @@ const authSlice = createSlice({
   },
 });
 
-export const { loginStart, loginSuccess, loginFailure, logout, updateUser, clearTempUser, storeTempUser } = authSlice.actions;
-export default authSlice.reducer; 
+export const {
+  loginStart,
+  loginSuccess,
+  loginFailure,
+  logout,
+  updateUser,
+  clearTempUser,
+  storeTempUser,
+} = authSlice.actions;
+export default authSlice.reducer;

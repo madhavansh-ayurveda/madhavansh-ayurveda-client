@@ -68,7 +68,7 @@ export default function AppNavbar() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log('Updated User:', user);;
+    // console.log('Updated User:', user);;
   }, [user]);
 
 
@@ -102,6 +102,7 @@ export default function AppNavbar() {
       Cookies.remove('authToken');
       dispatch(logout());
       toast.success('Logged out successfully');
+      window.location.reload();
     } catch (error) {
       console.error('Logout failed:', error);
       toast.error('Failed to logout. Please try again.');

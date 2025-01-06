@@ -52,7 +52,7 @@ const App = () => {
                     path="/consultation/"
                     element={<ConsultationTracker />}
                   />
-                  <Route path="/payment" element={<PaymentGateway />} />
+                  <Route path="/payment/:contactNote" element={<PaymentGateway />} />
                 </Routes>
               </AnimatePresence>
             </main>

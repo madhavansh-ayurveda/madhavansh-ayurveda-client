@@ -19,7 +19,7 @@ import { toast } from "react-hot-toast";
 import { Consultation } from "../types/index";
 import { useNavigate } from "react-router-dom";
 import { getErrorMessage } from "../utils/apiErrorHandler";
-import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { useAppSelector, useAppDispatch } from "@/hooks/useAppSelector";
 import { doctorsService } from "@/services/doctorsService";
 import {
   fetchDoctorsStart,
@@ -39,6 +39,7 @@ interface FormData {
   consultationType: Consultation["consultationType"];
   date: Date;
   timeSlot: string;
+  department: string;
   symptoms: string;
   previousConsultationId?: string; // Add this property to the type definition
   mode: "online" | "offline";
@@ -61,6 +62,7 @@ export default function BookConsultation() {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [symptoms, setSymptoms] = useState("");
   const [consultationType, setConsultationType] = useState("");
+  const [department, setDepartment] = useState("");
   const [selectedDoctor, setSelectedDoctor] = useState({
     doctorName: "",
     doctorId: "",
@@ -68,7 +70,7 @@ export default function BookConsultation() {
   const { doctors: doctorsData, lastFetched } = useAppSelector(
     (state) => state.doctors
   );
-  console.log(doctorsData);
+  // console.log(doctorsData);
 
   const [timeSlot, setTimeSlot] = useState("");
   const [prevConsultId, setPrevConsultId] = useState("");
@@ -83,6 +85,17 @@ export default function BookConsultation() {
     "Specific Treatment",
     "Emergency",
   ];
+
+  const departmentSpeciality = [
+    "Skin & Hair",
+    "Infertility and PCOD",
+    "Kidney and Gallbladder Stone",
+    "Arthritis and Pain Management",
+    "Life style disorder",
+    "Glaucoma",
+    "Immunity booster dose",
+  ];
+
   const [doctor, setDoctor] = useState<Doctor | undefined>(undefined);
 
   useEffect(() => {
@@ -115,7 +128,7 @@ export default function BookConsultation() {
     setDoctor(
       doctorsData.find((doctor) => doctor._id === selectedDoctor.doctorId)
     );
-    console.log(doctor);
+    // console.log(doctor);
     const DaySlots =
       doctor?.availability.slots[
         doctor?.availability.days?.indexOf(days[date?.getDay() || 0])
@@ -124,6 +137,7 @@ export default function BookConsultation() {
     console.log(availableDaySlots);
     setTimeSlots(availableDaySlots);
   }, [selectedDoctor, date]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -139,6 +153,7 @@ export default function BookConsultation() {
         contact: user?.contact || contact,
         doctor: selectedDoctor,
         consultationType: consultationType as Consultation["consultationType"],
+        department: department,
         date: date,
         timeSlot,
         symptoms,
@@ -160,14 +175,16 @@ export default function BookConsultation() {
       dispatch(storeConsultationId(consultation._id));
 
       console.log(user, consultationId);
-
-      toast.success("Consultation booked successfully!");
       // navigate(`/consultation/${consultation._id}`);
 
       // After successful consultation creation, navigate to payment
       setName("");
       setContact("");
-      navigate("/payment", {
+      // console.log(consultation.contact + "_" + consultation._id);
+      const note = consultation.contact + "_" + consultation._id;
+      console.log(note);
+
+      navigate(`/payment/${note}`, {
         state: {
           paymentDetails: {
             amount: consultation.amount,
@@ -229,6 +246,7 @@ export default function BookConsultation() {
                   </h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Consultation Type */}
                   <div className="flex-1">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Type
@@ -249,6 +267,27 @@ export default function BookConsultation() {
                       </SelectContent>
                     </Select>
                   </div>
+
+                  {/* Department */}
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Department
+                    </label>
+                    <Select onValueChange={setDepartment} value={department}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Department" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {departmentSpeciality.map((type) => (
+                          <SelectItem key={type} value={type}>
+                            {type}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Doctor */}
                   <div className="flex-1">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Doctor
@@ -284,6 +323,8 @@ export default function BookConsultation() {
                       </SelectContent>
                     </Select>
                   </div>
+
+                  {/* Previous COnsultationID */}
                   <div className="flex-1">
                     {consultationType === "Follow-up" && (
                       <>
@@ -305,26 +346,38 @@ export default function BookConsultation() {
 
               {/* Schedule Card */}
               <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3">
                   <CalendarDays className="w-5 h-5 text-primary-500" />
                   <h2 className="text-xl font-semibold">Schedule</h2>
                 </div>
                 <div className="availableDays flex gap-10 p-5 items-center">
-                  Available Days:
-                  <div className="availableDaysList flex flex-wrap p-2 border rounded-lg">
-                    {doctor?.availability.days.map((day, index) => (
-                      <>
-                        <div key={day} className="flex">
-                          {index !== 0 && (
-                            <Separator className="mx-2" orientation="vertical" />
-                          )}
-                          {day}
-                        </div>
-                      </>
-                    ))}
-                  </div>
+                  {doctor ? (
+                    <>
+                      Available Days:
+                      <div className="availableDaysList flex flex-wrap p-2 border rounded-lg">
+                        {doctor.availability.days.map((day, index) => (
+                          <>
+                            <div key={day} className="flex">
+                              {index !== 0 && (
+                                <Separator
+                                  className="mx-2"
+                                  orientation="vertical"
+                                />
+                              )}
+                              {day}
+                            </div>
+                          </>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex font-bold ">
+                      Please select a doctor
+                    </div>
+                  )}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Calendar */}
                   <div className="flex-1">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Date
@@ -349,7 +402,9 @@ export default function BookConsultation() {
                       />
                     </div>
                   </div>
+
                   <div className="flex-1 flex flex-col gap-10">
+                    {/* Time Slot */}
                     <div className="timeSlot">
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Time Slot
@@ -373,6 +428,8 @@ export default function BookConsultation() {
                         Available slots are shown based on doctor's schedule
                       </p>
                     </div>
+
+                    {/* Consultation Mode */}
                     <div className="mode">
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Consultation Mode
