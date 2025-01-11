@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { toast } from "react-hot-toast";
 import { api } from "@/api/axios";
-import { useAppSelector } from "@/hooks/useAppSelector";
+// import { useAppSelector } from "@/hooks/useAppSelector";
 
 interface PaymentDetails {
   amount: number;
@@ -20,8 +20,10 @@ export const PaymentGateway = () => {
   const [loading, setLoading] = useState(false);
   const [paymentVerified, setPaymentVerified] = useState(false);
   const { contactNote } = useParams();
-  console.log(contactNote);
-
+  // console.log(contactNote);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
   const paymentDetails: PaymentDetails = location.state?.paymentDetails;
 
   useEffect(() => {

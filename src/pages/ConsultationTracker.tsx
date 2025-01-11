@@ -28,6 +28,10 @@ export default function ConsultationTracker() {
   console.log(id);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     console.log(id);
     if (id) {
       setConsultationId(id);

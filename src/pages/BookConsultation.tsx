@@ -85,7 +85,6 @@ export default function BookConsultation() {
     "Specific Treatment",
     "Emergency",
   ];
-
   const departmentSpeciality = [
     "Skin & Hair",
     "Infertility and PCOD",
@@ -309,17 +308,27 @@ export default function BookConsultation() {
                       </SelectTrigger>
                       <SelectContent>
                         {doctorsData &&
-                          doctorsData.map((doctor) => (
-                            <SelectItem
-                              key={doctor._id}
-                              value={JSON.stringify({
-                                doctorName: doctor.name,
-                                doctorId: doctor._id,
-                              })}
-                            >
-                              {doctor.name} - {doctor.specialization}
-                            </SelectItem>
-                          ))}
+                        doctorsData.filter((doctor) =>
+                          doctor.department.includes(department)
+                        ).length > 0 ? (
+                          doctorsData.map(
+                            (doctor) =>
+                              doctor.department.includes(department) && (
+                                <SelectItem
+                                  key={doctor._id}
+                                  value={JSON.stringify({
+                                    doctorName: doctor.name,
+                                    doctorId: doctor._id,
+                                  })}
+                                >
+                                  {doctor.name} -{" "}
+                                  {doctor.specialization.join(", ")}
+                                </SelectItem>
+                              )
+                          )
+                        ) : (
+                          <SelectItem value="no-doctors" disabled>No doctors found</SelectItem>
+                        )}
                       </SelectContent>
                     </Select>
                   </div>

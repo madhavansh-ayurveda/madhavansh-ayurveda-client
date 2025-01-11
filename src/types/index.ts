@@ -10,7 +10,11 @@ export interface User {
 export interface Consultation {
   name: string;
   contact: string;
-  consultationType: 'General Consultation' | 'Follow-up' | 'Specific Treatment' | 'Emergency';
+  consultationType:
+    | "General Consultation"
+    | "Follow-up"
+    | "Specific Treatment"
+    | "Emergency";
   doctor: {
     doctorId: string;
     doctorName: string;
@@ -18,28 +22,27 @@ export interface Consultation {
   previousConsultationId?: string;
   date: Date;
   timeSlot: string;
-  mode: 'online' | 'offline';
+  mode: "online" | "offline";
   symptoms?: string;
 }
 
 export interface ConsultationResponse extends Consultation {
   _id: string;
-  status: 'pending' | 'confirmed' | 'completed' | 'cancelled';
+  status: "pending" | "confirmed" | "completed" | "cancelled";
   amount: number;
   notes: string;
   pescription: {
     instructions: string;
     file: [string];
-  }
-  paymentStatus: 'pending' | 'completed' | 'refunded';
+  };
+  paymentStatus: "pending" | "completed" | "refunded";
   additionalInfo: {
-    img: [String],
-    file: [String],
-  }
+    img: [String];
+    file: [String];
+  };
   createdAt: string;
   updatedAt: string;
 }
-
 
 export interface Prescription {
   medicines: Array<{
@@ -50,17 +53,16 @@ export interface Prescription {
   instructions: string;
 }
 
-
 export interface Slot {
-  startTime: string
-  endTime: string
-  isBooked?: boolean
+  startTime: string;
+  endTime: string;
+  isBooked?: boolean;
 }
 
 export interface Availability {
-  days: string[]
-  slots: Slot[][]
-  _id?: string
+  days: string[];
+  slots: Slot[][];
+  _id?: string;
 }
 
 export interface Doctor {
@@ -68,12 +70,13 @@ export interface Doctor {
   name: string;
   email: string;
   phone: string;
-  specialization: string;
+  specialization: string[];
+  department: string[];
   experience: number;
   profileImage: string;
   qualification: string;
   registrationNumber: string;
-  status: 'active' | 'inactive';
+  status: "active" | "inactive";
   availability: Availability;
 }
 
@@ -87,7 +90,7 @@ export interface ApiDoctorSchema {
   qualification: string;
   registrationNumber: string;
   specialization: string;
-  status: 'active' | 'inactive';
+  status: "active" | "inactive";
   availability: Availability;
   createdAt: string;
   updatedAt: string;
