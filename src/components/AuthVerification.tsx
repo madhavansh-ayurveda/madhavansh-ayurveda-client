@@ -135,7 +135,7 @@ const AuthVerification = () => {
           value={name}
           disabled={isOtpVerified || !!user}
           onChange={(e) => setName(e.target.value)}
-          className="md:w-[60%] focus:ring-1 focus:border-gray-100 focus:outline-none"
+          className="md:w-[50%] focus:ring-1 focus:border-gray-100 focus:outline-none"
         />
       </div>
       {/* Contact */}
@@ -168,7 +168,7 @@ const AuthVerification = () => {
             type="email"
             required
             disabled={isOtpSent || isOtpVerified || !!user}
-            className="flex-1 max-w-[200px] tracking-wider focus:ring-1 focus:ring-primary-500 focus:border-primary-500 focus:outline-none"
+            className="flex-1 md:max-w-[37%] tracking-wider focus:ring-1 focus:ring-primary-500 focus:border-primary-500 focus:outline-none"
           />
           {!isOtpVerified && !user ? (
             !isOtpSent ? (

@@ -20,6 +20,7 @@ import ConsultationTracker from "./pages/ConsultationTracker";
 import Profile from "./pages/Profile";
 import Appointments from "./pages/Appointments";
 import PaymentGateway from './pages/PaymentGateway';
+import { FeedbackForm } from "./pages/FeedbackForm";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/appointments" element={<Appointments />} />
+                  <Route path="/feedback/:id" element={<FeedbackForm />} />
                   <Route
                     path="/book-consultation"
                     element={<BookConsultation />}

@@ -35,6 +35,7 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 interface FormData {
   name: string;
   contact: string;
+  email: string;
   doctor: { doctorName: string; doctorId: string };
   consultationType: Consultation["consultationType"];
   date: Date;
@@ -45,20 +46,8 @@ interface FormData {
   mode: "online" | "offline";
 }
 
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
 export default function BookConsultation() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [contact, setContact] = useState("");
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [symptoms, setSymptoms] = useState("");
   const [consultationType, setConsultationType] = useState("");
@@ -71,19 +60,17 @@ export default function BookConsultation() {
     (state) => state.doctors
   );
   // console.log(doctorsData);
-
   const [timeSlot, setTimeSlot] = useState("");
   const [prevConsultId, setPrevConsultId] = useState("");
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
-  const { user, consultationId } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
   const [mode, setMode] = useState<"online" | "offline">("offline");
   const [timeSlots, setTimeSlots] = useState<Slot[] | undefined>(undefined);
   const consultationTypesList = [
     "General Consultation",
     "Follow-up",
     "Specific Treatment",
-    "Emergency",
   ];
   const departmentSpeciality = [
     "Skin & Hair",
@@ -94,6 +81,8 @@ export default function BookConsultation() {
     "Glaucoma",
     "Immunity booster dose",
   ];
+  const [calendarDays, setCalendarDays] = useState<number[]>([]);
+  const dayList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thusday", "Friday", "Saturday"]
 
   const [doctor, setDoctor] = useState<Doctor | undefined>(undefined);
 
@@ -106,7 +95,6 @@ export default function BookConsultation() {
       ) {
         return; // Use cached data
       }
-
       dispatch(fetchDoctorsStart());
       try {
         const data = await doctorsService.getAllActiveDoctors();
@@ -123,19 +111,30 @@ export default function BookConsultation() {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log(selectedDoctor);
-    setDoctor(
-      doctorsData.find((doctor) => doctor._id === selectedDoctor.doctorId)
+    const currentDoctor = doctorsData.find(
+      (doctor) => doctor._id === selectedDoctor.doctorId
     );
-    // console.log(doctor);
-    const DaySlots =
-      doctor?.availability.slots[
-        doctor?.availability.days?.indexOf(days[date?.getDay() || 0])
-      ];
-    const availableDaySlots = DaySlots?.filter((slot) => !slot.isBooked);
-    console.log(availableDaySlots);
-    setTimeSlots(availableDaySlots);
-  }, [selectedDoctor, date]);
+    setDoctor(currentDoctor);
+
+    if (currentDoctor) {
+      const DaySlots =
+        currentDoctor.availability.slots[
+        currentDoctor.availability.days?.indexOf(dayList[date?.getDay() || 0])
+        ];
+      const availableDaySlots = DaySlots?.filter((slot) => !slot.isBooked);
+
+      // Calculate calendarDaysIndex
+      // const calendarDaysIndex = currentDoctor.availability.days.map((day) =>
+      //   dayList.indexOf(day)
+      // );
+
+      // setCalendarDays(calendarDaysIndex); // Update state
+      setTimeSlots(availableDaySlots);   // Update available slots
+    }
+  }, [selectedDoctor, doctorsData]);
+
+  console.log(calendarDays);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -148,8 +147,9 @@ export default function BookConsultation() {
 
       // Prepare formdata including name, contact, and consultation from Redux
       let formdata: FormData = {
-        name: user?.name || name,
-        contact: user?.contact || contact,
+        name: user?.name || "",
+        contact: user?.contact || "",
+        email: user?.email || "",
         doctor: selectedDoctor,
         consultationType: consultationType as Consultation["consultationType"],
         department: department,
@@ -168,21 +168,10 @@ export default function BookConsultation() {
       const consultation = await consultationService.createConsultation(
         formdata
       );
-      console.log(consultation);
-
       // Dispatch the action to store the consultation ID
       dispatch(storeConsultationId(consultation._id));
 
-      console.log(user, consultationId);
-      // navigate(`/consultation/${consultation._id}`);
-
-      // After successful consultation creation, navigate to payment
-      setName("");
-      setContact("");
-      // console.log(consultation.contact + "_" + consultation._id);
       const note = consultation.contact + "_" + consultation._id;
-      console.log(note);
-
       navigate(`/payment/${note}`, {
         state: {
           paymentDetails: {
@@ -293,7 +282,6 @@ export default function BookConsultation() {
                     </label>
                     <Select
                       onValueChange={(value) => {
-                        // Parse the stringified object back to get doctorName and _id
                         const doctor = JSON.parse(value);
                         setSelectedDoctor(doctor);
                       }}
@@ -308,9 +296,9 @@ export default function BookConsultation() {
                       </SelectTrigger>
                       <SelectContent>
                         {doctorsData &&
-                        doctorsData.filter((doctor) =>
-                          doctor.department.includes(department)
-                        ).length > 0 ? (
+                          doctorsData.filter((doctor) =>
+                            doctor.department.includes(department)
+                          ).length > 0 ? (
                           doctorsData.map(
                             (doctor) =>
                               doctor.department.includes(department) && (
@@ -344,7 +332,7 @@ export default function BookConsultation() {
                           <Input
                             value={prevConsultId}
                             onChange={(e) => setPrevConsultId(e.target.value)}
-                            className="md:w-[60%] focus:ring-1 focus:ring-primary-500 focus:border-primary-500 focus:outline-none"
+                            className="focus:ring-1 focus:ring-primary-500 focus:border-primary-500 focus:outline-none"
                           />
                         </div>
                       </>
@@ -396,16 +384,15 @@ export default function BookConsultation() {
                         mode="single"
                         selected={date}
                         onSelect={setDate}
-                        className="rounded-md"
+                        className="rounded-md justify-center"
                         disabled={(date) => {
                           const today = new Date();
                           const twoMonthsFromNow = new Date();
                           twoMonthsFromNow.setMonth(today.getMonth() + 2);
-
+                          // console.log(date.getDay());
                           return (
-                            date < today || // Can't select past dates
-                            date > twoMonthsFromNow || // Can't select beyond 2 months
-                            date.getDay() === 0 // Can't select Sundays
+                            // (date < today || date > twoMonthsFromNow) || !calendarDays.includes(date.getDay())
+                            (date < today || date > twoMonthsFromNow) || calendarDays.includes(date.getDay())
                           );
                         }}
                       />
@@ -415,7 +402,7 @@ export default function BookConsultation() {
                   <div className="flex-1 flex flex-col gap-10">
                     {/* Time Slot */}
                     <div className="timeSlot">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-gray-700 mb-1 pb-3">
                         Time Slot
                       </label>
                       <Select onValueChange={setTimeSlot} value={timeSlot}>
@@ -448,11 +435,10 @@ export default function BookConsultation() {
                           type="button"
                           onClick={() => setMode("offline")}
                           variant={mode === "offline" ? "default" : "outline"}
-                          className={`flex-1 ${
-                            mode === "offline"
-                              ? "bg-primary-500 text-white"
-                              : "bg-white text-gray-700"
-                          }`}
+                          className={`flex-1 ${mode === "offline"
+                            ? "bg-primary-500 text-white"
+                            : "bg-white text-gray-700"
+                            }`}
                         >
                           <span className="flex items-center gap-2">
                             🏥 In-Person
@@ -462,11 +448,10 @@ export default function BookConsultation() {
                           type="button"
                           onClick={() => setMode("online")}
                           variant={mode === "online" ? "default" : "outline"}
-                          className={`flex-1 ${
-                            mode === "online"
-                              ? "bg-primary-500 text-white"
-                              : "bg-white text-gray-700"
-                          }`}
+                          className={`flex-1 ${mode === "online"
+                            ? "bg-primary-500 text-white"
+                            : "bg-white text-gray-700"
+                            }`}
                         >
                           <span className="flex items-center gap-2">
                             💻 Online

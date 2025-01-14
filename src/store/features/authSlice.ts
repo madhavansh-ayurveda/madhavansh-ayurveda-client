@@ -72,6 +72,7 @@ const authSlice = createSlice({
       if (state.user && "contact" in state.user) {
         const tempUser = state.user as TempUser;
         tempUser.name = undefined;
+        tempUser.email = undefined;
         tempUser.contact = undefined;
       }
     },

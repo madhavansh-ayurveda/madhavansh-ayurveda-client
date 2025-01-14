@@ -3,7 +3,6 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { toast } from "react-hot-toast";
 import { api } from "@/api/axios";
-// import { useAppSelector } from "@/hooks/useAppSelector";
 
 interface PaymentDetails {
   amount: number;
