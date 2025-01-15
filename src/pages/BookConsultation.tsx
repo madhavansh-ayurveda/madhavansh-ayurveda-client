@@ -251,7 +251,7 @@ export default function BookConsultation() {
                   <User className="w-5 h-5 text-primary-500" />
                   <h2 className="text-xl font-semibold">Patient Information</h2>
                 </div>
-                <AuthVerification onError={handleAuthError}/>
+                <AuthVerification onError={handleAuthError} />
               </div>
 
               {/* Consultation Details Card */}
@@ -281,59 +281,11 @@ export default function BookConsultation() {
                             {type}
                           </SelectItem>
                         ))}
-                        </SelectContent>
-                        </Select>
-                        </div>
+                      </SelectContent>
+                    </Select>
+                  </div>
 
-                        {/* Doctor */}
-                        <div className="flex-1">
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Doctor
-                          </label>
-                          <Select
-                          onValueChange={(value) => {
-                            const doctor = JSON.parse(value);
-                            setSelectedDoctor(doctor);
-                          }}
-                          value={
-                            selectedDoctor.doctorId
-                            ? JSON.stringify(selectedDoctor)
-                            : undefined
-                          }
-                          >
-                          <SelectTrigger>
-                            <SelectValue placeholder="Choose a doctor" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {doctorsData &&
-                            doctorsData.filter((doctor) =>
-                              doctor.department.includes(department)
-                            ).length > 0 ? (
-                            doctorsData.map(
-                              (doctor) =>
-                              doctor.department.includes(department) && (
-                                <SelectItem
-                                key={doctor._id}
-                                value={JSON.stringify({
-                                  doctorName: doctor.name,
-                                  doctorId: doctor._id,
-                                })}
-                                >
-                                {doctor.name} - {doctor.specialization.join(", ")}
-                                </SelectItem>
-                              )
-                            )
-                            ) : (
-                            <SelectItem value="no-doctors" disabled>No doctors found</SelectItem>
-                            )}
-                          </SelectContent>
-                          </Select>
-                          {doctorError && (
-                          <p className="mt-2 text-sm text-red-500">{doctorError}</p>
-                          )}
-                        </div>
-
-                        {/* Department */}
+                  {/* Department */}
                   <div className="flex-1">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Department
@@ -496,16 +448,16 @@ export default function BookConsultation() {
                             </SelectItem>
                           ))}
                         </SelectContent>
-                        </Select>
-                        {timeSlots && timeSlots.length === 0 ? (
-                          <p className="mt-2 text-sm text-red-500">
+                      </Select>
+                      {timeSlots && timeSlots.length === 0 ? (
+                        <p className="mt-2 text-sm text-red-500">
                           No available time slots for the selected date
-                          </p>
-                        ) : (
-                          <p className="mt-2 text-sm text-gray-500">
+                        </p>
+                      ) : (
+                        <p className="mt-2 text-sm text-gray-500">
                           Available slots are shown based on doctor's schedule
-                          </p>
-                        )}
+                        </p>
+                      )}
                     </div>
 
                     {/* Consultation Mode */}
@@ -610,14 +562,14 @@ export default function BookConsultation() {
         </div>
       </div>
 
-        {loading && (
+      {loading && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-4 rounded-lg shadow-lg flex items-center gap-2">
-          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-500"></div>
-          <span>Processing your booking...</span>
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-500"></div>
+            <span>Processing your booking...</span>
           </div>
         </div>
-        )}
+      )}
     </motion.div>
   );
 }
