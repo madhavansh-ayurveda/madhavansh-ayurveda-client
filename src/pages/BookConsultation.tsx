@@ -296,9 +296,9 @@ export default function BookConsultation() {
                       </SelectTrigger>
                       <SelectContent>
                         {doctorsData &&
-                          doctorsData.filter((doctor) =>
-                            doctor.department.includes(department)
-                          ).length > 0 ? (
+                        doctorsData?.filter((doctor) =>
+                          doctor.department?.includes(department)
+                        ).length > 0 ? (
                           doctorsData.map(
                             (doctor) =>
                               doctor.department.includes(department) && (
@@ -315,7 +315,9 @@ export default function BookConsultation() {
                               )
                           )
                         ) : (
-                          <SelectItem value="no-doctors" disabled>No doctors found</SelectItem>
+                          <SelectItem value="no-doctors" disabled>
+                            No doctors found
+                          </SelectItem>
                         )}
                       </SelectContent>
                     </Select>
