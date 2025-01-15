@@ -29,7 +29,7 @@ export default function Home() {
       }
     }
   };
-  const { user, isAuthenticated } = useAppSelector(state => state.auth);
+  const { user } = useAppSelector(state => state.auth);
   useEffect(() => {
     console.log();
     const checkUserFunc = async () => {

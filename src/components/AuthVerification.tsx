@@ -9,11 +9,22 @@ import { storeTempUser } from "../store/features/authSlice";
 import { authApi } from "@/api/authApi";
 import Cookies from "js-cookie";
 
-const AuthVerification = () => {
+interface authVerificationProps {
+  onError: Function
+}
+
+const AuthVerification = ({ onError }: authVerificationProps) => {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
+  const [errors, setErrors] = useState({
+    name: "",
+    contact: "",
+    email: "",
+    otp: "",
+    general: ""
+  });
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isOtpVerified, setIsOtpVerified] = useState(false);
   const [otpResendDisabled, setOtpResendDisabled] = useState(false);
@@ -34,8 +45,47 @@ const AuthVerification = () => {
     }
   }, [user]);
 
+  const validateInputs = () => {
+    let isValid = true;
+    const newErrors = {
+      name: "",
+      contact: "",
+      email: "",
+      otp: "",
+      general: ""
+    };
+
+    if (!name.trim()) {
+      newErrors.name = "Name is required";
+      isValid = false;
+    }
+
+    if (!contact) {
+      newErrors.contact = "Contact is required";
+      isValid = false;
+    } else if (!/^[0-9]{10}$/.test(contact)) {
+      newErrors.contact = "Contact must be 10 digits";
+      isValid = false;
+    }
+
+    if (!email) {
+      newErrors.email = "Email is required";
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Invalid email format";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
   const handleSendOTP = async (e: React.MouseEvent) => {
     e.preventDefault();
+    if (!validateInputs()) {
+      onError("Please fix the validation errors");
+      return;
+    }
     setIsLoading(true);
     try {
       const response = await authApi.sendOtp(name, contact, email);
@@ -127,17 +177,23 @@ const AuthVerification = () => {
   return (
     <div className="flex flex-col gap-6">
       {/* Name */}
-      <div className="flex-1">
+        <div className="flex-1">
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Name
         </label>
         <Input
           value={name}
           disabled={isOtpVerified || !!user}
-          onChange={(e) => setName(e.target.value)}
-          className="md:w-[50%] focus:ring-1 focus:border-gray-100 focus:outline-none"
+          onChange={(e) => {
+          setName(e.target.value);
+          setErrors(prev => ({ ...prev, name: "" }));
+          }}
+          className={`md:w-[50%] focus:ring-1 focus:border-gray-100 focus:outline-none ${
+          errors.name ? 'border-red-500' : ''
+          }`}
         />
-      </div>
+        {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+        </div>
       {/* Contact */}
       <div className="flex-1">
         <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -145,15 +201,21 @@ const AuthVerification = () => {
         </label>
         <div className="flex gap-2">
           <Input value={"+91"} className="w-[60px]" disabled />
-          <Input
+            <Input
             value={contact}
-            onChange={(e) => setContact(e.target.value)}
+            onChange={(e) => {
+              setContact(e.target.value);
+              setErrors(prev => ({ ...prev, contact: "" }));
+            }}
             type="tel"
             pattern="[0-9]{10}"
             required
             disabled={isOtpSent || isOtpVerified || !!user}
-            className="flex-1 max-w-[200px] tracking-wider focus:ring-1 focus:ring-primary-500 focus:border-primary-500 focus:outline-none"
-          />
+            className={`flex-1 max-w-[200px] tracking-wider focus:ring-1 focus:ring-primary-500 focus:border-primary-500 focus:outline-none ${
+              errors.contact ? 'border-red-500' : ''
+            }`}
+            />
+            {errors.contact && <p className="text-red-500 text-sm mt-1">{errors.contact}</p>}
         </div>
       </div>
       {/* Email */}
@@ -162,14 +224,20 @@ const AuthVerification = () => {
           Email
         </label>
         <div className="email flex gap-2">
-          <Input
+            <Input
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setErrors(prev => ({ ...prev, email: "" }));
+            }}
             type="email"
             required
             disabled={isOtpSent || isOtpVerified || !!user}
-            className="flex-1 md:max-w-[37%] tracking-wider focus:ring-1 focus:ring-primary-500 focus:border-primary-500 focus:outline-none"
-          />
+            className={`flex-1 md:max-w-[37%] tracking-wider focus:ring-1 focus:ring-primary-500 focus:border-primary-500 focus:outline-none ${
+              errors.email ? 'border-red-500' : ''
+            }`}
+            />
+            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
           {!isOtpVerified && !user ? (
             !isOtpSent ? (
               <Button

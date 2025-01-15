@@ -69,6 +69,8 @@ export default function AppNavbar() {
 
   useEffect(() => {
     // console.log('Updated User:', user);;
+    isMenuVisible
+    isAuthenticated
   }, [user]);
 
 

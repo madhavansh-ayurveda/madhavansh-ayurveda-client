@@ -15,7 +15,7 @@ const initialState: DoctorsState = {
   lastFetched: null,
 };
 
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
+// const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 
 const doctorsSlice = createSlice({
   name: 'doctors',

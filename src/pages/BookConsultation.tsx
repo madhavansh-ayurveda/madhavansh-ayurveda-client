@@ -64,6 +64,7 @@ export default function BookConsultation() {
   const [prevConsultId, setPrevConsultId] = useState("");
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
+  const [doctorError, setDoctorError] = useState<string | null>(null);
   const { user } = useAppSelector((state) => state.auth);
   const [mode, setMode] = useState<"online" | "offline">("offline");
   const [timeSlots, setTimeSlots] = useState<Slot[] | undefined>(undefined);
@@ -115,34 +116,62 @@ export default function BookConsultation() {
       (doctor) => doctor._id === selectedDoctor.doctorId
     );
     setDoctor(currentDoctor);
+    setDoctorError(null);
 
     if (currentDoctor) {
-      const DaySlots =
-        currentDoctor.availability.slots[
-        currentDoctor.availability.days?.indexOf(dayList[date?.getDay() || 0])
-        ];
-      const availableDaySlots = DaySlots?.filter((slot) => !slot.isBooked);
-
-      // Calculate calendarDaysIndex
-      // const calendarDaysIndex = currentDoctor.availability.days.map((day) =>
-      //   dayList.indexOf(day)
-      // );
-
-      // setCalendarDays(calendarDaysIndex); // Update state
-      setTimeSlots(availableDaySlots);   // Update available slots
+      const calendarDaysIndex = currentDoctor.availability.days.map((day) =>
+        dayList.indexOf(day)
+      );
+      setCalendarDays(calendarDaysIndex);
+    } else if (selectedDoctor.doctorId) {
+      setDoctorError("Selected doctor not found");
     }
   }, [selectedDoctor, doctorsData]);
 
+  useEffect(() => {
+    if (doctor && date) {
+      const dayIndex = date.getDay();
+      const currentDay = dayList[dayIndex];
+      const DaySlots = doctor.availability.slots[doctor.availability.days?.indexOf(currentDay)];
+
+      if (DaySlots) {
+        const availableDaySlots = DaySlots.filter((slot) => !slot.isBooked);
+        setTimeSlots(availableDaySlots);
+      } else {
+        setTimeSlots([]); // Reset time slots if no slots available for the day
+      }
+    }
+  }, [doctor, date]);
+
   console.log(calendarDays);
 
+
+  const handleAuthError = (error: Error) => {
+    toast.error("Authentication failed: " + error.message);
+    navigate("/login");
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
       if (!date) {
-        toast.error("Please select a date");
-        return;
+        throw new Error("Please select a date");
+      }
+      if (!timeSlot) {
+        throw new Error("Please select a time slot");
+      }
+      if (!consultationType) {
+        throw new Error("Please select a consultation type");
+      }
+      if (!selectedDoctor.doctorId) {
+        throw new Error("Please select a doctor");
+      }
+      if (!department) {
+        throw new Error("Please select a department");
+      }
+      if (consultationType === "Follow-up" && !prevConsultId) {
+        throw new Error("Please enter previous consultation ID for follow-up");
       }
 
       // Prepare formdata including name, contact, and consultation from Redux
@@ -222,7 +251,7 @@ export default function BookConsultation() {
                   <User className="w-5 h-5 text-primary-500" />
                   <h2 className="text-xl font-semibold">Patient Information</h2>
                 </div>
-                <AuthVerification />
+                <AuthVerification onError={handleAuthError}/>
               </div>
 
               {/* Consultation Details Card */}
@@ -252,11 +281,59 @@ export default function BookConsultation() {
                             {type}
                           </SelectItem>
                         ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                        </SelectContent>
+                        </Select>
+                        </div>
 
-                  {/* Department */}
+                        {/* Doctor */}
+                        <div className="flex-1">
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Doctor
+                          </label>
+                          <Select
+                          onValueChange={(value) => {
+                            const doctor = JSON.parse(value);
+                            setSelectedDoctor(doctor);
+                          }}
+                          value={
+                            selectedDoctor.doctorId
+                            ? JSON.stringify(selectedDoctor)
+                            : undefined
+                          }
+                          >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Choose a doctor" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {doctorsData &&
+                            doctorsData.filter((doctor) =>
+                              doctor.department.includes(department)
+                            ).length > 0 ? (
+                            doctorsData.map(
+                              (doctor) =>
+                              doctor.department.includes(department) && (
+                                <SelectItem
+                                key={doctor._id}
+                                value={JSON.stringify({
+                                  doctorName: doctor.name,
+                                  doctorId: doctor._id,
+                                })}
+                                >
+                                {doctor.name} - {doctor.specialization.join(", ")}
+                                </SelectItem>
+                              )
+                            )
+                            ) : (
+                            <SelectItem value="no-doctors" disabled>No doctors found</SelectItem>
+                            )}
+                          </SelectContent>
+                          </Select>
+                          {doctorError && (
+                          <p className="mt-2 text-sm text-red-500">{doctorError}</p>
+                          )}
+                        </div>
+
+                        {/* Department */}
                   <div className="flex-1">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Department
@@ -296,9 +373,9 @@ export default function BookConsultation() {
                       </SelectTrigger>
                       <SelectContent>
                         {doctorsData &&
-                        doctorsData?.filter((doctor) =>
-                          doctor.department?.includes(department)
-                        ).length > 0 ? (
+                          doctorsData.filter((doctor) =>
+                            doctor.department.includes(department)
+                          ).length > 0 ? (
                           doctorsData.map(
                             (doctor) =>
                               doctor.department.includes(department) && (
@@ -315,9 +392,7 @@ export default function BookConsultation() {
                               )
                           )
                         ) : (
-                          <SelectItem value="no-doctors" disabled>
-                            No doctors found
-                          </SelectItem>
+                          <SelectItem value="no-doctors" disabled>No doctors found</SelectItem>
                         )}
                       </SelectContent>
                     </Select>
@@ -393,8 +468,8 @@ export default function BookConsultation() {
                           twoMonthsFromNow.setMonth(today.getMonth() + 2);
                           // console.log(date.getDay());
                           return (
-                            // (date < today || date > twoMonthsFromNow) || !calendarDays.includes(date.getDay())
-                            (date < today || date > twoMonthsFromNow) || calendarDays.includes(date.getDay())
+                            (date < today || date > twoMonthsFromNow) || !calendarDays.includes(date.getDay())
+                            // (date < today || date > twoMonthsFromNow) || calendarDays.includes(date.getDay())
                           );
                         }}
                       />
@@ -421,10 +496,16 @@ export default function BookConsultation() {
                             </SelectItem>
                           ))}
                         </SelectContent>
-                      </Select>
-                      <p className="mt-2 text-sm text-gray-500">
-                        Available slots are shown based on doctor's schedule
-                      </p>
+                        </Select>
+                        {timeSlots && timeSlots.length === 0 ? (
+                          <p className="mt-2 text-sm text-red-500">
+                          No available time slots for the selected date
+                          </p>
+                        ) : (
+                          <p className="mt-2 text-sm text-gray-500">
+                          Available slots are shown based on doctor's schedule
+                          </p>
+                        )}
                     </div>
 
                     {/* Consultation Mode */}
@@ -529,14 +610,14 @@ export default function BookConsultation() {
         </div>
       </div>
 
-      {/* Loader component */}
-      {loading && (
-        <div className="loader">
-          {" "}
-          {/* Add your loader styling here */}
-          Loading...
+        {loading && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-4 rounded-lg shadow-lg flex items-center gap-2">
+          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-500"></div>
+          <span>Processing your booking...</span>
+          </div>
         </div>
-      )}
+        )}
     </motion.div>
   );
 }

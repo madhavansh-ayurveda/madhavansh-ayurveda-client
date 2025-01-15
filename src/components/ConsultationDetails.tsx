@@ -2,8 +2,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, FileText, IndianRupee } from "lucide-react";
-import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+// import { useState } from 'react';
+// import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../hooks/useAppSelector";
 // import { useAppDispatch } from "../hooks/useAppDispatch";
 // import { logout } from "../store/slices/authSlice";
@@ -17,8 +17,8 @@ interface ConsultationDetailsProps {
 }
 
 export function ConsultationDetails({ isOpen, onClose, consultation }: ConsultationDetailsProps) {
-    const [isVideoCallOpen, setVideoCallOpen] = useState(false);
-    const navigate = useNavigate();
+    // const [isVideoCallOpen, setVideoCallOpen] = useState(false);
+    // const navigate = useNavigate();
     const { user } = useAppSelector(state => state.auth);
     if (!user) {
         throw new Error('User must be logged in');
@@ -40,8 +40,8 @@ export function ConsultationDetails({ isOpen, onClose, consultation }: Consultat
     };
 
     const handleVideoCall = () => {
-        setVideoCallOpen(true);
-        // navigate(`/video/${consultation._id}/${user?._id}`); // Ensure you have the correct userId
+        // setVideoCallOpen(true);
+        //  navigate(`/video/${consultation._id}/${user?._id}`); // Ensure you have the correct userId
     };
 
     // const handleJoinCall = () => {

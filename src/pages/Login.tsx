@@ -40,7 +40,7 @@ export default function Login() {
             </div>
           )}
           <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-            <AuthVerification />
+            <AuthVerification onError={setError}/>
           </div>
 
         </div>

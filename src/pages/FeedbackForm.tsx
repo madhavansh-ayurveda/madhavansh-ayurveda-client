@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { FeedbackRadioRating } from "@/components/FeedbackRadioRating";
 import { consultationApi } from "@/api/consultationApi";
 import { Input } from "@/components/ui/input";
-import { Slider } from "@/components/ui/slider";
+// import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 
 export const FeedbackForm = () => {
@@ -30,7 +30,8 @@ export const FeedbackForm = () => {
     const fetchConsultations = async () => {
       if (id) {
         console.log(id);
-
+        setFeedback
+        setCleanessRating
         const response = await consultationApi.getConsultationById(id);
         console.log(response);
         if (response.success) {

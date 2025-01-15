@@ -11,10 +11,10 @@ export interface Consultation {
   name: string;
   contact: string;
   consultationType:
-    | "General Consultation"
-    | "Follow-up"
-    | "Specific Treatment"
-    | "Emergency";
+  | "General Consultation"
+  | "Follow-up"
+  | "Specific Treatment"
+  | "Emergency";
   doctor: {
     doctorId: string;
     doctorName: string;
@@ -88,8 +88,9 @@ export interface ApiDoctorSchema {
   experience: number;
   profileImage: string;
   qualification: string;
+  department: string[];
   registrationNumber: string;
-  specialization: string;
+  specialization: string[];
   status: "active" | "inactive";
   availability: Availability;
   createdAt: string;
