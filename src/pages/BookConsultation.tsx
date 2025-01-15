@@ -111,6 +111,7 @@ export default function BookConsultation() {
     fetchDoctors();
   }, [dispatch]);
 
+  doctorError
   useEffect(() => {
     const currentDoctor = doctorsData.find(
       (doctor) => doctor._id === selectedDoctor.doctorId
