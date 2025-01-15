@@ -111,8 +111,8 @@ export default function BookConsultation() {
     fetchDoctors();
   }, [dispatch]);
 
-  doctorError
   useEffect(() => {
+
     const currentDoctor = doctorsData.find(
       (doctor) => doctor._id === selectedDoctor.doctorId
     );
@@ -305,51 +305,56 @@ export default function BookConsultation() {
                     </Select>
                   </div>
 
-                  {/* Doctor */}
-                  <div className="flex-1">
+                    {/* Doctor */}
+                    <div className="flex-1">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Doctor
                     </label>
                     <Select
                       onValueChange={(value) => {
-                        const doctor = JSON.parse(value);
-                        setSelectedDoctor(doctor);
+                      const doctor = JSON.parse(value);
+                      setSelectedDoctor(doctor);
                       }}
                       value={
-                        selectedDoctor.doctorId
-                          ? JSON.stringify(selectedDoctor)
-                          : undefined
+                      selectedDoctor.doctorId
+                        ? JSON.stringify(selectedDoctor)
+                        : undefined
                       }
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Choose a doctor" />
+                      <SelectValue placeholder="Choose a doctor" />
                       </SelectTrigger>
                       <SelectContent>
-                        {doctorsData &&
-                          doctorsData.filter((doctor) =>
-                            doctor.department.includes(department)
-                          ).length > 0 ? (
-                          doctorsData.map(
-                            (doctor) =>
-                              doctor.department.includes(department) && (
-                                <SelectItem
-                                  key={doctor._id}
-                                  value={JSON.stringify({
-                                    doctorName: doctor.name,
-                                    doctorId: doctor._id,
-                                  })}
-                                >
-                                  {doctor.name} -{" "}
-                                  {doctor.specialization.join(", ")}
-                                </SelectItem>
-                              )
+                      {doctorsData &&
+                        doctorsData.filter((doctor) =>
+                        doctor.department.includes(department)
+                        ).length > 0 ? (
+                        doctorsData.map(
+                        (doctor) =>
+                          doctor.department.includes(department) && (
+                          <SelectItem
+                            key={doctor._id}
+                            value={JSON.stringify({
+                            doctorName: doctor.name,
+                            doctorId: doctor._id,
+                            })}
+                          >
+                            {doctor.name} -{" "}
+                            {doctor.specialization.join(", ")}
+                          </SelectItem>
                           )
-                        ) : (
-                          <SelectItem value="no-doctors" disabled>No doctors found</SelectItem>
-                        )}
+                        )
+                      ) : (
+                        <SelectItem value="no-doctors" disabled>No doctors found</SelectItem>
+                      )}
                       </SelectContent>
                     </Select>
-                  </div>
+                    {doctorError && (
+                      <p className="mt-2 text-sm text-red-500">
+                      {doctorError}
+                      </p>
+                    )}
+                    </div>
 
                   {/* Previous COnsultationID */}
                   <div className="flex-1">

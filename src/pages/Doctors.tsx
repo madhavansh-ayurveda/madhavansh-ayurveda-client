@@ -19,7 +19,7 @@ export default function Doctors() {
 
   useEffect(() => {
     console.log(doctors);
-    console.log(doctors[0].availability);
+    console.log(doctors[0]?.availability);
     const fetchDoctors = async () => {
       if (doctors.length > 0 && lastFetched && Date.now() - lastFetched < CACHE_DURATION) {
         return; // Use cached data
@@ -29,7 +29,7 @@ export default function Doctors() {
       dispatch(fetchDoctorsStart());
       try {
         const data = await doctorsService.getAllActiveDoctors();
-        // console.log(data);
+        console.log(data);
 
         dispatch(fetchDoctorsSuccess(data));
       } catch (err) {
