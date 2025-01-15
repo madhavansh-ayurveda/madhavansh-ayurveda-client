@@ -1,4 +1,4 @@
-import { Doctor, ApiDoctorSchema } from './index';
+import { ApiDoctorSchema } from './index';
 import { User } from './index';
 
 export interface ApiResponse<T> {
