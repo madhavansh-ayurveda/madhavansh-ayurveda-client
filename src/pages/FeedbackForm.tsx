@@ -10,7 +10,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export const FeedbackForm = () => {
-  const [feedback, setFeedback] = useState("");
   const [experienceRating, setExperienceRating] = useState<number | null>(null);
   const [consultationOnTime, setConsultationOnTime] = useState("");
   const [professionalismRating, setProfessionalismRating] = useState<
@@ -30,8 +29,6 @@ export const FeedbackForm = () => {
     const fetchConsultations = async () => {
       if (id) {
         console.log(id);
-        setFeedback
-        setCleanessRating
         const response = await consultationApi.getConsultationById(id);
         console.log(response);
         if (response.success) {
@@ -47,9 +44,12 @@ export const FeedbackForm = () => {
     try {
       const feedbackData = {
         consultationId: id || "",
-        ratings: questions.map(({ question, value }) => ({ question, rating: value })),
+        ratings: questions.map(({ question, value }) => ({
+          question,
+          rating: value,
+        })),
         additionalComments,
-      }
+      };
       console.log(feedbackData);
 
       await feedbackApi.sendFeedback(feedbackData);
