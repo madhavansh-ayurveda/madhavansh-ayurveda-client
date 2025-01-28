@@ -407,7 +407,7 @@ export default function AppNavbar() {
                       >
                         <div className="icon">
                           <img
-                            src="\public\Madhav-Ayurveda-Logo.png"
+                            src="/Madhav-Ayurveda-Logo.png"
                             alt=""
                             className="h-20 w-20"
                           />
