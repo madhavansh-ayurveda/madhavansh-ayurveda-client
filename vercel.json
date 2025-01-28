@@ -1,11 +1,17 @@
 {
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ],
     "routes": [
         {
-            "src": "/login",
+            "src": "/",
             "dest": "/"
         },
         {
-            "src": "/doctors",
+            "src": "/services",
             "dest": "/"
         },
         {
@@ -13,8 +19,49 @@
             "dest": "/"
         },
         {
-            "src": "/",
+            "src": "/doctors",
             "dest": "/"
+        },
+        {
+            "src": "/about",
+            "dest": "/"
+        },
+        {
+            "src": "/track_consultation",
+            "dest": "/"
+        },
+        {
+            "src": "/contact",
+            "dest": "/"
+        },
+        {
+            "src": "/auth",
+            "dest": "/"
+        },
+        {
+            "src": "/appointments",
+            "dest": "/"
+        },
+        {
+            "src": "/history",
+            "dest": "/"
+        },
+        {
+            "src": "/profile",
+            "dest": "/"
+        },
+        {
+            "src": "/book-consultation",
+            "dest": "/"
+        },
+        {
+            "src": "/events",
+            "dest": "/"
+        },
+        {
+            "src": "/[^.]+",
+            "dest": "/",
+            "status": 200
         }
     ]
 }
