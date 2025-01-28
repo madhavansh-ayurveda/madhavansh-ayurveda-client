@@ -16,9 +16,9 @@ export default function FloatingConsultButton() {
             >
                 <Link
                     to="/book-consultation"
-                    className="flex items-center gap-2 bg-navy-500 text-white p-3 rounded-full shadow-lg hover:bg-navy-600 transition-colors"
+                    className="flex items-center gap-2 bg-primary-500 text-white p-3 rounded-full shadow-lg hover:none transition-colors"
                 >
-                    <Calendar size={20} />
+                    <Calendar size={20} className='hover:text-white'/>
                 </Link>
             </Tooltip>
         </motion.div>

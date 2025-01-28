@@ -24,7 +24,7 @@ export default function Login() {
       </div>
 
       {/* Right Side - Form */}
-      <div className="flex-1 flex flex-col justify-center items-center p-8">
+      <div className="flex-1 flex flex-col mt-12 md:m-auto md:justify-center items-center p-8">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900">Sign In</h2>

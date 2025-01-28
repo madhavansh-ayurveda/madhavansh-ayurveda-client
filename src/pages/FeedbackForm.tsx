@@ -45,18 +45,14 @@ export const FeedbackForm = () => {
 
   const handleSubmit = async () => {
     try {
-      await feedbackApi.sendFeedback({
+      const feedbackData = {
         consultationId: id || "",
-        feedback,
-        userEmail: email,
-        userName: name,
-        experienceRating,
-        consultationOnTime,
-        professionalismRating,
-        concernsAddressed,
-        usabilityRating,
+        ratings: questions.map(({ question, value }) => ({ question, rating: value })),
         additionalComments,
-      });
+      }
+      console.log(feedbackData);
+
+      await feedbackApi.sendFeedback(feedbackData);
       alert("Feedback sent successfully!");
     } catch (error) {
       console.error("Error sending feedback:", error);
@@ -73,7 +69,7 @@ export const FeedbackForm = () => {
     {
       question: "How would you rate your Clinic's cleaniness?",
       value: cleanessRating,
-      onChange: setExperienceRating,
+      onChange: setCleanessRating,
     },
     {
       question: "Were your concerns adequately addressed?",
@@ -142,12 +138,14 @@ export const FeedbackForm = () => {
                     type="radio"
                     onChange={() => q.onChange(1)}
                     className="h-6 w-6 text-blue-600 border-gray-300 focus:ring-blue-500"
+                    required
                   />
                   <Label className="text-md">Yes</Label>
                   <input
                     type="radio"
                     onChange={() => q.onChange(0)}
                     className="h-6 w-6 text-blue-600 border-gray-300 focus:ring-blue-500"
+                    required
                   />
                   <Label className="text-md">No</Label>
                 </div>
@@ -165,7 +163,8 @@ export const FeedbackForm = () => {
           <div className="flex justify-between">
             <Button
               onClick={handleSubmit}
-              className="bg-blue-500 md:w-1/2 text-white"
+              variant="outline"
+              className="bg-[#006d77] md:w-1/2 text-gray-200 hover:text-white hover:bg-[#004c5a]"
             >
               Submit Feedback
             </Button>

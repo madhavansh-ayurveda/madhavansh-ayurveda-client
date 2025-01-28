@@ -198,6 +198,8 @@ export default function BookConsultation() {
       const consultation = await consultationService.createConsultation(
         formdata
       );
+      console.log(consultation);
+      
       // Dispatch the action to store the consultation ID
       dispatch(storeConsultationId(consultation._id));
 

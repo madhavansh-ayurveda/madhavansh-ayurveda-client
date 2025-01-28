@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Skin and Hair",
+        "href": "/treatments/skin&hair",
+        "description": "Traditional Ayurvedic cleansing and rejuvenation therapies for deep healing."
+    },
+    {
+        "title": "Infertility and PCOD",
+        "href": "/treatments/infertility&pCOD",
+        "description": "Traditional Ayurvedic massage techniques for relaxation and healing."
+    },
+    {
+        "title": "Kidney and Gallbladder Stone",
+        "href": "/treatments/kidney&gallbladder",
+        "description": "Custom-formulated herbal remedies based on your constitution."
+    },
+    {
+        "title": "Arthritis and Pain Management",
+        "href": "/treatments/arthritis&pain",
+        "description": "Custom-formulated herbal remedies based on your constitution."
+    },
+    {
+        "title": "Life style disorder",
+        "href": "/treatments/lifestyle",
+        "description": "Custom-formulated herbal remedies based on your constitution."
+    },
+    {
+        "title": "Glaucoma",
+        "href": "/treatments/glucoma",
+        "description": "Custom-formulated herbal remedies based on your constitution."
+    },
+    {
+        "title": "Immunity booster dose",
+        "href": "/treatments/immunity",
+        "description": "Custom-formulated herbal remedies based on your constitution."
+    },
+    {
+        "title": "And much more",
+        "href": "/treatments",
+        "description": "Custom-formulated herbal remedies based on your constitution."
+    }
+]

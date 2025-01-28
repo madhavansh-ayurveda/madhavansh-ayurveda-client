@@ -15,8 +15,8 @@ const footerLinks = {
     { name: 'Yoga & Meditation', path: '/services/yoga' }
   ],
   contact: {
-    address: '123 Ayurveda Street, Wellness City, WC 12345',
-    phone: '+1 (555) 123-4567',
+    address: 'Indraprasth Phase 2, A20B, near MG Motor India, Raipur, Chhattisgarh 492013',
+    phone: '+91 123-4567-890',
     email: 'info@madhavayurved.com'
   },
   socials: [
@@ -40,7 +40,7 @@ export default function Footer() {
           <li key={index}>
             <Link 
               to={item.path} 
-              className="py-1 text-sm md:text-base text-gray-300 hover:text-accent-100 transition-colors duration-300 flex items-center group"
+              className="py-1 text-sm md:text-base text-gray-300 hover:text-white transition-colors duration-300 flex items-center group"
             >
               <span className="transform group-hover:translate-x-2 transition-transform duration-300">
                 {item.name}
@@ -93,6 +93,7 @@ export default function Footer() {
             <p className="text-sm md:text-base text-gray-300 leading-relaxed">
               Bringing ancient healing wisdom to modern healthcare through holistic Ayurvedic treatments.
             </p>
+            {/* Social Icons */}
             <div className="flex space-x-3 md:space-x-4">
               {footerLinks.socials.map((social, index) => {
                 const Icon = social.icon;

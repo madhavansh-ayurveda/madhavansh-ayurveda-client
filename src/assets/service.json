@@ -1,0 +1,62 @@
+[
+    {
+        "title": "Doctor Consultation",
+        "description": "Personalized consultations to assess individual health needs and tailor Ayurvedic treatments accordingly.",
+        "link": ""
+    },
+    {
+        "title": "Abhyanga",
+        "description": "A full-body oil massage using warm herbal oils to promote relaxation, improve circulation, and detoxify the body.",
+        "link": ""
+    },
+    {
+        "title": "Swedana",
+        "description": "A therapeutic steam treatment that induces sweating to eliminate toxins and relieve muscle tension.",
+        "link": ""
+    },
+    {
+        "title": "Vasti",
+        "description": "An enema therapy using herbal oils or decoctions to cleanse the colon and balance the doshas.",
+        "link": ""
+    },
+    {
+        "title": "Nasyam",
+        "description": "A nasal administration of herbal oils or powders to clear sinus congestion and improve respiratory health.",
+        "link": ""
+    },
+    {
+        "title": "Udwartanam",
+        "description": "A deep tissue massage using herbal powders to exfoliate the skin, reduce cellulite, and promote weight loss.",
+        "link": ""
+    },
+    {
+        "title": "Takradhara",
+        "description": "A therapy where medicated buttermilk is poured over the forehead to relieve stress, insomnia, and migraines.",
+        "link": ""
+    },
+    {
+        "title": "Ante-natal Care",
+        "description": "Ayurvedic care during pregnancy to support the health of both mother and baby through diet, lifestyle, and therapies.",
+        "link": ""
+    },
+    {
+        "title": "Postnatal Ayurvedic Care",
+        "description": "Post-delivery care focusing on recovery, lactation support, and restoring the mother's health using Ayurvedic practices.",
+        "link": ""
+    },
+    {
+        "title": "Eye Care",
+        "description": "Specialized treatments to improve vision and address various eye disorders using Ayurvedic therapies.",
+        "link": ""
+    },
+    {
+        "title": "Panchakarma",
+        "description": "A comprehensive detoxification program consisting of five cleansing procedures to purify the body and mind.",
+        "link": ""
+    },
+    {
+        "title": "Ayurveda Massage",
+        "description": "Traditional Ayurvedic massages tailored to individual needs to promote relaxation, healing, and overall well-being.",
+        "link": ""
+    }
+]

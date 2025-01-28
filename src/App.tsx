@@ -8,7 +8,6 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
 import Doctors from "./pages/Doctors";
 import BookConsultation from "./pages/BookConsultation";
 import Contact from "./pages/Contact";
@@ -35,8 +34,7 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
+                  <Route path="/auth" element={<Login />} />
                   <Route path="/doctors" element={<Doctors />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/profile" element={<Profile />} />
@@ -51,7 +49,7 @@ const App = () => {
                     element={<ConsultationTracker />}
                   />
                   <Route
-                    path="/consultation/"
+                    path="/track_consultation/"
                     element={<ConsultationTracker />}
                   />
                   <Route path="/payment/:contactNote" element={<PaymentGateway />} />

@@ -1,13 +1,19 @@
 {
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/"
-        }
-    ],
     "routes": [
         {
-            "src": "/(.*)",
+            "src": "/login",
+            "dest": "/"
+        },
+        {
+            "src": "/doctors",
+            "dest": "/"
+        },
+        {
+            "src": "/treatments",
+            "dest": "/"
+        },
+        {
+            "src": "/",
             "dest": "/"
         }
     ]
