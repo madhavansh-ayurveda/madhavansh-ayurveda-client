@@ -8,59 +8,59 @@
     "routes": [
         {
             "src": "/",
-            "dest": "/"
+            "dest": "/index.html"
         },
         {
             "src": "/services",
-            "dest": "/"
+            "dest": "/services"
         },
         {
             "src": "/treatments",
-            "dest": "/"
+            "dest": "/treatments"
         },
         {
             "src": "/doctors",
-            "dest": "/"
+            "dest": "/doctors"
         },
         {
             "src": "/about",
-            "dest": "/"
+            "dest": "/about"
         },
         {
             "src": "/track_consultation",
-            "dest": "/"
+            "dest": "/track_consultation"
         },
         {
             "src": "/contact",
-            "dest": "/"
+            "dest": "/contact"
         },
         {
             "src": "/auth",
-            "dest": "/"
+            "dest": "/auth"
         },
         {
             "src": "/appointments",
-            "dest": "/"
+            "dest": "/appointments"
         },
         {
             "src": "/history",
-            "dest": "/"
+            "dest": "/history"
         },
         {
             "src": "/profile",
-            "dest": "/"
+            "dest": "/profile"
         },
         {
             "src": "/book-consultation",
-            "dest": "/"
+            "dest": "/book-consultation"
         },
         {
             "src": "/events",
-            "dest": "/"
+            "dest": "/events"
         },
         {
             "src": "/[^.]+",
-            "dest": "/",
+            "dest": "/index.html",
             "status": 200
         }
     ]
