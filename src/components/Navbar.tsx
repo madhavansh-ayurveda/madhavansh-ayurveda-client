@@ -389,9 +389,7 @@ export default function AppNavbar() {
                 <p
                   className={cn(
                     "text-[#006d77] hover:text-primary",
-                    location.pathname.includes("/services")
-                      ? "font-medium"
-                      : ""
+                    location.pathname.includes("/services") ? "font-medium" : ""
                   )}
                 >
                   Services
@@ -435,16 +433,11 @@ export default function AppNavbar() {
             {/* Treatment */}
             <NavigationMenuItem>
               <NavigationMenuTrigger>
-                <p
-                  className={cn(
-                    "text-[#006d77] hover:text-primary",
-                    location.pathname.includes("/treatments")
-                      ? "font-medium"
-                      : ""
-                  )}
-                >
-                  Treatments
-                </p>
+                <Link to="/treatments">
+                  <p className={cn("text-[#006d77] hover:text-primary")}>
+                    Treatments
+                  </p>
+                </Link>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 w-[600px] md:grid-cols-3">
@@ -452,7 +445,7 @@ export default function AppNavbar() {
                     <ListItem
                       key={treatment.title}
                       title={treatment.title}
-                      to={treatment.href}
+                      to={"/treatments" + treatment.href}
                     >
                       {treatment.description}
                     </ListItem>

@@ -18,8 +18,17 @@ import { Toaster } from "react-hot-toast";
 import ConsultationTracker from "./pages/ConsultationTracker";
 import Profile from "./pages/Profile";
 import Appointments from "./pages/Appointments";
-import PaymentGateway from './pages/PaymentGateway';
+import PaymentGateway from "./pages/PaymentGateway";
 import { FeedbackForm } from "./pages/FeedbackForm";
+import { Treatments } from "@/pages/Treatments";
+import { TreatmentDefault } from "@/pages/TreatmentDefault";
+import { SkinAndHairTreatment } from "@/pages/Treatments/SkinAndHairTreatment";
+import { InfertilityAndPCOD } from "./pages/Treatments/InfertilityAndPCOD";
+import { KidneyAndBladder } from "./pages/Treatments/KidneyAndBladder";
+import { ArthritisAndPain } from "./pages/Treatments/ArthritisAndPain";
+import { Lifestyle } from "./pages/Treatments/Lifestyle";
+import { Glucoma } from "./pages/Treatments/Glucoma";
+import { Immunity } from "./pages/Treatments/Immunity";
 
 const App = () => {
   return (
@@ -52,7 +61,32 @@ const App = () => {
                     path="/track_consultation/"
                     element={<ConsultationTracker />}
                   />
-                  <Route path="/payment/:contactNote" element={<PaymentGateway />} />
+                  <Route
+                    path="/payment/:contactNote"
+                    element={<PaymentGateway />}
+                  />
+                  <Route path="treatments" element={<Treatments />}>
+                    <Route index element={<TreatmentDefault />} />
+                    <Route
+                      path="skin&hair"
+                      element={<SkinAndHairTreatment />}
+                    />
+                    <Route
+                      path="infertility&pCOD"
+                      element={<InfertilityAndPCOD />}
+                    />
+                    <Route
+                      path="kidney&gallbladder"
+                      element={<KidneyAndBladder />}
+                    />
+                    <Route
+                      path="arthritis&pain"
+                      element={<ArthritisAndPain />}
+                    />
+                    <Route path="lifestyle" element={<Lifestyle />} />
+                    <Route path="glucoma" element={<Glucoma />} />
+                    <Route path="immunity" element={<Immunity />} />
+                  </Route>
                 </Routes>
               </AnimatePresence>
             </main>

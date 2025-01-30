@@ -268,7 +268,7 @@ export default function About() {
                 <p className="text-gray-600 leading-relaxed">{item.content}</p>
               </div>
             </motion.div>
-            <Separator className="flex justify-center relative last:hidden">
+            <Separator className="flex justify-center relative">
               <div
                 className={
                   "w-10 h-10 absolute mx-auto -top-5 bg-primary-500 rounded-full " +
