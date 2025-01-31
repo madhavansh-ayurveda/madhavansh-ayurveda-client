@@ -45,7 +45,11 @@ export default function Doctors() {
       dispatch(fetchDoctorsStart());
       try {
         const data = await doctorsService.getAllActiveDoctors();
-        // console.log(data);
+        console.log(data);
+        if (data.length === 0) {
+          dispatch(fetchDoctorsFailure("No doctors found"));
+          return;
+        }
 
         dispatch(fetchDoctorsSuccess(data));
       } catch (err) {
