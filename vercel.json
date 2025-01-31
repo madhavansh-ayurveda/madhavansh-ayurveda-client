@@ -57,11 +57,6 @@
         {
             "src": "/events",
             "dest": "/events"
-        },
-        {
-            "src": "/[^.]+",
-            "dest": "/index.html",
-            "status": 200
         }
     ]
 }
