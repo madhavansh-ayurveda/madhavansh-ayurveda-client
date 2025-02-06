@@ -162,7 +162,7 @@ export default function ConsultationTracker() {
                 <CheckCircle className="h-5 w-5" />
                 <span className="font-medium">
                   Status:{" "}
-                  {consultation.status.charAt(0).toUpperCase() +
+                  {consultation.status?.charAt(0).toUpperCase() +
                     consultation.status.slice(1)}
                 </span>
               </div>
