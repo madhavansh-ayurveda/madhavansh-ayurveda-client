@@ -82,6 +82,8 @@ export default {
 				'spin-around': 'spin-around calc(var(--speed) * 2) infinite linear',
 				scroll:
 					"scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+				'fade-in': 'fadeIn 0.5s ease-in',
+				'slide-up': 'slideUp 0.4s ease-out'
 			},
 			keyframes: {
 				meteor: {
@@ -126,6 +128,14 @@ export default {
 						transform: "translate(calc(-50% - 0.5rem))",
 					},
 				},
+				fadeIn: {
+					'0%': { opacity: 0 },
+					'100%': { opacity: 1 }
+				},
+				slideUp: {
+					'0%': { transform: 'translateY(20px)', opacity: 0 },
+					'100%': { transform: 'translateY(0)', opacity: 1 }
+				}
 			}
 		}
 	},

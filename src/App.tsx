@@ -29,6 +29,9 @@ import { ArthritisAndPain } from "./pages/Treatments/ArthritisAndPain";
 import { Lifestyle } from "./pages/Treatments/Lifestyle";
 import { Glucoma } from "./pages/Treatments/Glucoma";
 import { Immunity } from "./pages/Treatments/Immunity";
+import { Services } from "./pages/Services";
+import { ServicePage } from "./pages/Service";
+// import { ServicesOverview } from "./pages/ServicesOverview";
 
 const App = () => {
   return (
@@ -87,6 +90,10 @@ const App = () => {
                     <Route path="glucoma" element={<Glucoma />} />
                     <Route path="immunity" element={<Immunity />} />
                   </Route>
+                  <Route path="services" element={<Services />}>
+                    <Route index element={<ServicesOverview />} />
+                    <Route path=":serviceId" element={<ServicePage />} />
+                  </Route>
                 </Routes>
               </AnimatePresence>
             </main>
@@ -113,5 +120,14 @@ const App = () => {
     </Provider>
   );
 };
+
+const ServicesOverview = () => (
+  <div className="max-w-4xl mx-auto py-12 px-4">
+    <h1 className="text-4xl font-bold text-gray-800 mb-8">Our Ayurvedic Services</h1>
+    <p className="text-xl text-gray-600">
+      Explore our comprehensive range of traditional Ayurvedic therapies.
+    </p>
+  </div>
+);
 
 export default App;

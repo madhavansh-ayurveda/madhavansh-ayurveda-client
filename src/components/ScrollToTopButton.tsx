@@ -32,11 +32,12 @@ export default function ScrollToTopButton() {
   return (
     <AnimatePresence>
       {isVisible && (
+
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          className="fixed bottom-24 right-4 z-50"
+          className="fixed bottom-24 right-8 z-50 flex items-center"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.5 }}
         >
           <Tooltip
             content="Scroll to top"
@@ -44,13 +45,13 @@ export default function ScrollToTopButton() {
           >
             <button
               onClick={scrollToTop}
-              className="bg-primary-500 text-white p-3 rounded-full shadow-lg hover:bg-primary-600 transition-colors"
+              className="bg-primary-500 text-white p-4 rounded-full shadow-lg hover:bg-primary-600 transition-colors"
               aria-label="Scroll to top"
             >
               <ArrowUp size={20} />
             </button>
           </Tooltip>
-        </motion.div>
+        </motion.div >
       )}
     </AnimatePresence>
   );

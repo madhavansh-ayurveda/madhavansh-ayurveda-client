@@ -421,9 +421,12 @@ export default function AppNavbar() {
                       </Link>
                     </NavigationMenuLink>
                   </li>
-                  {services?.map((e) => (
-                    <ListItem to={e.link} title={e.title}>
-                      {e.description}
+                  {services?.map((service) => (
+                    <ListItem 
+                      to={`/services/${service.route}`} 
+                      title={service.title}
+                    >
+                      {service.description}
                     </ListItem>
                   ))}
                 </ul>

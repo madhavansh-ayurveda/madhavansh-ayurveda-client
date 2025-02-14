@@ -1,62 +1,303 @@
 [
     {
         "title": "Doctor Consultation",
-        "description": "Personalized consultations to assess individual health needs and tailor Ayurvedic treatments accordingly.",
-        "link": ""
+        "route": "doctor-consultation",
+        "description": "Personalized Ayurvedic health assessment and treatment planning",
+        "content": {
+            "overview": "Comprehensive Ayurvedic consultation with experienced practitioners to diagnose dosha imbalances and create personalized treatment plans.",
+            "benefits": [
+                "Accurate dosha analysis",
+                "Customized diet and lifestyle plans",
+                "Early disease detection",
+                "Holistic health management",
+                "Preventive care strategies"
+            ],
+            "procedure": "Includes:\n- Detailed health history analysis\n- Nadi Pariksha (pulse diagnosis)\n- Tongue and eye examination\n- Personalized treatment protocol\n- Follow-up planning",
+            "duration": "60-120 minutes",
+            "idealFor": [
+                "Chronic disease management",
+                "Preventive healthcare",
+                "Digestive disorders",
+                "Hormonal imbalances",
+                "Lifestyle-related conditions"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
     },
     {
         "title": "Abhyanga",
-        "description": "A full-body oil massage using warm herbal oils to promote relaxation, improve circulation, and detoxify the body.",
-        "link": ""
+        "route": "abhyanga",
+        "description": "Traditional Ayurvedic full-body oil massage",
+        "sidebarIcon": "oil-droplet",
+        "content": {
+            "overview": "Abhyanga is a foundational Ayurvedic therapy involving synchronized massage with warm herbal oils. This ancient practice balances Vata dosha, improves circulation, and promotes detoxification through the lymphatic system.",
+            "benefits": [
+                "Enhances blood circulation and lymphatic drainage",
+                "Nourishes tissues and improves skin texture",
+                "Reduces stress and promotes deep relaxation",
+                "Strengthens joints and musculoskeletal system",
+                "Boosts immunity and overall vitality"
+            ],
+            "procedure": "The treatment begins with a whole-body massage using medicated oils selected according to dosha balance. Therapists use rhythmic strokes following the direction of hair growth, focusing on marma points (vital energy points).",
+            "duration": "60-90 minutes",
+            "idealFor": [
+                "Chronic fatigue syndrome",
+                "Muscle stiffness and arthritis",
+                "Insomnia and anxiety disorders",
+                "Post-operative recovery",
+                "General wellness maintenance"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
     },
     {
         "title": "Swedana",
-        "description": "A therapeutic steam treatment that induces sweating to eliminate toxins and relieve muscle tension.",
-        "link": ""
+        "route": "swedana",
+        "description": "Herbal steam therapy for toxin elimination",
+        "content": {
+            "overview": "Swedana is a specialized fomentation therapy that uses medicated steam to open channels (srotas) and facilitate toxin removal through sweating.",
+            "benefits": [
+                "Expels toxins through perspiration",
+                "Relieves muscle stiffness and joint pain",
+                "Improves skin health and complexion",
+                "Enhances efficacy of other therapies",
+                "Reduces inflammation and edema"
+            ],
+            "procedure": "After oil application, patient sits in a steam chamber with herbal decoctions. Steam is administered for 15-45 minutes based on constitution.",
+            "duration": "45-60 minutes",
+            "idealFor": [
+                "Rheumatoid arthritis",
+                "Obesity and cellulite",
+                "Chronic colds and sinusitis",
+                "Skin disorders like psoriasis",
+                "Neurological conditions"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
     },
     {
         "title": "Vasti",
-        "description": "An enema therapy using herbal oils or decoctions to cleanse the colon and balance the doshas.",
-        "link": ""
+        "route": "vasti",
+        "description": "Medicated enema therapy for colon health",
+        "content": {
+            "overview": "Vasti is the most important Panchakarma therapy, administering herbal decoctions/oils through the rectal route to balance Vata dosha.",
+            "benefits": [
+                "Cleanses and strengthens colon tissues",
+                "Alleviates chronic constipation",
+                "Balances nervous system",
+                "Improves reproductive health",
+                "Enhances joint lubrication"
+            ],
+            "procedure": "Two main types:\n1. Niruha Vasti (herbal decoction enema)\n2. Anuvasana Vasti (oil enema)\nAdministered in series after proper preparation",
+            "duration": "30-45 minutes per session",
+            "idealFor": [
+                "Lower back pain/sciatica",
+                "Infertility issues",
+                "Paralysis and hemiplegia",
+                "Chronic constipation",
+                "Prostate disorders"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
     },
     {
         "title": "Nasyam",
-        "description": "A nasal administration of herbal oils or powders to clear sinus congestion and improve respiratory health.",
-        "link": ""
+        "route": "nasyam",
+        "description": "Nasal administration of herbal medicines",
+        "content": {
+            "overview": "Nasyam cleanses and rejuvenates the upper respiratory tract through nasal instillation of medicated oils/powders.",
+            "benefits": [
+                "Clears sinus congestion",
+                "Improves voice quality",
+                "Enhances mental clarity",
+                "Prevents premature graying",
+                "Relieves migraine headaches"
+            ],
+            "procedure": "After facial massage, 5-8 drops of medicated oil are administered in each nostril followed by steam inhalation",
+            "duration": "20-30 minutes",
+            "idealFor": [
+                "Chronic sinusitis",
+                "Facial paralysis",
+                "Hair loss",
+                "Memory disorders",
+                "Thyroid imbalances"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
     },
     {
         "title": "Udwartanam",
-        "description": "A deep tissue massage using herbal powders to exfoliate the skin, reduce cellulite, and promote weight loss.",
-        "link": ""
+        "route": "udwartanam",
+        "description": "Herbal powder massage for detoxification and weight management",
+        "content": {
+            "overview": "Udwartanam is a unique Ayurvedic therapy using medicated herbal powders to perform deep tissue massage. This treatment helps break down cellulite and improves lymphatic drainage.",
+            "benefits": [
+                "Reduces subcutaneous fat deposits",
+                "Improves skin texture and tone",
+                "Enhances metabolic rate",
+                "Stimulates lymphatic system",
+                "Helps manage obesity"
+            ],
+            "procedure": "Therapist applies special herbal powders in upward strokes using specific pressure techniques. Followed by steam therapy to enhance detoxification.",
+            "duration": "60-75 minutes",
+            "idealFor": [
+                "Obesity and weight management",
+                "Cellulite reduction",
+                "Skin disorders like psoriasis",
+                "Water retention",
+                "Kapha imbalance conditions"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
     },
     {
         "title": "Takradhara",
-        "description": "A therapy where medicated buttermilk is poured over the forehead to relieve stress, insomnia, and migraines.",
-        "link": ""
+        "route": "takradhara",
+        "description": "Medicated buttermilk stream therapy for neurological health",
+        "content": {
+            "overview": "Takradhara involves continuous pouring of medicated buttermilk over the forehead to calm the nervous system and balance Pitta dosha.",
+            "benefits": [
+                "Reduces stress and anxiety",
+                "Improves sleep quality",
+                "Alleviates migraine headaches",
+                "Enhances cognitive function",
+                "Balances Pitta disorders"
+            ],
+            "procedure": "Warm medicated buttermilk is poured in a continuous stream over the forehead using special vessel (Dhara patra) for 30-45 minutes.",
+            "duration": "60 minutes",
+            "idealFor": [
+                "Chronic insomnia",
+                "Hypertension",
+                "Burnout syndrome",
+                "Psoriasis and eczema",
+                "Memory disorders"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
     },
     {
         "title": "Ante-natal Care",
-        "description": "Ayurvedic care during pregnancy to support the health of both mother and baby through diet, lifestyle, and therapies.",
-        "link": ""
+        "route": "ante-natal-care",
+        "description": "Holistic pregnancy care through Ayurveda",
+        "content": {
+            "overview": "Specialized care regimen for expecting mothers focusing on optimal fetal development and maternal health through Ayurvedic nutrition and therapies.",
+            "benefits": [
+                "Supports healthy fetal growth",
+                "Reduces pregnancy complications",
+                "Manages morning sickness",
+                "Prepares body for labor",
+                "Maintains emotional balance"
+            ],
+            "procedure": "Customized plan including:\n- Garbhini Paricharya (pregnancy regimen)\n- Safe herbal supplements\n- Prenatal yoga\n- Diet planning\n- Stress management",
+            "duration": "Monthly sessions",
+            "idealFor": [
+                "High-risk pregnancies",
+                "Nutritional deficiencies",
+                "Gestational diabetes",
+                "Pregnancy-related anxiety",
+                "Natural birth preparation"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
     },
     {
         "title": "Postnatal Ayurvedic Care",
-        "description": "Post-delivery care focusing on recovery, lactation support, and restoring the mother's health using Ayurvedic practices.",
-        "link": ""
+        "route": "postnatal-care",
+        "description": "Postpartum recovery and rejuvenation",
+        "content": {
+            "overview": "Traditional 40-day recovery program (Sutika Paricharya) focusing on maternal recovery, lactation support, and hormonal balance.",
+            "benefits": [
+                "Accelerates tissue repair",
+                "Enhances breast milk production",
+                "Restores reproductive health",
+                "Prevents postpartum depression",
+                "Rebuilds physical strength"
+            ],
+            "procedure": "Includes:\n- Specialized abdominal massages\n- Herbal sitz baths\n- Lactogenic diet\n- Uterine tonification\n- Bonding therapies",
+            "duration": "6-8 weeks program",
+            "idealFor": [
+                "Post-Caesarean recovery",
+                "Lactation difficulties",
+                "Uterine prolapse",
+                "Postpartum weight retention",
+                "Hormonal imbalances"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
     },
     {
         "title": "Eye Care",
-        "description": "Specialized treatments to improve vision and address various eye disorders using Ayurvedic therapies.",
-        "link": ""
+        "route": "eye-care",
+        "description": "Ayurvedic therapies for ocular health",
+        "content": {
+            "overview": "Specialized Netra Chikitsa (eye treatments) using herbal preparations and therapies to improve vision and treat eye disorders.",
+            "benefits": [
+                "Improves visual acuity",
+                "Reduces eye strain",
+                "Treats chronic conjunctivitis",
+                "Slows macular degeneration",
+                "Manages glaucoma symptoms"
+            ],
+            "procedure": "Includes:\n- Netra Tarpana (medicated ghee pooling)\n- Aschyotana (eye drops)\n- Vidalaka (herbal paste application)\n- Eye yoga exercises",
+            "duration": "30-45 minutes per session",
+            "idealFor": [
+                "Computer vision syndrome",
+                "Diabetic retinopathy",
+                "Dry eye syndrome",
+                "Cataract prevention",
+                "Myopia management"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
     },
     {
         "title": "Panchakarma",
-        "description": "A comprehensive detoxification program consisting of five cleansing procedures to purify the body and mind.",
-        "link": ""
+        "route": "panchakarma",
+        "description": "Comprehensive Ayurvedic detoxification program",
+        "content": {
+            "overview": "Panchakarma is Ayurveda's premier detox protocol involving five purification therapies. This intensive program removes deep-seated toxins (ama) and restores mind-body equilibrium.",
+            "benefits": [
+                "Deep tissue detoxification at cellular level",
+                "Restores digestive fire (agni)",
+                "Enhances mental clarity and focus",
+                "Balances all three doshas",
+                "Promotes anti-aging and rejuvenation"
+            ],
+            "procedure": "Three-phase process:\n1. Purvakarma (Preparation): Oil massages and steam therapy\n2. Pradhanakarma (Main Therapies): Vamana, Virechana, Basti, Nasya, Raktamokshana\n3. Paschatkarma (Post-care): Dietary regimen and lifestyle counseling",
+            "duration": "7-21 days",
+            "idealFor": [
+                "Chronic digestive disorders",
+                "Autoimmune conditions",
+                "Metabolic syndrome",
+                "Skin diseases",
+                "Stress-related disorders"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
     },
     {
         "title": "Ayurveda Massage",
-        "description": "Traditional Ayurvedic massages tailored to individual needs to promote relaxation, healing, and overall well-being.",
-        "link": ""
+        "route": "ayurveda-massage",
+        "description": "Traditional Ayurvedic massages tailored to individual needs",
+        "content": {
+            "overview": "Customized Ayurvedic massage therapies using medicated oils and techniques specific to individual dosha balance and health requirements.",
+            "benefits": [
+                "Promotes deep relaxation and stress relief",
+                "Improves joint mobility and flexibility",
+                "Enhances skin health and complexion",
+                "Stimulates internal organ function",
+                "Balances energy flow (prana)"
+            ],
+            "procedure": "Therapist selects oils and techniques based on dosha analysis. Includes:\n- Abhyanga (full body)\n- Marma point stimulation\n- Shirodhara (oil stream on forehead)\n- Pinda Sweda (herbal bolus massage)",
+            "duration": "60-90 minutes",
+            "idealFor": [
+                "Stress management",
+                "Chronic pain conditions",
+                "Beauty and rejuvenation",
+                "Sports injuries",
+                "Detoxification programs"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
     }
 ]

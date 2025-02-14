@@ -1,13 +1,13 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
-import treatments from "../assets/treatment.json";
+import services from "../assets/service.json";
 import { cn } from "@/lib/utils";
 
-export const Treatments = () => {
+export const Services = () => {
   const location = useLocation();
 
-  const isActiveLink = (href: any) => {
-    const treatmentPath = href.replace("/treatments", "");
-    return location.pathname === "/treatments" + treatmentPath;
+  const isActiveLink = (href: string) => {
+    const servicePath = href.replace("/services", "");
+    return location.pathname === "/services" + servicePath;
   };
 
   return (
@@ -16,22 +16,22 @@ export const Treatments = () => {
         {/* Sidebar Navigation */}
         <aside className="space-y-2 border-r py-4">
           <h2 className="text-2xl font-bold mb-4">
-            <Link to={"/treatments"}>Treatments</Link>
+            <Link to={"/services"}>Services</Link>
           </h2>
           <nav className="flex flex-col space-y-1">
-            {treatments.map((treatment) => (
+            {services.map((service) => (
               <Link
-                key={treatment.title}
-                to={"/treatments" + treatment.href}
+                key={service.title}
+                to={`/services/${service.route}`}
                 className={cn(
                   "p-2 rounded-md transition-colors duration-200",
                   "hover:bg-muted hover:text-foreground",
-                  isActiveLink(treatment.href)
+                  isActiveLink(service.route)
                     ? "bg-primary/10 text-primary font-medium"
                     : "text-foreground/80"
                 )}
               >
-                {treatment.title}
+                {service.title}
               </Link>
             ))}
           </nav>
@@ -44,4 +44,4 @@ export const Treatments = () => {
       </div>
     </div>
   );
-};
+}; 
