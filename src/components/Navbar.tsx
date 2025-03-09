@@ -131,7 +131,7 @@ export default function AppNavbar() {
               className="h-8 w-8 md:h-12 md:w-12"
             />
             <span className="text-xl md:text-2xl font-bold">
-              श्री Madhavansh Ayurved
+              Shree Madhavansh Ayurved
             </span>
           </Link>
         </div>
