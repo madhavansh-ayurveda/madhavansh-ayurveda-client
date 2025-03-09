@@ -88,7 +88,7 @@ export default function Footer() {
           <div className="space-y-4 md:space-y-6">
             <div className="flex items-center space-x-3">
               <img src="/Madhav-Ayurveda-Logo.png" alt="Logo" className="h-10 w-10 md:h-12 md:w-12" />
-              <span className="text-xl md:text-2xl font-bold text-white">Madhav Ayurved</span>
+              <span className="text-xl md:text-2xl font-bold text-white">Shree Madhavansh Ayurved</span>
             </div>
             <p className="text-sm md:text-base text-gray-300 leading-relaxed">
               Bringing ancient healing wisdom to modern healthcare through holistic Ayurvedic treatments.
