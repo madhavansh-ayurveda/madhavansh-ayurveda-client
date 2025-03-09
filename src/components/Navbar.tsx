@@ -408,7 +408,7 @@ export default function AppNavbar() {
               </NavigationMenuTrigger>
               <NavigationMenuContent className="left-0 absolute">
                 <ul className="grid gap-3 p-6 w-[400px] lg:w-[800px] lg:grid-cols-[.5fr_0.5fr_0.5fr]">
-                  <li className="row-span-3">
+                  {/* <li className="row-span-3">
                     <NavigationMenuLink asChild>
                       <Link
                         className="flex h-full w-full select-none flex-col items-center rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
@@ -431,7 +431,7 @@ export default function AppNavbar() {
                         </p>
                       </Link>
                     </NavigationMenuLink>
-                  </li>
+                  </li> */}
                   {services?.map((service) => (
                     <ListItem
                       to={`/services/${service.route}`}

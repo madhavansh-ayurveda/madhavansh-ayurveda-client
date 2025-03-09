@@ -1,0 +1,15 @@
+[
+    {
+        "title": "OPD",
+        "route": "OPD"
+    },
+    {
+        "title": "Panchkarma",
+        "route": "panchakarma",
+        "subs": [
+            "Purvakarma (Preparation)",
+            "Pradhanakarma (Main Therapies)",
+            "Paschatkarma (Post Care)"
+        ]
+    }
+]
