@@ -1,9 +1,11 @@
 import { Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function FloatingConsultButton() {
     const [isHovered, setIsHovered] = useState(false);
+    const navigate = useNavigate()
 
     return (
         <motion.div
@@ -20,6 +22,7 @@ export default function FloatingConsultButton() {
                     scale: 1.05,
                     transition: { type: 'spring', stiffness: 300, damping: 10 }
                 }}
+                onClick={() => navigate("/book-consultation")}
             >
                 <motion.span
                     className="text-xl whitespace-nowrap"

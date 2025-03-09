@@ -15,7 +15,7 @@ export default function Login() {
             className="h-24 w-24 mb-8"
           />
           <h1 className="text-4xl font-bold text-white text-center mb-4">
-            Welcome to Madhavash Ayurved
+            Welcome to Shree Madhavansh Ayurved
           </h1>
           <p className="text-primary-50 text-center text-lg max-w-md">
             Experience the perfect blend of ancient Ayurvedic wisdom and modern healthcare practices.

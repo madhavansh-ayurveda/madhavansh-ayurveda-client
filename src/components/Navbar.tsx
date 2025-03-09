@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
@@ -44,6 +44,7 @@ export default function AppNavbar() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const { user, isAuthenticated } = useAppSelector((state) => state.auth);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 
@@ -130,7 +131,7 @@ export default function AppNavbar() {
               className="h-8 w-8 md:h-12 md:w-12"
             />
             <span className="text-xl md:text-2xl font-bold">
-              Madhavansh Ayurved
+              श्री Madhavansh Ayurved
             </span>
           </Link>
         </div>
@@ -194,16 +195,25 @@ export default function AppNavbar() {
                 </Link>
 
                 {/* Services Dropdown */}
-                <div className="space-y-2">
+                <div
+                  className="space-y-2"
+                  onClick={() => navigate("/services")}
+                >
                   <button
-                    onClick={() => toggleSection("services")}
+                    onClick={() => {
+                      toggleSection("services");
+                      navigate("/services");
+                    }}
                     className="flex items-center justify-between w-full text-base hover:text-primary transition-colors"
                   >
                     <span>
                       <Link
                         to="/services"
                         className={getMobileMenuStyle("/services")}
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          navigate("/services");
+                        }}
                       >
                         Services
                       </Link>
@@ -391,6 +401,7 @@ export default function AppNavbar() {
                     "text-[#006d77] hover:text-primary",
                     location.pathname.includes("/services") ? "font-medium" : ""
                   )}
+                  onClick={() => navigate("/services")}
                 >
                   Services
                 </p>
@@ -411,7 +422,7 @@ export default function AppNavbar() {
                           />
                         </div>
                         <div className="mb-2 mt- text-lg font-medium">
-                          Madhavash Ayurved
+                          Shree Madhavansh Ayurved
                         </div>
                         <p className="text-sm leading-tight text-muted-foreground">
                           Traditional Ayurvedic healing with modern healthcare
@@ -422,8 +433,8 @@ export default function AppNavbar() {
                     </NavigationMenuLink>
                   </li>
                   {services?.map((service) => (
-                    <ListItem 
-                      to={`/services/${service.route}`} 
+                    <ListItem
+                      to={`/services/${service.route}`}
                       title={service.title}
                     >
                       {service.description}

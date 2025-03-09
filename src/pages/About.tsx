@@ -112,11 +112,11 @@ export default function About() {
         </>
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-12 px-4">
-            <div className="w-full md:w-1/2 relative">
+            <div className="w-full md:w-1/2 relative scale-[0.75] ">
               <img
-                src="/Clinic.webp"
+                src="/Clinic.JPG"
                 alt="Our Clinic"
-                className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
+                className="rounded-2xl shadow-2xl object-cover"
               />
               <div className="absolute inset-0 bg-primary-500/10 rounded-2xl" />
             </div>

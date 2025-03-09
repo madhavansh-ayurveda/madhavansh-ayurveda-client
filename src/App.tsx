@@ -31,6 +31,8 @@ import { Glucoma } from "./pages/Treatments/Glucoma";
 import { Immunity } from "./pages/Treatments/Immunity";
 import { Services } from "./pages/Services";
 import { ServicePage } from "./pages/Service";
+import BlogList from './pages/Blog/BlogList';
+import BlogPost from './pages/Blog/BlogPost';
 // import { ServicesOverview } from "./pages/ServicesOverview";
 
 const App = () => {
@@ -94,6 +96,8 @@ const App = () => {
                     <Route index element={<ServicesOverview />} />
                     <Route path=":serviceId" element={<ServicePage />} />
                   </Route>
+                  <Route path="/blog" element={<BlogList />} />
+                  <Route path="/blog/:slug" element={<BlogPost />} />
                 </Routes>
               </AnimatePresence>
             </main>
