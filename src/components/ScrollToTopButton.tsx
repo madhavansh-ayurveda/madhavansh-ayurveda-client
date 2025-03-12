@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Tooltip } from "./ui/Tooltip";
+import { Tooltip, TooltipProvider } from "./ui/Tooltip";
 
 export default function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,28 +31,32 @@ export default function ScrollToTopButton() {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      <TooltipProvider>
+        {isVisible && (
 
-        <motion.div
-          className="fixed bottom-24 right-8 z-50 flex items-center"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          <Tooltip
-            content="Scroll to top"
-            position="left"
+
+          <motion.div
+            className="fixed bottom-24 right-8 z-50 flex items-center"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.5 }}
           >
-            <button
-              onClick={scrollToTop}
-              className="bg-primary-500 text-white p-4 rounded-full shadow-lg hover:bg-primary-600 transition-colors"
-              aria-label="Scroll to top"
+            <Tooltip
+              content="Scroll to top"
+              position="left"
             >
-              <ArrowUp size={20} />
-            </button>
-          </Tooltip>
-        </motion.div >
-      )}
+              <button
+                onClick={scrollToTop}
+                className="bg-primary-500 text-white p-4 rounded-full shadow-lg hover:bg-primary-600 transition-colors"
+                aria-label="Scroll to top"
+              >
+                <ArrowUp size={20} />
+              </button>
+            </Tooltip>
+          </motion.div >
+
+        )}
+      </TooltipProvider>
     </AnimatePresence>
   );
 } 

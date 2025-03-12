@@ -3,8 +3,6 @@ import { AnimatePresence } from "framer-motion";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./store/store";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
@@ -29,20 +27,25 @@ import { ArthritisAndPain } from "./pages/Treatments/ArthritisAndPain";
 import { Lifestyle } from "./pages/Treatments/Lifestyle";
 import { Glucoma } from "./pages/Treatments/Glucoma";
 import { Immunity } from "./pages/Treatments/Immunity";
-import { Services } from "./pages/Services";
+// import { Services } from "./pages/Services";
 import { ServicePage } from "./pages/Service";
 import BlogList from './pages/Blog/BlogList';
 import BlogPost from './pages/Blog/BlogPost';
-// import { ServicesOverview } from "./pages/ServicesOverview";
+import ServicesLayout from "./components/services/ServiceLayout";
+import ServicesOverview from "./components/services/service-overview";
+import serviceJson from "./assets/service.json"
+import { ServicePageComponent } from "./components/services/Service";
+import AppNavbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router>
+          <AppNavbar />
           <ScrollToTopButton />
           <div className="min-h-screen flex flex-col bg-surface-50">
-            <Navbar />
             <main className="flex-grow scrollable">
               <AnimatePresence mode="wait">
                 <Routes>
@@ -92,10 +95,16 @@ const App = () => {
                     <Route path="glucoma" element={<Glucoma />} />
                     <Route path="immunity" element={<Immunity />} />
                   </Route>
-                  <Route path="services" element={<Services />}>
-                    <Route index element={<ServicesOverview />} />
-                    <Route path=":serviceId" element={<ServicePage />} />
-                  </Route>
+                  <Route path="/services" element={
+                    <ServicesLayout>
+                      <ServicesOverview services={serviceJson} />
+                    </ServicesLayout>
+                  } />
+                  <Route path="/services/:serviceId?/:subServiceId?/:serviceId_l3" element={
+                    <ServicesLayout>
+                      <ServicePageComponent />
+                    </ServicesLayout>
+                  } />
                   <Route path="/blog" element={<BlogList />} />
                   <Route path="/blog/:slug" element={<BlogPost />} />
                 </Routes>
@@ -125,13 +134,5 @@ const App = () => {
   );
 };
 
-const ServicesOverview = () => (
-  <div className="max-w-4xl mx-auto py-12 px-4">
-    <h1 className="text-4xl font-bold text-gray-800 mb-8">Our Ayurvedic Services</h1>
-    <p className="text-xl text-gray-600">
-      Explore our comprehensive range of traditional Ayurvedic therapies.
-    </p>
-  </div>
-);
 
 export default App;

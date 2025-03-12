@@ -76,8 +76,8 @@
         }
     },
     {
-        "title": "Vasti",
-        "route": "vasti",
+        "title": "Basti",
+        "route": "basti",
         "description": "Medicated enema therapy for colon health",
         "content": {
             "overview": "Vasti is the most important Panchakarma therapy, administering herbal decoctions/oils through the rectal route to balance Vata dosha.",
@@ -101,8 +101,8 @@
         }
     },
     {
-        "title": "Nasyam",
-        "route": "nasyam",
+        "title": "Nasya",
+        "route": "nasya",
         "description": "Nasal administration of herbal medicines",
         "content": {
             "overview": "Nasyam cleanses and rejuvenates the upper respiratory tract through nasal instillation of medicated oils/powders.",
@@ -251,8 +251,83 @@
         }
     },
     {
+        "title": "Pre Panchakarma",
+        "route": "purvakarma",
+        "description": "Comprehensive Ayurvedic detoxification program",
+        "content": {
+            "overview": "Panchakarma is Ayurveda's premier detox protocol involving five purification therapies. This intensive program removes deep-seated toxins (ama) and restores mind-body equilibrium.",
+            "benefits": [
+                "Deep tissue detoxification at cellular level",
+                "Restores digestive fire (agni)",
+                "Enhances mental clarity and focus",
+                "Balances all three doshas",
+                "Promotes anti-aging and rejuvenation"
+            ],
+            "procedure": "Three-phase process:\n1. Purvakarma (Preparation): Oil massages and steam therapy\n2. Pradhanakarma (Main Therapies): Vamana, Virechana, Basti, Nasya, Raktamokshana\n3. Paschatkarma (Post-care): Dietary regimen and lifestyle counseling",
+            "duration": "7-21 days",
+            "idealFor": [
+                "Chronic digestive disorders",
+                "Autoimmune conditions",
+                "Metabolic syndrome",
+                "Skin diseases",
+                "Stress-related disorders"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
+    },
+    {
         "title": "Panchakarma",
         "route": "panchakarma",
+        "description": "Comprehensive Ayurvedic detoxification program",
+        "content": {
+            "overview": "Panchakarma is Ayurveda's premier detox protocol involving five purification therapies. This intensive program removes deep-seated toxins (ama) and restores mind-body equilibrium.",
+            "benefits": [
+                "Deep tissue detoxification at cellular level",
+                "Restores digestive fire (agni)",
+                "Enhances mental clarity and focus",
+                "Balances all three doshas",
+                "Promotes anti-aging and rejuvenation"
+            ],
+            "procedure": "Three-phase process:\n1. Purvakarma (Preparation): Oil massages and steam therapy\n2. Pradhanakarma (Main Therapies): Vamana, Virechana, Basti, Nasya, Raktamokshana\n3. Paschatkarma (Post-care): Dietary regimen and lifestyle counseling",
+            "duration": "7-21 days",
+            "idealFor": [
+                "Chronic digestive disorders",
+                "Autoimmune conditions",
+                "Metabolic syndrome",
+                "Skin diseases",
+                "Stress-related disorders"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
+    },
+    {
+        "title": "Main Panchakarma",
+        "route": "pradhanakarma",
+        "description": "Comprehensive Ayurvedic detoxification program",
+        "content": {
+            "overview": "Panchakarma is Ayurveda's premier detox protocol involving five purification therapies. This intensive program removes deep-seated toxins (ama) and restores mind-body equilibrium.",
+            "benefits": [
+                "Deep tissue detoxification at cellular level",
+                "Restores digestive fire (agni)",
+                "Enhances mental clarity and focus",
+                "Balances all three doshas",
+                "Promotes anti-aging and rejuvenation"
+            ],
+            "procedure": "Three-phase process:\n1. Purvakarma (Preparation): Oil massages and steam therapy\n2. Pradhanakarma (Main Therapies): Vamana, Virechana, Basti, Nasya, Raktamokshana\n3. Paschatkarma (Post-care): Dietary regimen and lifestyle counseling",
+            "duration": "7-21 days",
+            "idealFor": [
+                "Chronic digestive disorders",
+                "Autoimmune conditions",
+                "Metabolic syndrome",
+                "Skin diseases",
+                "Stress-related disorders"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+        }
+    },
+    {
+        "title": "Post Care Panchakarma",
+        "route": "pachatkarma",
         "description": "Comprehensive Ayurvedic detoxification program",
         "content": {
             "overview": "Panchakarma is Ayurveda's premier detox protocol involving five purification therapies. This intensive program removes deep-seated toxins (ama) and restores mind-body equilibrium.",

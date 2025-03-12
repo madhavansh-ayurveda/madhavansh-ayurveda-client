@@ -43,7 +43,7 @@ export const ImageWithSkeleton = ({ src, alt }: { src: string; alt: string }) =>
         alt={alt}
         className="h-96 w-full object-cover rounded-lg"
         initial={{ opacity: 0 }}
-        animate={{ 
+        animate={{
           opacity: hasError ? 0 : isLoading ? 0 : 1,
           transition: { delay: 0.2 }
         }}
