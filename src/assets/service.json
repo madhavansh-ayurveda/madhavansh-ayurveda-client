@@ -1,53 +1,52 @@
 [
     {
-        "title": "Doctor Consultation",
-        "route": "doctor-consultation",
-        "description": "Personalized Ayurvedic health assessment and treatment planning",
+        "title": "Abhyanga",
+        "route": "abhyanga",
+        "description": "Full-body oil massage for detoxification and rejuvenation",
         "content": {
-            "overview": "Comprehensive Ayurvedic consultation with experienced practitioners to diagnose dosha imbalances and create personalized treatment plans.",
+            "overview": "Abhyanga is a traditional Ayurvedic therapy involving a full-body massage with warm herbal oils to promote relaxation, improve circulation, and eliminate toxins.",
             "benefits": [
-                "Accurate dosha analysis",
-                "Customized diet and lifestyle plans",
-                "Early disease detection",
-                "Holistic health management",
-                "Preventive care strategies"
+                "Enhances blood circulation",
+                "Promotes lymphatic drainage",
+                "Relieves muscle tension",
+                "Improves skin health",
+                "Calms the nervous system"
             ],
-            "procedure": "Includes:\n- Detailed health history analysis\n- Nadi Pariksha (pulse diagnosis)\n- Tongue and eye examination\n- Personalized treatment protocol\n- Follow-up planning",
-            "duration": "60-120 minutes",
+            "procedure": "Warm herbal oils are applied to the entire body using synchronized strokes by one or two therapists. The massage typically lasts 60 minutes and is followed by a steam bath to facilitate deeper absorption of the oils.",
+            "duration": "60-90 minutes",
             "idealFor": [
-                "Chronic disease management",
-                "Preventive healthcare",
-                "Digestive disorders",
-                "Hormonal imbalances",
-                "Lifestyle-related conditions"
+                "Stress relief",
+                "Detoxification",
+                "Muscle relaxation",
+                "Improving sleep quality",
+                "Enhancing skin tone"
             ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+            "image": "https://source.unsplash.com/featured/?abhyanga,ayurveda"
         }
     },
     {
-        "title": "Abhyanga",
-        "route": "abhyanga",
-        "description": "Traditional Ayurvedic full-body oil massage",
-        "sidebarIcon": "oil-droplet",
+        "title": "Snehana",
+        "route": "snehana",
+        "description": "Oleation therapy using medicated oils/ghee",
         "content": {
-            "overview": "Abhyanga is a foundational Ayurvedic therapy involving synchronized massage with warm herbal oils. This ancient practice balances Vata dosha, improves circulation, and promotes detoxification through the lymphatic system.",
+            "overview": "Snehana is a preparatory procedure that involves internal or external application of oils/ghee to lubricate the body and prepare it for Panchakarma therapies.",
             "benefits": [
-                "Enhances blood circulation and lymphatic drainage",
-                "Nourishes tissues and improves skin texture",
-                "Reduces stress and promotes deep relaxation",
-                "Strengthens joints and musculoskeletal system",
-                "Boosts immunity and overall vitality"
+                "Softens body tissues",
+                "Enhances toxin removal",
+                "Improves digestion",
+                "Lubricates joints",
+                "Balances Vata dosha"
             ],
-            "procedure": "The treatment begins with a whole-body massage using medicated oils selected according to dosha balance. Therapists use rhythmic strokes following the direction of hair growth, focusing on marma points (vital energy points).",
-            "duration": "60-90 minutes",
+            "procedure": "Includes both internal consumption (Snehapana) of medicated ghee/oils and external oil applications. Duration varies based on individual constitution and treatment goals.",
+            "duration": "3-7 days (pre-Panchakarma)",
             "idealFor": [
-                "Chronic fatigue syndrome",
-                "Muscle stiffness and arthritis",
-                "Insomnia and anxiety disorders",
-                "Post-operative recovery",
-                "General wellness maintenance"
+                "Pre-Panchakarma preparation",
+                "Joint disorders",
+                "Neurological conditions",
+                "Chronic pain management",
+                "Skin diseases"
             ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+            "image": "https://source.unsplash.com/featured/?snehana,ayurveda"
         }
     },
     {
@@ -76,6 +75,356 @@
         }
     },
     {
+        "title": "Nadi Sweda",
+        "route": "nadi-sweda",
+        "description": "Localized steam therapy with herbal decoctions",
+        "content": {
+            "overview": "A targeted fomentation therapy where herbal steam is directed to specific body parts using a specialized tube apparatus.",
+            "benefits": [
+                "Reduces localized pain",
+                "Improves joint mobility",
+                "Enhances blood circulation",
+                "Reduces stiffness",
+                "Promotes healing"
+            ],
+            "procedure": "Herbal decoctions are boiled in a Nadi Sweda machine, and the steam is directed through a hose to affected areas while protecting other body parts with cloth.",
+            "duration": "30-45 minutes",
+            "idealFor": [
+                "Arthritis",
+                "Muscle spasms",
+                "Sports injuries",
+                "Frozen shoulder",
+                "Cervical spondylosis"
+            ],
+            "image": "https://source.unsplash.com/featured/?steam-therapy,ayurveda"
+        }
+    },
+    {
+        "title": "Churna Pinda Sweda",
+        "route": "churna-pinda-sweda",
+        "description": "Herbal powder bolus massage with steam",
+        "content": {
+            "overview": "A sudation therapy where heated herbal powder pouches are used to massage the body along with steam therapy.",
+            "benefits": [
+                "Reduces inflammation",
+                "Improves skin texture",
+                "Enhances muscle tone",
+                "Detoxifies tissues",
+                "Alleviates pain"
+            ],
+            "procedure": "Herbal powders are tied in cotton cloth boluses, heated, and used to massage the body while simultaneously applying steam therapy.",
+            "duration": "45-60 minutes",
+            "idealFor": [
+                "Obesity",
+                "Neuromuscular disorders",
+                "Skin diseases",
+                "Postpartum care",
+                "Rheumatic conditions"
+            ],
+            "image": "https://source.unsplash.com/featured/?herbal-powder,ayurveda"
+        }
+    },
+    {
+        "title": "Baluka Sweda",
+        "route": "baluka-sweda",
+        "description": "Sand bolus heat therapy",
+        "content": {
+            "overview": "A unique heat therapy using sand-filled cotton pouches to apply medicated heat to specific body parts.",
+            "benefits": [
+                "Reduces joint stiffness",
+                "Improves circulation",
+                "Alleviates muscle pain",
+                "Enhances mobility",
+                "Reduces inflammation"
+            ],
+            "procedure": "Special sand is heated with herbal decoctions, filled into cotton pouches, and applied to affected areas with gentle pressure.",
+            "duration": "30-45 minutes",
+            "idealFor": [
+                "Arthritis",
+                "Back pain",
+                "Sciatica",
+                "Sports injuries",
+                "Muscle atrophy"
+            ],
+            "image": "https://source.unsplash.com/featured/?sand-therapy,ayurveda"
+        }
+    },
+    {
+        "title": "Patra Pinda Sweda",
+        "route": "patra-pinda-sweda",
+        "description": "Leaf bundle massage therapy",
+        "content": {
+            "overview": "A therapeutic procedure using heated medicinal leaves bundled in cloth to massage the body.",
+            "benefits": [
+                "Reduces muscle spasms",
+                "Improves joint flexibility",
+                "Enhances blood flow",
+                "Relieves inflammation",
+                "Detoxifies tissues"
+            ],
+            "procedure": "Medicinal leaves are heated with oils, wrapped in cloth bundles, and used for massaging specific body parts along with herbal steam.",
+            "duration": "45-60 minutes",
+            "idealFor": [
+                "Arthritis",
+                "Muscle stiffness",
+                "Sports injuries",
+                "Neurological disorders",
+                "Post-surgical rehabilitation"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurvedic-leaves,medicine"
+        }
+    },
+    {
+        "title": "Shalishashtika Pinda Sweda",
+        "route": "shalishashtika-pinda-sweda",
+        "description": "Navara rice bolus therapy",
+        "content": {
+            "overview": "A specialized therapy using medicinal rice preparations in cloth pouches for neuromuscular rehabilitation.",
+            "benefits": [
+                "Strengthens muscles",
+                "Improves nerve function",
+                "Enhances tissue regeneration",
+                "Reduces pain",
+                "Improves mobility"
+            ],
+            "procedure": "Shashtika rice cooked with herbal decoctions and milk is tied in cloth boluses, heated, and used for massaging affected areas.",
+            "duration": "60-90 minutes",
+            "idealFor": [
+                "Muscular dystrophy",
+                "Paralysis",
+                "Post-stroke care",
+                "Cerebral palsy",
+                "Neurological disorders"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurvedic-rice,medicine"
+        }
+    },
+    {
+        "title": "Kukkut Pinda Sweda",
+        "route": "kukkut-pinda-sweda",
+        "description": "Chicken-based bolus therapy",
+        "content": {
+            "overview": "An unique therapy using chicken meat preparations for deep tissue healing and strength restoration.",
+            "benefits": [
+                "Improves muscle strength",
+                "Enhances tissue repair",
+                "Reduces chronic pain",
+                "Increases joint stability",
+                "Boosts immunity"
+            ],
+            "procedure": "Specially prepared chicken meat is wrapped in cloth, heated with medicated oils, and used for therapeutic massage on affected areas.",
+            "duration": "45-60 minutes",
+            "idealFor": [
+                "Muscle wasting",
+                "Chronic arthritis",
+                "Post-fracture rehabilitation",
+                "Degenerative disorders",
+                "Athletic recovery"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurvedic-chicken,therapy"
+        }
+    },
+    {
+        "title": "Mamsa Pinda Sweda",
+        "route": "mamsa-pinda-sweda",
+        "description": "Meat bolus fomentation therapy",
+        "content": {
+            "overview": "A specialized therapy using medicated meat preparations for deep tissue nourishment and musculoskeletal repair.",
+            "benefits": [
+                "Strengthens muscle tissues",
+                "Improves bone density",
+                "Enhances tissue regeneration",
+                "Reduces degenerative changes",
+                "Boosts vitality"
+            ],
+            "procedure": "Medicated meat is cooked with herbal decoctions, wrapped in cloth, and used as warm boluses for therapeutic massage on affected areas.",
+            "duration": "60-75 minutes",
+            "idealFor": [
+                "Osteoporosis",
+                "Muscle atrophy",
+                "Post-surgical recovery",
+                "Chronic fatigue syndrome",
+                "Degenerative joint diseases"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurvedic-meat,therapy"
+        }
+    },
+    {
+        "title": "Lepa",
+        "route": "lepa",
+        "description": "Herbal paste application therapy",
+        "content": {
+            "overview": "Topical application of medicinal herbal pastes for localized treatment of various conditions.",
+            "benefits": [
+                "Reduces inflammation",
+                "Promotes wound healing",
+                "Detoxifies skin",
+                "Relieves pain",
+                "Improves skin complexion"
+            ],
+            "procedure": "Herbs are ground into paste with liquids like milk/honey/water and applied evenly on affected areas. Left to dry before removal.",
+            "duration": "30-60 minutes",
+            "idealFor": [
+                "Skin disorders",
+                "Inflammatory conditions",
+                "Joint swellings",
+                "Cosmetic treatments",
+                "Localized pain"
+            ],
+            "image": "https://source.unsplash.com/featured/?herbal-paste,ayurveda"
+        }
+    },
+    {
+        "title": "Talam",
+        "route": "talam",
+        "description": "Cranial herbal pack therapy",
+        "content": {
+            "overview": "Application of medicated herbal paste or oils on the crown of the head for neurological benefits.",
+            "benefits": [
+                "Calms the mind",
+                "Reduces headaches",
+                "Improves sleep quality",
+                "Balances Pitta dosha",
+                "Enhances mental clarity"
+            ],
+            "procedure": "A circular dough dam is created on the scalp, filled with warm medicated oil/herbal paste, and left to absorb.",
+            "duration": "20-30 minutes",
+            "idealFor": [
+                "Migraines",
+                "Insomnia",
+                "Stress disorders",
+                "Hair health",
+                "Cognitive enhancement"
+            ],
+            "image": "https://source.unsplash.com/featured/?head-treatment,ayurveda"
+        }
+    },
+    {
+        "title": "Shirah Lepa",
+        "route": "shirah-lepa",
+        "description": "Head herbal pack application",
+        "content": {
+            "overview": "Therapeutic application of herbal pastes on the entire head for neurological and dermatological benefits.",
+            "benefits": [
+                "Reduces scalp disorders",
+                "Prevents hair loss",
+                "Relieves sinus congestion",
+                "Improves memory",
+                "Cools the body"
+            ],
+            "procedure": "Medicated herbal paste is applied evenly across the scalp and forehead, left to dry before washing with herbal water.",
+            "duration": "45-60 minutes",
+            "idealFor": [
+                "Scalp psoriasis",
+                "Hair thinning",
+                "Sinusitis",
+                "Hypertension",
+                "Neurological disorders"
+            ],
+            "image": "https://source.unsplash.com/featured/?head-pack,ayurveda"
+        }
+    },
+    {
+        "title": "Udvartana",
+        "route": "udvartana",
+        "description": "Herbal powder massage for weight management",
+        "content": {
+            "overview": "A vigorous upward massage using medicinal herbal powders to break down fat deposits and improve metabolism.",
+            "benefits": [
+                "Reduces cellulite",
+                "Improves skin texture",
+                "Enhances circulation",
+                "Balances Kapha dosha",
+                "Detoxifies tissues"
+            ],
+            "procedure": "Therapists perform deep massage with dry/herbal-oil mixed powders using specific upward strokes on the body.",
+            "duration": "45-60 minutes",
+            "idealFor": [
+                "Obesity",
+                "Lymphatic drainage",
+                "Skin toning",
+                "Postpartum weight loss",
+                "Metabolic disorders"
+            ],
+            "image": "https://source.unsplash.com/featured/?herbal-powder-massage,ayurveda"
+        }
+    },
+    {
+        "title": "Upanaha",
+        "route": "upanaha",
+        "description": "Herbal poultice therapy",
+        "content": {
+            "overview": "Application of warm medicated poultices for deep tissue penetration of herbal properties.",
+            "benefits": [
+                "Reduces joint inflammation",
+                "Improves flexibility",
+                "Enhances drug absorption",
+                "Relieves muscle spasms",
+                "Promotes healing"
+            ],
+            "procedure": "Herbal paste is wrapped in cloth, heated, and tied over affected joints/muscles with bandages.",
+            "duration": "6-8 hours (overnight)",
+            "idealFor": [
+                "Arthritis",
+                "Sports injuries",
+                "Fracture recovery",
+                "Carpal tunnel syndrome",
+                "Chronic pain"
+            ],
+            "image": "https://source.unsplash.com/featured/?herbal-poultice,ayurveda"
+        }
+    },
+    {
+        "title": "Sthanik Anulepa",
+        "route": "sthanik-anulepa",
+        "description": "Local herbal application therapy",
+        "content": {
+            "overview": "Targeted application of medicinal pastes on specific marma points or affected areas.",
+            "benefits": [
+                "Localized pain relief",
+                "Reduces swelling",
+                "Enhances energy flow",
+                "Promotes tissue repair",
+                "Balances doshas"
+            ],
+            "procedure": "Specific herbal formulations are applied precisely on marma points or injured areas following Ayurvedic protocols.",
+            "duration": "30-45 minutes",
+            "idealFor": [
+                "Marma therapy",
+                "Sports injuries",
+                "Skin lesions",
+                "Neurological points",
+                "Post-fracture care"
+            ],
+            "image": "https://source.unsplash.com/featured/?local-treatment,ayurveda"
+        }
+    },
+    {
+        "title": "Akshitarpana",
+        "route": "akshitarpana",
+        "description": "Eye rejuvenation therapy",
+        "content": {
+            "overview": "A specialized eye treatment using medicated ghee to nourish and strengthen the eyes.",
+            "benefits": [
+                "Improves vision",
+                "Reduces eye strain",
+                "Prevents eye diseases",
+                "Moisturizes eyes",
+                "Calms the nervous system"
+            ],
+            "procedure": "A dough dam is created around the eyes, filled with medicated ghee, and kept for a specific duration to nourish the eyes.",
+            "duration": "15-20 minutes",
+            "idealFor": [
+                "Dry eyes",
+                "Computer vision syndrome",
+                "Cataract prevention",
+                "Eye fatigue",
+                "Improving night vision"
+            ],
+            "image": "https://source.unsplash.com/featured/?eye-treatment,ayurveda"
+        }
+    },
+    {
         "title": "Basti",
         "route": "basti",
         "description": "Medicated enema therapy for colon health",
@@ -101,278 +450,778 @@
         }
     },
     {
-        "title": "Nasya",
-        "route": "nasya",
-        "description": "Nasal administration of herbal medicines",
+        "title": "Kashaya Basti",
+        "route": "kashaya-basti",
+        "description": "Herbal decoction enema therapy",
         "content": {
-            "overview": "Nasyam cleanses and rejuvenates the upper respiratory tract through nasal instillation of medicated oils/powders.",
+            "overview": "A type of medicated enema using herbal decoctions to cleanse and balance the colon.",
             "benefits": [
-                "Clears sinus congestion",
-                "Improves voice quality",
-                "Enhances mental clarity",
-                "Prevents premature graying",
-                "Relieves migraine headaches"
+                "Detoxifies the colon",
+                "Balances Vata dosha",
+                "Improves digestion",
+                "Relieves constipation",
+                "Reduces inflammation"
             ],
-            "procedure": "After facial massage, 5-8 drops of medicated oil are administered in each nostril followed by steam inhalation",
+            "procedure": "A herbal decoction is prepared and administered as a medicated enema under the supervision of an Ayurvedic practitioner.",
+            "duration": "30-45 minutes",
+            "idealFor": [
+                "Chronic constipation",
+                "Irritable bowel syndrome",
+                "Arthritis",
+                "Neurological disorders",
+                "Detoxification"
+            ],
+            "image": "https://source.unsplash.com/featured/?enema,ayurveda"
+        }
+    },
+    {
+        "title": "Taila Basti",
+        "route": "taila-basti",
+        "description": "Medicated oil enema therapy",
+        "content": {
+            "overview": "A therapeutic enema using medicated oils to nourish and lubricate the colon.",
+            "benefits": [
+                "Nourishes tissues",
+                "Lubricates the colon",
+                "Reduces Vata disorders",
+                "Improves bowel movements",
+                "Strengthens the nervous system"
+            ],
+            "procedure": "Warm medicated oil is administered as an enema and retained for a specific duration to allow absorption.",
+            "duration": "30-45 minutes",
+            "idealFor": [
+                "Chronic Vata disorders",
+                "Back pain",
+                "Neurological conditions",
+                "Degenerative diseases",
+                "Colon health"
+            ],
+            "image": "https://source.unsplash.com/featured/?oil-enema,ayurveda"
+        }
+    },
+    {
+        "title": "Shiro Basti",
+        "route": "shiro-basti",
+        "description": "Head oil retention therapy",
+        "content": {
+            "overview": "A specialized treatment where medicated oil is retained on the head to nourish the brain and nervous system.",
+            "benefits": [
+                "Improves memory",
+                "Reduces stress",
+                "Prevents hair loss",
+                "Calms the mind",
+                "Strengthens sensory organs"
+            ],
+            "procedure": "A leather cap is fitted on the head, filled with warm medicated oil, and retained for a specific duration.",
+            "duration": "30-45 minutes",
+            "idealFor": [
+                "Neurological disorders",
+                "Hair fall",
+                "Insomnia",
+                "Migraines",
+                "Cognitive enhancement"
+            ],
+            "image": "https://source.unsplash.com/featured/?head-oil,ayurveda"
+        }
+    },
+    {
+        "title": "Griva Basti",
+        "route": "griva-basti",
+        "description": "Neck oil retention therapy",
+        "content": {
+            "overview": "A localized treatment where medicated oil is retained on the neck to relieve stiffness and pain.",
+            "benefits": [
+                "Reduces neck pain",
+                "Improves flexibility",
+                "Relieves muscle tension",
+                "Enhances blood circulation",
+                "Prevents cervical spondylosis"
+            ],
+            "procedure": "A dough dam is created around the neck, filled with warm medicated oil, and retained for a specific duration.",
             "duration": "20-30 minutes",
             "idealFor": [
-                "Chronic sinusitis",
+                "Cervical spondylosis",
+                "Neck stiffness",
+                "Whiplash injuries",
+                "Postural neck pain",
+                "Degenerative neck conditions"
+            ],
+            "image": "https://source.unsplash.com/featured/?neck-treatment,ayurveda"
+        }
+    },
+    {
+        "title": "Kati Basti",
+        "route": "kati-basti",
+        "description": "Lower back oil retention therapy",
+        "content": {
+            "overview": "A localized treatment where medicated oil is retained on the lower back to relieve pain and stiffness.",
+            "benefits": [
+                "Reduces lower back pain",
+                "Improves spinal flexibility",
+                "Relieves muscle spasms",
+                "Enhances blood circulation",
+                "Prevents disc degeneration"
+            ],
+            "procedure": "A dough dam is created on the lower back, filled with warm medicated oil, and retained for a specific duration.",
+            "duration": "30-45 minutes",
+            "idealFor": [
+                "Lumbar spondylosis",
+                "Sciatica",
+                "Disc prolapse",
+                "Postural back pain",
+                "Degenerative back conditions"
+            ],
+            "image": "https://source.unsplash.com/featured/?back-treatment,ayurveda"
+        }
+    },
+    {
+        "title": "Puta Basti",
+        "route": "puta-basti",
+        "description": "Localized oil retention therapy",
+        "content": {
+            "overview": "A targeted treatment where medicated oil is retained on specific joints or body parts.",
+            "benefits": [
+                "Reduces joint pain",
+                "Improves mobility",
+                "Lubricates joints",
+                "Reduces inflammation",
+                "Promotes healing"
+            ],
+            "procedure": "A dough dam is created around the affected joint, filled with warm medicated oil, and retained for a specific duration.",
+            "duration": "20-30 minutes",
+            "idealFor": [
+                "Arthritis",
+                "Sports injuries",
+                "Joint stiffness",
+                "Post-fracture care",
+                "Degenerative joint diseases"
+            ],
+            "image": "https://source.unsplash.com/featured/?joint-treatment,ayurveda"
+        }
+    },
+    {
+        "title": "Janu Basti",
+        "route": "janu-basti",
+        "description": "Knee oil retention therapy",
+        "content": {
+            "overview": "A localized treatment where medicated oil is retained on the knee joint to improve mobility and reduce pain.",
+            "benefits": [
+                "Reduces knee inflammation",
+                "Improves joint lubrication",
+                "Enhances mobility",
+                "Strengthens ligaments",
+                "Prevents degenerative changes"
+            ],
+            "procedure": "A dough dam is created around the knee, filled with warm medicated oil, and retained for therapeutic absorption.",
+            "duration": "30-45 minutes",
+            "idealFor": [
+                "Osteoarthritis",
+                "Sports injuries",
+                "Post-surgical recovery",
+                "Rheumatic knee pain",
+                "Cartilage repair"
+            ],
+            "image": "https://source.unsplash.com/featured/?knee-treatment,ayurveda"
+        }
+    },
+    {
+        "title": "Sthanik Basti",
+        "route": "sthanik-basti",
+        "description": "Localized oil pool therapy",
+        "content": {
+            "overview": "A targeted treatment creating temporary oil reservoirs on specific body parts for deep tissue nourishment.",
+            "benefits": [
+                "Deep tissue hydration",
+                "Reduces localized pain",
+                "Improves joint function",
+                "Enhances drug absorption",
+                "Promotes healing"
+            ],
+            "procedure": "Dough walls are built around the treatment area, filled with warm medicated oil, and maintained for absorption.",
+            "duration": "30-45 minutes",
+            "idealFor": [
+                "Tennis elbow",
+                "Plantar fasciitis",
+                "Wrist pain",
+                "Ankle injuries",
+                "Localized inflammation"
+            ],
+            "image": "https://source.unsplash.com/featured/?local-oil-treatment,ayurveda"
+        }
+    },
+    {
+        "title": "Vaitarana Basti",
+        "route": "vaitarana-basti",
+        "description": "Special medicated enema therapy",
+        "content": {
+            "overview": "A cleansing enema combining herbal decoctions and animal products for severe Vata disorders.",
+            "benefits": [
+                "Deep tissue cleansing",
+                "Balances Vata-Pitta",
+                "Reduces toxic accumulation",
+                "Improves metabolism",
+                "Alleviates chronic pain"
+            ],
+            "procedure": "A complex preparation of herbal decoctions, honey, rock salt, and ghee administered as an enema.",
+            "duration": "45-60 minutes",
+            "idealFor": [
+                "Chronic arthritis",
+                "Gout",
+                "Neurological disorders",
+                "Metabolic syndrome",
+                "Autoimmune conditions"
+            ],
+            "image": "https://source.unsplash.com/featured/?detox-enema,ayurveda"
+        }
+    },
+    {
+        "title": "Uttar Basti",
+        "route": "uttar-basti",
+        "description": "Urogenital enema therapy",
+        "content": {
+            "overview": "A specialized enema administered through the urethral/vaginal route for reproductive and urinary health.",
+            "benefits": [
+                "Improves reproductive health",
+                "Treats urinary disorders",
+                "Enhances fertility",
+                "Reduces pelvic inflammation",
+                "Balances Apana Vata"
+            ],
+            "procedure": "Medicated oils/decoctions are gently administered through the urethra/vagina using specialized equipment.",
+            "duration": "15-30 minutes",
+            "idealFor": [
+                "Female infertility",
+                "Prostate disorders",
+                "UTI management",
+                "Menstrual disorders",
+                "Pelvic inflammatory disease"
+            ],
+            "image": "https://source.unsplash.com/featured/?urogenital-care,ayurveda"
+        }
+    },
+    {
+        "title": "Vamana",
+        "route": "vamana",
+        "description": "Therapeutic emesis therapy",
+        "content": {
+            "overview": "A Panchakarma procedure to eliminate excess Kapha dosha through medically induced vomiting.",
+            "benefits": [
+                "Clears respiratory system",
+                "Removes toxins",
+                "Improves digestion",
+                "Balances Kapha",
+                "Enhances mental clarity"
+            ],
+            "procedure": "After preparatory oleation and sudation, emetic herbs are administered under supervision to induce controlled vomiting.",
+            "duration": "1-3 days (with preparation)",
+            "idealFor": [
+                "Asthma",
+                "Chronic allergies",
+                "Skin diseases",
+                "Obesity",
+                "Diabetes management"
+            ],
+            "image": "https://source.unsplash.com/featured/?detox,ayurveda"
+        }
+    },
+    {
+        "title": "Virechana",
+        "route": "virechana",
+        "description": "Purgation therapy",
+        "content": {
+            "overview": "A Panchakarma procedure to cleanse the gastrointestinal tract through controlled purgation.",
+            "benefits": [
+                "Detoxifies liver",
+                "Cleanses intestines",
+                "Balances Pitta",
+                "Improves skin health",
+                "Enhances digestion"
+            ],
+            "procedure": "After preparatory therapies, purgative herbs are administered to induce controlled bowel elimination.",
+            "duration": "1-3 days (with preparation)",
+            "idealFor": [
+                "Liver disorders",
+                "Psoriasis",
+                "Hyperacidity",
+                "Migraines",
+                "Autoimmune conditions"
+            ],
+            "image": "https://source.unsplash.com/featured/?detox,herbs"
+        }
+    },
+    {
+        "title": "Nasya",
+        "route": "nasya",
+        "description": "Nasal administration therapy",
+        "content": {
+            "overview": "Administration of medicated oils/powders through nasal passages for head-neck disorders.",
+            "benefits": [
+                "Clears sinuses",
+                "Improves voice",
+                "Enhances memory",
+                "Prevents migraines",
+                "Strengens sensory organs"
+            ],
+            "procedure": "Medicated substances are instilled into nostrils after facial massage and steam inhalation.",
+            "duration": "15-30 minutes",
+            "idealFor": [
+                "Sinusitis",
                 "Facial paralysis",
                 "Hair loss",
-                "Memory disorders",
-                "Thyroid imbalances"
+                "TMJ disorders",
+                "Neurological conditions"
             ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+            "image": "https://source.unsplash.com/featured/?nasal-treatment,ayurveda"
         }
     },
     {
-        "title": "Udwartanam",
-        "route": "udwartanam",
-        "description": "Herbal powder massage for detoxification and weight management",
+        "title": "Rakta Mokshana",
+        "route": "rakta-mokshana",
+        "description": "Bloodletting therapy",
         "content": {
-            "overview": "Udwartanam is a unique Ayurvedic therapy using medicated herbal powders to perform deep tissue massage. This treatment helps break down cellulite and improves lymphatic drainage.",
+            "overview": "A controlled blood purification procedure to remove toxins from the bloodstream.",
             "benefits": [
-                "Reduces subcutaneous fat deposits",
-                "Improves skin texture and tone",
-                "Enhances metabolic rate",
-                "Stimulates lymphatic system",
-                "Helps manage obesity"
+                "Purifies blood",
+                "Reduces inflammation",
+                "Treats skin disorders",
+                "Alleviates congestion",
+                "Balances Pitta"
             ],
-            "procedure": "Therapist applies special herbal powders in upward strokes using specific pressure techniques. Followed by steam therapy to enhance detoxification.",
-            "duration": "60-75 minutes",
+            "procedure": "Performed using leeches, venipuncture, or pricking methods under strict medical supervision.",
+            "duration": "30-60 minutes",
             "idealFor": [
-                "Obesity and weight management",
-                "Cellulite reduction",
-                "Skin disorders like psoriasis",
-                "Water retention",
-                "Kapha imbalance conditions"
+                "Psoriasis",
+                "Eczema",
+                "Gout",
+                "Chronic infections",
+                "Hypertension"
             ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+            "image": "https://source.unsplash.com/featured/?blood-detox,ayurveda"
         }
     },
     {
-        "title": "Takradhara",
-        "route": "takradhara",
-        "description": "Medicated buttermilk stream therapy for neurological health",
+        "title": "Jalaukavacharana",
+        "route": "jalaukavacharana",
+        "description": "Leech therapy",
         "content": {
-            "overview": "Takradhara involves continuous pouring of medicated buttermilk over the forehead to calm the nervous system and balance Pitta dosha.",
+            "overview": "Use of medicinal leeches for blood purification and localized toxin removal.",
             "benefits": [
-                "Reduces stress and anxiety",
-                "Improves sleep quality",
-                "Alleviates migraine headaches",
-                "Enhances cognitive function",
-                "Balances Pitta disorders"
+                "Reduces venous congestion",
+                "Promotes healing",
+                "Prevents necrosis",
+                "Improves microcirculation",
+                "Anti-inflammatory effects"
             ],
-            "procedure": "Warm medicated buttermilk is poured in a continuous stream over the forehead using special vessel (Dhara patra) for 30-45 minutes.",
-            "duration": "60 minutes",
+            "procedure": "Sterile medicinal leeches are applied to affected areas to draw out impure blood.",
+            "duration": "45-90 minutes",
             "idealFor": [
-                "Chronic insomnia",
-                "Hypertension",
+                "Varicose veins",
+                "Diabetic ulcers",
+                "Arthritis",
+                "Skin disorders",
+                "Post-surgical edema"
+            ],
+            "image": "https://source.unsplash.com/featured/?leech-therapy,medicine"
+        }
+    },
+    {
+        "title": "Prachhana",
+        "route": "prachhana",
+        "description": "Skin pricking therapy",
+        "content": {
+            "overview": "A bloodletting technique using multiple superficial skin punctures for localized detoxification.",
+            "benefits": [
+                "Reduces localized toxicity",
+                "Improves skin health",
+                "Alleviates swelling",
+                "Enhances drug absorption",
+                "Promotes healing"
+            ],
+            "procedure": "Multiple tiny pricks are made on affected skin using a special needle, followed by medicated pastes.",
+            "duration": "30-45 minutes",
+            "idealFor": [
+                "Skin disorders",
+                "Localized edema",
+                "Chronic wounds",
+                "Hyperpigmentation",
+                "Leprosy management"
+            ],
+            "image": "https://source.unsplash.com/featured/?skin-treatment,ayurveda"
+        }
+    },
+    {
+        "title": "Siravyadha",
+        "route": "siravyadha",
+        "description": "Venipuncture therapy",
+        "content": {
+            "overview": "Strategic vein puncture for blood purification and toxin removal.",
+            "benefits": [
+                "Reduces blood toxicity",
+                "Alleviates hypertension",
+                "Treats hematological disorders",
+                "Improves circulation",
+                "Balances Pitta"
+            ],
+            "procedure": "Specific veins are punctured under strict aseptic conditions to remove impure blood.",
+            "duration": "30-60 minutes",
+            "idealFor": [
+                "Hemochromatosis",
+                "Polycythemia",
+                "Chronic inflammation",
+                "Skin diseases",
+                "Liver disorders"
+            ],
+            "image": "https://source.unsplash.com/featured/?venipuncture,medicine"
+        }
+    },
+    {
+        "title": "Agnikarma",
+        "route": "agnikarma",
+        "description": "Thermal cauterization therapy",
+        "content": {
+            "overview": "Controlled heat application using metallic probes for pain management and tissue repair.",
+            "benefits": [
+                "Instant pain relief",
+                "Seals nerve endings",
+                "Prevents recurrence",
+                "Reduces inflammation",
+                "Promotes healing"
+            ],
+            "procedure": "Heated metal rods are briefly applied to precise points after local anesthesia.",
+            "duration": "15-30 minutes",
+            "idealFor": [
+                "Chronic tendinitis",
+                "Plantar fasciitis",
+                "Ganglion cysts",
+                "Osteophytes",
+                "Neuromas"
+            ],
+            "image": "https://source.unsplash.com/featured/?thermal-therapy,ayurveda"
+        }
+    },
+    {
+        "title": "Kshira Dhara",
+        "route": "kshira-dhara",
+        "description": "Medicated milk flow therapy",
+        "content": {
+            "overview": "Continuous pouring of medicated milk over the body or forehead for nervous system nourishment.",
+            "benefits": [
+                "Rejuvenates tissues",
+                "Calms the mind",
+                "Improves skin quality",
+                "Balances Pitta",
+                "Promotes sleep"
+            ],
+            "procedure": "Warm medicated milk is poured in a continuous stream using a special vessel from a fixed height.",
+            "duration": "45-60 minutes",
+            "idealFor": [
                 "Burnout syndrome",
-                "Psoriasis and eczema",
-                "Memory disorders"
+                "Insomnia",
+                "Psoriasis",
+                "Premature aging",
+                "Neurological disorders"
             ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+            "image": "https://source.unsplash.com/featured/?milk-therapy,ayurveda"
         }
     },
     {
-        "title": "Ante-natal Care",
-        "route": "ante-natal-care",
-        "description": "Holistic pregnancy care through Ayurveda",
+        "title": "Takra Dhara",
+        "route": "takra-dhara",
+        "description": "Buttermilk flow therapy",
         "content": {
-            "overview": "Specialized care regimen for expecting mothers focusing on optimal fetal development and maternal health through Ayurvedic nutrition and therapies.",
+            "overview": "Therapeutic pouring of fermented medicated buttermilk for digestive and neurological benefits.",
             "benefits": [
-                "Supports healthy fetal growth",
-                "Reduces pregnancy complications",
-                "Manages morning sickness",
-                "Prepares body for labor",
-                "Maintains emotional balance"
+                "Improves digestion",
+                "Reduces inflammation",
+                "Cleanses tissues",
+                "Balances Pitta-Kapha",
+                "Enhances mental clarity"
             ],
-            "procedure": "Customized plan including:\n- Garbhini Paricharya (pregnancy regimen)\n- Safe herbal supplements\n- Prenatal yoga\n- Diet planning\n- Stress management",
-            "duration": "Monthly sessions",
+            "procedure": "Medicated buttermilk is poured in rhythmic streams over the forehead or body.",
+            "duration": "45-60 minutes",
             "idealFor": [
-                "High-risk pregnancies",
-                "Nutritional deficiencies",
-                "Gestational diabetes",
-                "Pregnancy-related anxiety",
-                "Natural birth preparation"
+                "Irritable bowel syndrome",
+                "Anxiety disorders",
+                "Chronic inflammation",
+                "Skin disorders",
+                "Digestive weakness"
             ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+            "image": "https://source.unsplash.com/featured/?buttermilk-therapy,ayurveda"
         }
     },
     {
-        "title": "Postnatal Ayurvedic Care",
-        "route": "postnatal-care",
-        "description": "Postpartum recovery and rejuvenation",
+        "title": "Shiro Dhara",
+        "route": "shiro-dhara",
+        "description": "Forehead oil flow therapy",
         "content": {
-            "overview": "Traditional 40-day recovery program (Sutika Paricharya) focusing on maternal recovery, lactation support, and hormonal balance.",
+            "overview": "Continuous pouring of warm oil on the forehead to induce deep relaxation and neurological balance.",
             "benefits": [
-                "Accelerates tissue repair",
-                "Enhances breast milk production",
-                "Restores reproductive health",
-                "Prevents postpartum depression",
-                "Rebuilds physical strength"
+                "Reduces stress",
+                "Improves sleep quality",
+                "Enhances memory",
+                "Balances Vata-Pitta",
+                "Prevents headaches"
             ],
-            "procedure": "Includes:\n- Specialized abdominal massages\n- Herbal sitz baths\n- Lactogenic diet\n- Uterine tonification\n- Bonding therapies",
-            "duration": "6-8 weeks program",
-            "idealFor": [
-                "Post-Caesarean recovery",
-                "Lactation difficulties",
-                "Uterine prolapse",
-                "Postpartum weight retention",
-                "Hormonal imbalances"
-            ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
-        }
-    },
-    {
-        "title": "Eye Care",
-        "route": "eye-care",
-        "description": "Ayurvedic therapies for ocular health",
-        "content": {
-            "overview": "Specialized Netra Chikitsa (eye treatments) using herbal preparations and therapies to improve vision and treat eye disorders.",
-            "benefits": [
-                "Improves visual acuity",
-                "Reduces eye strain",
-                "Treats chronic conjunctivitis",
-                "Slows macular degeneration",
-                "Manages glaucoma symptoms"
-            ],
-            "procedure": "Includes:\n- Netra Tarpana (medicated ghee pooling)\n- Aschyotana (eye drops)\n- Vidalaka (herbal paste application)\n- Eye yoga exercises",
-            "duration": "30-45 minutes per session",
-            "idealFor": [
-                "Computer vision syndrome",
-                "Diabetic retinopathy",
-                "Dry eye syndrome",
-                "Cataract prevention",
-                "Myopia management"
-            ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
-        }
-    },
-    {
-        "title": "Pre Panchakarma",
-        "route": "purvakarma",
-        "description": "Comprehensive Ayurvedic detoxification program",
-        "content": {
-            "overview": "Panchakarma is Ayurveda's premier detox protocol involving five purification therapies. This intensive program removes deep-seated toxins (ama) and restores mind-body equilibrium.",
-            "benefits": [
-                "Deep tissue detoxification at cellular level",
-                "Restores digestive fire (agni)",
-                "Enhances mental clarity and focus",
-                "Balances all three doshas",
-                "Promotes anti-aging and rejuvenation"
-            ],
-            "procedure": "Three-phase process:\n1. Purvakarma (Preparation): Oil massages and steam therapy\n2. Pradhanakarma (Main Therapies): Vamana, Virechana, Basti, Nasya, Raktamokshana\n3. Paschatkarma (Post-care): Dietary regimen and lifestyle counseling",
-            "duration": "7-21 days",
-            "idealFor": [
-                "Chronic digestive disorders",
-                "Autoimmune conditions",
-                "Metabolic syndrome",
-                "Skin diseases",
-                "Stress-related disorders"
-            ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
-        }
-    },
-    {
-        "title": "Panchakarma",
-        "route": "panchakarma",
-        "description": "Comprehensive Ayurvedic detoxification program",
-        "content": {
-            "overview": "Panchakarma is Ayurveda's premier detox protocol involving five purification therapies. This intensive program removes deep-seated toxins (ama) and restores mind-body equilibrium.",
-            "benefits": [
-                "Deep tissue detoxification at cellular level",
-                "Restores digestive fire (agni)",
-                "Enhances mental clarity and focus",
-                "Balances all three doshas",
-                "Promotes anti-aging and rejuvenation"
-            ],
-            "procedure": "Three-phase process:\n1. Purvakarma (Preparation): Oil massages and steam therapy\n2. Pradhanakarma (Main Therapies): Vamana, Virechana, Basti, Nasya, Raktamokshana\n3. Paschatkarma (Post-care): Dietary regimen and lifestyle counseling",
-            "duration": "7-21 days",
-            "idealFor": [
-                "Chronic digestive disorders",
-                "Autoimmune conditions",
-                "Metabolic syndrome",
-                "Skin diseases",
-                "Stress-related disorders"
-            ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
-        }
-    },
-    {
-        "title": "Main Panchakarma",
-        "route": "pradhanakarma",
-        "description": "Comprehensive Ayurvedic detoxification program",
-        "content": {
-            "overview": "Panchakarma is Ayurveda's premier detox protocol involving five purification therapies. This intensive program removes deep-seated toxins (ama) and restores mind-body equilibrium.",
-            "benefits": [
-                "Deep tissue detoxification at cellular level",
-                "Restores digestive fire (agni)",
-                "Enhances mental clarity and focus",
-                "Balances all three doshas",
-                "Promotes anti-aging and rejuvenation"
-            ],
-            "procedure": "Three-phase process:\n1. Purvakarma (Preparation): Oil massages and steam therapy\n2. Pradhanakarma (Main Therapies): Vamana, Virechana, Basti, Nasya, Raktamokshana\n3. Paschatkarma (Post-care): Dietary regimen and lifestyle counseling",
-            "duration": "7-21 days",
-            "idealFor": [
-                "Chronic digestive disorders",
-                "Autoimmune conditions",
-                "Metabolic syndrome",
-                "Skin diseases",
-                "Stress-related disorders"
-            ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
-        }
-    },
-    {
-        "title": "Post Care Panchakarma",
-        "route": "pachatkarma",
-        "description": "Comprehensive Ayurvedic detoxification program",
-        "content": {
-            "overview": "Panchakarma is Ayurveda's premier detox protocol involving five purification therapies. This intensive program removes deep-seated toxins (ama) and restores mind-body equilibrium.",
-            "benefits": [
-                "Deep tissue detoxification at cellular level",
-                "Restores digestive fire (agni)",
-                "Enhances mental clarity and focus",
-                "Balances all three doshas",
-                "Promotes anti-aging and rejuvenation"
-            ],
-            "procedure": "Three-phase process:\n1. Purvakarma (Preparation): Oil massages and steam therapy\n2. Pradhanakarma (Main Therapies): Vamana, Virechana, Basti, Nasya, Raktamokshana\n3. Paschatkarma (Post-care): Dietary regimen and lifestyle counseling",
-            "duration": "7-21 days",
-            "idealFor": [
-                "Chronic digestive disorders",
-                "Autoimmune conditions",
-                "Metabolic syndrome",
-                "Skin diseases",
-                "Stress-related disorders"
-            ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
-        }
-    },
-    {
-        "title": "Ayurveda Massage",
-        "route": "ayurveda-massage",
-        "description": "Traditional Ayurvedic massages tailored to individual needs",
-        "content": {
-            "overview": "Customized Ayurvedic massage therapies using medicated oils and techniques specific to individual dosha balance and health requirements.",
-            "benefits": [
-                "Promotes deep relaxation and stress relief",
-                "Improves joint mobility and flexibility",
-                "Enhances skin health and complexion",
-                "Stimulates internal organ function",
-                "Balances energy flow (prana)"
-            ],
-            "procedure": "Therapist selects oils and techniques based on dosha analysis. Includes:\n- Abhyanga (full body)\n- Marma point stimulation\n- Shirodhara (oil stream on forehead)\n- Pinda Sweda (herbal bolus massage)",
+            "procedure": "A steady stream of warm medicated oil is poured on the forehead from a suspended vessel.",
             "duration": "60-90 minutes",
             "idealFor": [
-                "Stress management",
-                "Chronic pain conditions",
-                "Beauty and rejuvenation",
-                "Sports injuries",
-                "Detoxification programs"
+                "Chronic stress",
+                "Migraines",
+                "Parkinson's disease",
+                "Insomnia",
+                "Hypertension"
             ],
-            "image": "https://source.unsplash.com/featured/?ayurveda,massage"
+            "image": "https://source.unsplash.com/featured/?shiro-dhara,ayurveda"
+        }
+    },
+    {
+        "title": "Yoni Prakshalana",
+        "route": "yoni-prakshalana",
+        "description": "Vaginal cleansing therapy",
+        "content": {
+            "overview": "Gentle cleansing of vaginal tract using medicated liquids for gynecological health.",
+            "benefits": [
+                "Maintains pH balance",
+                "Prevents infections",
+                "Improves fertility",
+                "Reduces inflammation",
+                "Enhances tissue tone"
+            ],
+            "procedure": "Warm herbal decoctions are used for vaginal irrigation under clinical supervision.",
+            "duration": "20-30 minutes",
+            "idealFor": [
+                "Leucorrhea",
+                "UTI prevention",
+                "Postpartum care",
+                "Menopausal care",
+                "Pelvic congestion"
+            ],
+            "image": "https://source.unsplash.com/featured/?womens-health,ayurveda"
+        }
+    },
+    {
+        "title": "Yoni Pichu",
+        "route": "yoni-pichu",
+        "description": "Vaginal tampon therapy",
+        "content": {
+            "overview": "Application of medicated cotton tampons for localized vaginal treatment.",
+            "benefits": [
+                "Treats infections",
+                "Strengthens tissues",
+                "Reduces dryness",
+                "Balances hormones",
+                "Improves lubrication"
+            ],
+            "procedure": "Medicated cotton swabs soaked in herbal oils are inserted into the vaginal canal.",
+            "duration": "Overnight application",
+            "idealFor": [
+                "Vaginal atrophy",
+                "Infections",
+                "Fertility enhancement",
+                "Postpartum recovery",
+                "Menstrual disorders"
+            ],
+            "image": "https://source.unsplash.com/featured/?womens-health,herbs"
+        }
+    },
+    {
+        "title": "Yoni Purna",
+        "route": "yoni-purna",
+        "description": "Vaginal douche therapy",
+        "content": {
+            "overview": "Retention of medicated oils in vaginal canal for deep tissue nourishment.",
+            "benefits": [
+                "Strengthens pelvic muscles",
+                "Improves uterine health",
+                "Enhances fertility",
+                "Reduces menstrual cramps",
+                "Balances Apana Vata"
+            ],
+            "procedure": "Medicated oils are retained in the vaginal canal using a specially designed apparatus.",
+            "duration": "30-45 minutes",
+            "idealFor": [
+                "Uterine prolapse",
+                "Dysmenorrhea",
+                "Infertility",
+                "Pelvic inflammatory disease",
+                "Menopausal syndrome"
+            ],
+            "image": "https://source.unsplash.com/featured/?womens-health,treatment"
+        }
+    },
+    {
+        "title": "Ashchotana",
+        "route": "ashchotana",
+        "description": "Eye cleansing therapy",
+        "content": {
+            "overview": "Gentle eye irrigation with medicated liquids for ocular health maintenance.",
+            "benefits": [
+                "Cleanses eyes",
+                "Reduces infections",
+                "Improves vision",
+                "Relieves eye strain",
+                "Prevents allergies"
+            ],
+            "procedure": "Medicated decoctions are poured over open eyes using a special vessel.",
+            "duration": "10-15 minutes",
+            "idealFor": [
+                "Conjunctivitis",
+                "Computer eye strain",
+                "Dry eyes",
+                "Allergic reactions",
+                "Post-cataract care"
+            ],
+            "image": "https://source.unsplash.com/featured/?eye-wash,ayurveda"
+        }
+    },
+    {
+        "title": "Anjana",
+        "route": "anjana",
+        "description": "Collyrium application therapy",
+        "content": {
+            "overview": "Application of medicinal eye salves for ocular health and vision improvement.",
+            "benefits": [
+                "Improves night vision",
+                "Reduces eye discharge",
+                "Prevents infections",
+                "Strengthens eye muscles",
+                "Cleanses tear ducts"
+            ],
+            "procedure": "Medicated collyrium is applied along the eyelid margins using a sterile rod.",
+            "duration": "2-5 minutes",
+            "idealFor": [
+                "Night blindness",
+                "Blepharitis",
+                "Cataract prevention",
+                "Glaucoma management",
+                "Eye fatigue"
+            ],
+            "image": "https://source.unsplash.com/featured/?eye-ointment,medicine"
+        }
+    },
+    {
+        "title": "Netra Dhara",
+        "route": "netra-dhara",
+        "description": "Eye irrigation therapy",
+        "content": {
+            "overview": "Continuous flow of medicated liquid over closed eyelids to soothe and cleanse the eyes.",
+            "benefits": [
+                "Reduces eye strain",
+                "Cleanses tear ducts",
+                "Prevents infections",
+                "Improves vision clarity",
+                "Relieves dryness"
+            ],
+            "procedure": "A steady stream of cooled herbal decoction is poured over closed eyes using a special vessel.",
+            "duration": "10-15 minutes",
+            "idealFor": [
+                "Computer vision syndrome",
+                "Conjunctivitis",
+                "Dry eye syndrome",
+                "Post-cataract care",
+                "Eye inflammation"
+            ],
+            "image": "https://source.unsplash.com/featured/?eye-care,ayurveda"
+        }
+    },
+    {
+        "title": "Vidalak",
+        "route": "vidalak",
+        "description": "Herbal eye drop therapy",
+        "content": {
+            "overview": "Application of medicated herbal drops directly into the eyes for therapeutic benefits.",
+            "benefits": [
+                "Treats eye infections",
+                "Reduces redness",
+                "Improves night vision",
+                "Clears corneal opacity",
+                "Strengthens eye muscles"
+            ],
+            "procedure": "Sterile herbal juices or medicated oils are instilled into the eyes using a dropper.",
+            "duration": "2-5 minutes",
+            "idealFor": [
+                "Glaucoma",
+                "Cataract prevention",
+                "Retinal disorders",
+                "Allergic conjunctivitis",
+                "Eye fatigue"
+            ],
+            "image": "https://source.unsplash.com/featured/?eye-drops,ayurveda"
+        }
+    },
+    {
+        "title": "Shiro Picchu",
+        "route": "shiro-picchu",
+        "description": "Scalp oil swab therapy",
+        "content": {
+            "overview": "Placement of oil-soaked cotton pads on strategic points of the scalp for neurological benefits.",
+            "benefits": [
+                "Reduces migraines",
+                "Promotes hair growth",
+                "Calms the mind",
+                "Improves sleep quality",
+                "Balances Pitta dosha"
+            ],
+            "procedure": "Cotton pads soaked in medicated oils are placed on the scalp and covered with a cloth.",
+            "duration": "30-45 minutes",
+            "idealFor": [
+                "Insomnia",
+                "Scalp psoriasis",
+                "Premature graying",
+                "Hypertension",
+                "Neurological disorders"
+            ],
+            "image": "https://source.unsplash.com/featured/?scalp-treatment,ayurveda"
+        }
+    },
+    {
+        "title": "Dhumapana",
+        "route": "dhumapana",
+        "description": "Medicated smoke inhalation",
+        "content": {
+            "overview": "Inhalation of herbal smoke to cleanse respiratory channels and enhance mental clarity.",
+            "benefits": [
+                "Clears sinus congestion",
+                "Reduces headaches",
+                "Improves voice quality",
+                "Enhances focus",
+                "Detoxifies lungs"
+            ],
+            "procedure": "Herbs are burned in a dhumavarti (herbal cigar), and smoke is inhaled through nostrils.",
+            "duration": "5-10 minutes",
+            "idealFor": [
+                "Chronic rhinitis",
+                "Asthma",
+                "Vocal cord issues",
+                "Brain fog",
+                "Tobacco detox"
+            ],
+            "image": "https://source.unsplash.com/featured/?smoke-inhalation,ayurveda"
+        }
+    },
+    {
+        "title": "Eye Disorders",
+        "route": "eye-disorders",
+        "description": "Comprehensive Ayurvedic eye care",
+        "content": {
+            "overview": "Holistic management of ocular health through specialized therapies like Netra Dhara, Anjana, and Vidalak.",
+            "benefits": [
+                "Prevents vision deterioration",
+                "Treats chronic eye diseases",
+                "Reduces digital strain",
+                "Enhances natural tear production",
+                "Strengthens optic nerves"
+            ],
+            "procedure": "Combination of internal medications, dietary guidelines, and external treatments tailored to specific conditions.",
+            "duration": "Varies by condition",
+            "idealFor": [
+                "Diabetic retinopathy",
+                "Macular degeneration",
+                "Dry eye syndrome",
+                "Myopia management",
+                "Post-operative eye care"
+            ],
+            "image": "https://source.unsplash.com/featured/?ayurvedic-eye-care,medicine"
         }
     }
 ]

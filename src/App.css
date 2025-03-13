@@ -24,6 +24,35 @@
   }
 }
 
+[data-radix-scroll-area-viewport] {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+[data-radix-scroll-area-viewport]::-webkit-scrollbar {
+  display: none;
+}
+
+.rt-AccordionContent {
+  overflow: hidden;
+}
+.rt-AccordionContent[data-state='open'] {
+  animation: slideDown 300ms ease-out;
+}
+.rt-AccordionContent[data-state='closed'] {
+  animation: slideUp 300ms ease-in;
+}
+
+@keyframes slideDown {
+  from { height: 0 }
+  to { height: var(--radix-accordion-content-height) }
+}
+
+@keyframes slideUp {
+  from { height: var(--radix-accordion-content-height) }
+  to { height: 0 }
+}
+
 .animate-shimmer {
   animation: shimmer 1.5s infinite linear;
   background-image: linear-gradient(

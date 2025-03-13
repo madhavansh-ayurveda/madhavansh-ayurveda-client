@@ -9,7 +9,7 @@ export default function FloatingConsultButton() {
 
     return (
         <motion.div
-            className="fixed bottom-8 right-8 z-50 flex items-center"
+            className="fixed bottom-8 right-8 z-[150] flex items-center"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.5 }}

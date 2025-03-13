@@ -142,9 +142,8 @@ export default function AppNavbar() {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <Menu
-            className={`h-6 w-6 transition-transform duration-300 ${
-              isMobileMenuOpen ? "rotate-180" : ""
-            }`}
+            className={`h-6 w-6 transition-transform duration-300 ${isMobileMenuOpen ? "rotate-180" : ""
+              }`}
           />
         </Button>
 
@@ -219,15 +218,13 @@ export default function AppNavbar() {
                       </Link>
                     </span>
                     <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-200 ${
-                        expandedSection === "services" ? "rotate-180" : ""
-                      }`}
+                      className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "services" ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
                   <div
-                    className={`${expandTransition} ${
-                      expandedSection === "services" ? expanded : collapsed
-                    }`}
+                    className={`${expandTransition} ${expandedSection === "services" ? expanded : collapsed
+                      }`}
                   >
                     <div className={expandContent}>
                       <div className="pl-4 space-y-2 py-2">
@@ -273,15 +270,13 @@ export default function AppNavbar() {
                       </Link>
                     </span>
                     <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-200 ${
-                        expandedSection === "treatments" ? "rotate-180" : ""
-                      }`}
+                      className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "treatments" ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
                   <div
-                    className={`${expandTransition} ${
-                      expandedSection === "treatments" ? expanded : collapsed
-                    }`}
+                    className={`${expandTransition} ${expandedSection === "treatments" ? expanded : collapsed
+                      }`}
                   >
                     <div className={expandContent}>
                       <div className="pl-4 space-y-2 py-2">
@@ -432,14 +427,23 @@ export default function AppNavbar() {
                       </Link>
                     </NavigationMenuLink>
                   </li> */}
-                  {services?.map((service) => (
+                  <>
+                    {services?.slice(0, 14).map((service) => (
+                      <ListItem
+                        to={`/services/${service.route}`}
+                        title={service.title}
+                      >
+                        {service.description}
+                      </ListItem>
+                    ))}
                     <ListItem
-                      to={`/services/${service.route}`}
-                      title={service.title}
+                      to={`/services`}
+                      title={"Many More"}
                     >
-                      {service.description}
+                      Many More
                     </ListItem>
-                  ))}
+                  </>
+
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>

@@ -28,7 +28,7 @@ import { Lifestyle } from "./pages/Treatments/Lifestyle";
 import { Glucoma } from "./pages/Treatments/Glucoma";
 import { Immunity } from "./pages/Treatments/Immunity";
 // import { Services } from "./pages/Services";
-import { ServicePage } from "./pages/Service";
+// import { ServicePage } from "./pages/Service";
 import BlogList from './pages/Blog/BlogList';
 import BlogPost from './pages/Blog/BlogPost';
 import ServicesLayout from "./components/services/ServiceLayout";
@@ -37,6 +37,7 @@ import serviceJson from "./assets/service.json"
 import { ServicePageComponent } from "./components/services/Service";
 import AppNavbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ServiceDetailPage from "./pages/Service";
 
 const App = () => {
   return (
@@ -46,7 +47,8 @@ const App = () => {
           <AppNavbar />
           <ScrollToTopButton />
           <div className="min-h-screen flex flex-col bg-surface-50">
-            <main className="flex-grow scrollable">
+            {/* Main Content Wrapper */}
+            <main className="flex-1 overflow-hidden">
               <AnimatePresence mode="wait">
                 <Routes>
                   <Route path="/" element={<Home />} />
@@ -57,64 +59,54 @@ const App = () => {
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/appointments" element={<Appointments />} />
                   <Route path="/feedback/:id" element={<FeedbackForm />} />
-                  <Route
-                    path="/book-consultation"
-                    element={<BookConsultation />}
-                  />
-                  <Route
-                    path="/consultation/:id"
-                    element={<ConsultationTracker />}
-                  />
-                  <Route
-                    path="/track_consultation/"
-                    element={<ConsultationTracker />}
-                  />
-                  <Route
-                    path="/payment/:contactNote"
-                    element={<PaymentGateway />}
-                  />
+                  <Route path="/book-consultation" element={<BookConsultation />} />
+                  <Route path="/consultation/:id" element={<ConsultationTracker />} />
+                  <Route path="/track_consultation/" element={<ConsultationTracker />} />
+                  <Route path="/payment/:contactNote" element={<PaymentGateway />} />
+
                   <Route path="treatments" element={<Treatments />}>
                     <Route index element={<TreatmentDefault />} />
-                    <Route
-                      path="skin&hair"
-                      element={<SkinAndHairTreatment />}
-                    />
-                    <Route
-                      path="infertility&pCOD"
-                      element={<InfertilityAndPCOD />}
-                    />
-                    <Route
-                      path="kidney&gallbladder"
-                      element={<KidneyAndBladder />}
-                    />
-                    <Route
-                      path="arthritis&pain"
-                      element={<ArthritisAndPain />}
-                    />
+                    <Route path="skin&hair" element={<SkinAndHairTreatment />} />
+                    <Route path="infertility&pCOD" element={<InfertilityAndPCOD />} />
+                    <Route path="kidney&gallbladder" element={<KidneyAndBladder />} />
+                    <Route path="arthritis&pain" element={<ArthritisAndPain />} />
                     <Route path="lifestyle" element={<Lifestyle />} />
                     <Route path="glucoma" element={<Glucoma />} />
                     <Route path="immunity" element={<Immunity />} />
                   </Route>
-                  <Route path="/services" element={
-                    <ServicesLayout>
-                      <ServicesOverview services={serviceJson} />
-                    </ServicesLayout>
-                  } />
-                  <Route path="/services/:serviceId?/:subServiceId?/:serviceId_l3" element={
-                    <ServicesLayout>
-                      <ServicePageComponent />
-                    </ServicesLayout>
-                  } />
+
+                  <Route
+                    path="/services"
+                    element={
+                      <ServicesLayout>
+                        <ServicesOverview services={serviceJson} />
+                      </ServicesLayout>
+                    }
+                  />
+                  <Route
+                    path="/services/:serviceId"
+                    element={
+                      <ServicesLayout>
+                        <ServiceDetailPage />
+                      </ServicesLayout>
+                    }
+                  />
+
                   <Route path="/blog" element={<BlogList />} />
                   <Route path="/blog/:slug" element={<BlogPost />} />
                 </Routes>
               </AnimatePresence>
             </main>
+
+            {/* Floating Buttons (placed above the footer) */}
             <FloatingConsultButton />
             <ScrollToTopButton />
+
+            {/* Footer with no overlap */}
+            <Footer />
           </div>
-          <Footer />
         </Router>
+
         <Toaster
           position="top-right"
           containerStyle={{
