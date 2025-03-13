@@ -23,7 +23,7 @@ import { Link, useLocation } from "react-router-dom";
 
 interface TherapyCategory {
   name: string;
-  icon: string;
+  icon?: string;
   subcategories?: {
     name: string;
     therapies: string[];
@@ -234,36 +234,7 @@ const SeviceAccordionComponent = (category: TherapyCategory) => {
             <AccordionContent>
               <SidebarGroupContent>
                 {category.subcategories?.map((subcategory) => (
-                  <Accordion key={subcategory.name} type="single" collapsible>
-                    <AccordionItem
-                      value={subcategory.name}
-                      className="border-b-0"
-                    >
-                      <AccordionTrigger className="py-1 text-sm hover:no-underline">
-                        {subcategory.name}
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <SidebarMenu>
-                          {subcategory.therapies.map((therapy) => (
-                            <SidebarMenuItem key={therapy}>
-                              <SidebarMenuButton
-                                asChild
-                                isActive={isActive(therapy)}
-                              >
-                                <Link
-                                  to={`/services/${therapy
-                                    .toLowerCase()
-                                    .replace(/\s+/g, "-")}`}
-                                >
-                                  {therapy}
-                                </Link>
-                              </SidebarMenuButton>
-                            </SidebarMenuItem>
-                          ))}
-                        </SidebarMenu>
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
+                  <SeviceAccordionComponent {...subcategory} />
                 ))}
 
                 {category.therapies.length > 0 && (

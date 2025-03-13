@@ -28,7 +28,6 @@
     "@radix-ui/react-tabs": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.8",
     "@reduxjs/toolkit": "^2.5.0",
-    "@rollup/rollup-win32-x64-msvc": "^4.35.0",
     "@tabler/icons-react": "^3.24.0",
     "aceternity-ui": "^0.2.2",
     "axios": "^1.7.9",
