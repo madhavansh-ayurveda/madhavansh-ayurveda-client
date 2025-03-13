@@ -27,14 +27,11 @@ import { ArthritisAndPain } from "./pages/Treatments/ArthritisAndPain";
 import { Lifestyle } from "./pages/Treatments/Lifestyle";
 import { Glucoma } from "./pages/Treatments/Glucoma";
 import { Immunity } from "./pages/Treatments/Immunity";
-// import { Services } from "./pages/Services";
-// import { ServicePage } from "./pages/Service";
 import BlogList from './pages/Blog/BlogList';
 import BlogPost from './pages/Blog/BlogPost';
 import ServicesLayout from "./components/services/ServiceLayout";
 import ServicesOverview from "./components/services/service-overview";
 import serviceJson from "./assets/service.json"
-import { ServicePageComponent } from "./components/services/Service";
 import AppNavbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ServiceDetailPage from "./pages/Service";
