@@ -205,7 +205,7 @@ export function ServicesSidebar() {
       <SidebarContent>
         <ScrollArea className="h-[calc(100vh-8rem)]">
           {filteredCategories.map((category) => (
-            <SeviceAccordionComponent {...category} />
+            <SeviceAccordionComponent category={category} level={1} />
           ))}
         </ScrollArea>
       </SidebarContent>
@@ -213,28 +213,37 @@ export function ServicesSidebar() {
   );
 }
 
-const SeviceAccordionComponent = (category: TherapyCategory) => {
+const SeviceAccordionComponent = ({
+  category,
+  level,
+}: {
+  category: TherapyCategory;
+  level: number;
+}) => {
   const { pathname } = useLocation();
   const isActive = (therapy: string) =>
     pathname?.includes(therapy.toLowerCase().replace(/\s+/g, "-"));
 
   return (
     <>
-      <SidebarGroup key={category.name}>
-        <Accordion type="single" collapsible defaultValue={category.name}>
+      <SidebarGroup key={category.name} className="p-1">
+        <Accordion type="single" collapsible>
           <AccordionItem value={category.name} className="border-b-0">
             <SidebarGroupLabel asChild>
               <AccordionTrigger className="py-2 hover:no-underline">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 text-[0.85rem]">
                   <span>{category.icon}</span>
                   <span>{category.name}</span>
                 </div>
               </AccordionTrigger>
             </SidebarGroupLabel>
-            <AccordionContent>
-              <SidebarGroupContent>
+            <AccordionContent className="p-0">
+              <SidebarGroupContent className={`pl-${4*level}`}>
                 {category.subcategories?.map((subcategory) => (
-                  <SeviceAccordionComponent {...subcategory} />
+                  <SeviceAccordionComponent
+                    category={subcategory}
+                    level={level++}
+                  />
                 ))}
 
                 {category.therapies.length > 0 && (
@@ -246,6 +255,7 @@ const SeviceAccordionComponent = (category: TherapyCategory) => {
                             to={`/services/${therapy
                               .toLowerCase()
                               .replace(/\s+/g, "-")}`}
+                            className={`pl-${4*2*level}`}
                           >
                             {therapy}
                           </Link>
