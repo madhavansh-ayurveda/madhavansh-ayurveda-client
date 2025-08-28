@@ -151,9 +151,8 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 
 Have questions or want to get in touch? Feel free to reach out:
 
-- **Email**: your-email@example.com
-- **Twitter**: [@yourhandle](https://twitter.com/yourhandle)
-- **GitHub**: [your-username](https://github.com/your-username)
+- **Email**: info@madhavanshayurved.com
+- **GitHub**: [madhavansh-ayurved](https://github.com/madhavansh-ayurved)
 
 ---
 
