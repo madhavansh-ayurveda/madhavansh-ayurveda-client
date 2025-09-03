@@ -1,9 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const {
-  default: flattenColorPalette,
-} = require("tailwindcss/lib/flattenColorPalette");
-
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -83,7 +78,29 @@ module.exports = {
   ],
 }
 
+// This is the function that adds the CSS variables to the base layer.
 function addVariablesForColors({ addBase, theme }) {
+  // Custom flatten function to avoid dependency issues.
+  function flattenColorPalette(colors) {
+    const result = {};
+    function recurse(current, prefix = '') {
+      if (typeof current !== 'object' || current === null) {
+        return;
+      }
+      for (const key in current) {
+        const value = current[key];
+        const newPrefix = prefix ? `${prefix}-${key}` : key;
+        if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+          recurse(value, newPrefix);
+        } else {
+          result[newPrefix] = value;
+        }
+      }
+    }
+    recurse(colors);
+    return result;
+  }
+
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
