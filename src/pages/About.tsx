@@ -332,7 +332,7 @@ export default function About() {
                     title: "Location",
                     info: "Indraprasth Phase 2, A20B, near MG Motor India, Raipur, Chhattisgarh 492013",
                   },
-                  { icon: Phone, title: "Phone", info: "+91 123-4567-890" },
+                  { icon: Phone, title: "Phone", info: "+91 7509181081" },
                   {
                     icon: Mail,
                     title: "Email",
