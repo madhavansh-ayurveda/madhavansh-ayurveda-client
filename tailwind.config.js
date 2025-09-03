@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-import { addVariablesForColors } from "aceternity-ui/utils";
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/flattenColorPalette");
 
-export default {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -78,4 +81,15 @@ export default {
     require("tailwindcss-animate"),
     addVariablesForColors
   ],
+}
+
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ":root": newVars,
+  });
 }
