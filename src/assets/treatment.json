@@ -1,37 +1,47 @@
 [
-    {
-        "title": "Skin and Hair",
-        "href": "/skin&hair",
-        "description": "Traditional Ayurvedic cleansing and rejuvenation therapies for deep healing."
-    },
-    {
-        "title": "Infertility and PCOD",
-        "href": "/infertility&pCOD",
-        "description": "Traditional Ayurvedic massage techniques for relaxation and healing."
-    },
-    {
-        "title": "Kidney and Gallbladder Stone",
-        "href": "/kidney&gallbladder",
-        "description": "Custom-formulated herbal remedies based on your constitution."
-    },
-    {
-        "title": "Arthritis and Pain Management",
-        "href": "/arthritis&pain",
-        "description": "Custom-formulated herbal remedies based on your constitution."
-    },
-    {
-        "title": "Life style disorder",
-        "href": "/lifestyle",
-        "description": "Custom-formulated herbal remedies based on your constitution."
-    },
-    {
-        "title": "Glaucoma",
-        "href": "/glucoma",
-        "description": "Custom-formulated herbal remedies based on your constitution."
-    },
-    {
-        "title": "Immunity booster dose",
-        "href": "/immunity",
-        "description": "Custom-formulated herbal remedies based on your constitution."
-    }
+  {
+    "title": "Panchakarma Therapy",
+    "description": "A comprehensive detoxification and rejuvenation program to cleanse the body of toxins and restore balance.",
+    "href": "/panchakarma"
+  },
+  {
+    "title": "Abhyanga Massage",
+    "description": "A full-body warm oil massage designed to nourish the skin, calm the nerves, and promote deep relaxation.",
+    "href": "/abhyanga"
+  },
+  {
+    "title": "Shirodhara",
+    "description": "A continuous stream of warm, medicated oil is poured onto the forehead to soothe the nervous system.",
+    "href": "/shirodhara"
+  },
+  {
+    "title": "Herbal Steam (Swedana)",
+    "description": "An herbal steam bath that helps to open up body channels, flush out toxins, and relieve muscle stiffness.",
+    "href": "/swedana"
+  },
+  {
+    "title": "Nasya Treatment",
+    "description": "Administration of medicated oils through the nasal passages to cleanse and nourish the head region.",
+    "href": "/nasya"
+  },
+  {
+    "title": "Kati Basti",
+    "description": "A localized treatment where warm medicated oil is retained over the lower back to relieve pain and stiffness.",
+    "href": "/kati-basti"
+  },
+  {
+    "title": "Pizhichil",
+    "description": "A luxurious treatment where lukewarm herbal oils are applied all over the body in a rhythmic way.",
+    "href": "/pizhichil"
+  },
+  {
+    "title": "Udvartana",
+    "description": "A stimulating dry powder massage that helps in reducing cellulite and improving skin texture.",
+    "href": "/udvartana"
+  },
+  {
+    "title": "Netra Tarpana",
+    "description": "A rejuvenating eye treatment that involves retaining medicated ghee over the eyes to improve vision.",
+    "href": "/netra-tarpana"
+  }
 ]

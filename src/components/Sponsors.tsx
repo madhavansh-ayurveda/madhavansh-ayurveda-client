@@ -1,64 +1,31 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-
-const sponsors = [
-  { id: 1, name: "Brand A", logo: "/sponsors/logo1.svg" },
-  { id: 2, name: "Brand B", logo: "/sponsors/logo2.svg" },
-  { id: 3, name: "Brand C", logo: "/sponsors/logo3.svg" },
-  { id: 4, name: "Brand D", logo: "/sponsors/logo4.svg" },
-  { id: 5, name: "Brand E", logo: "/sponsors/logo5.svg" },
-  { id: 6, name: "Brand F", logo: "/sponsors/logo6.svg" },
+const logos = [
+  { src: "/logo-1.svg", alt: "Sponsor 1" },
+  { src: "/logo-2.svg", alt: "Sponsor 2" },
+  { src: "/logo-3.svg", alt: "Sponsor 3" },
+  { src: "/logo-4.svg", alt: "Sponsor 4" },
+  { src: "/logo-5.svg", alt: "Sponsor 5" },
 ];
 
-const Marquee = () => {
-  const marqueeVariants = {
-    animate: {
-      x: ["0%", "-100%"],
-      transition: {
-        x: {
-          repeat: Infinity,
-          repeatType: "loop",
-          duration: 20,
-          ease: "linear",
-        },
-      },
-    },
-  };
-
+export default function Sponsors() {
   return (
-    <div className="relative w-full overflow-hidden">
-      <motion.div
-        className="flex whitespace-nowrap"
-        variants={marqueeVariants}
-        animate="animate"
-      >
-        {[...sponsors, ...sponsors].map((sponsor, index) => (
-          <div key={index} className="flex-shrink-0 w-48 mx-8 flex items-center justify-center">
-            <img
-              src={sponsor.logo}
-              alt={sponsor.name}
-              className="h-12 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-            />
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  );
-};
-
-const Sponsors = () => {
-  return (
-    <section className="py-16">
+    <section className="py-12">
       <div className="max-w-7xl mx-auto px-4">
-        <h3 className="text-center text-lg font-semibold text-foreground/60 mb-8">
-          Trusted by leading wellness and health brands
+        <h3 className="text-center text-sm font-semibold text-foreground/60 mb-8">
+          Trusted by leading wellness organizations
         </h3>
-        <Marquee />
+        <div className="flex justify-center items-center gap-8 md:gap-12 flex-wrap">
+          {logos.map((logo, index) => (
+            <img
+              key={index}
+              src={logo.src}
+              alt={logo.alt}
+              className="h-8 w-auto opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all"
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
-};
-
-export default Sponsors;
+}

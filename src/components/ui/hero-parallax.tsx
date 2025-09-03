@@ -5,19 +5,22 @@ import {
   useScroll,
   useTransform,
   useSpring,
+  MotionValue,
 } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export const HeroParallax = ({
   products,
-  className,
+  title,
+  subtitle,
 }: {
   products: {
     title: string;
     link: string;
     thumbnail: string;
   }[];
-  className?: string;
+  title: string;
+  subtitle: string;
 }) => {
   const firstRow = products.slice(0, 5);
   const secondRow = products.slice(5, 10);
@@ -51,15 +54,15 @@ export const HeroParallax = ({
     springConfig
   );
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [-700, 0]),
+    useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
     springConfig
   );
   return (
     <div
       ref={ref}
-      className={`h-[300vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] ${className}`}
+      className="h-[300vh] py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
-      <Header />
+      <Header title={title} subtitle={subtitle} />
       <motion.div
         style={{
           rotateX,
@@ -101,14 +104,14 @@ export const HeroParallax = ({
   );
 };
 
-export const Header = () => {
+export const Header = ({ title, subtitle }: { title: string; subtitle: string }) => {
   return (
     <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
-      <h1 className="text-4xl md:text-7xl font-bold text-foreground">
-        The Future of <br /> <span className="text-primary">Natural Healing</span>
+      <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
+        {title}
       </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 text-foreground/80">
-        We blend the timeless wisdom of Ayurveda with cutting-edge technology to create a wellness experience that is deeply personal, profoundly effective, and beautifully modern.
+      <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
+        {subtitle}
       </p>
     </div>
   );
@@ -123,7 +126,7 @@ export const ProductCard = ({
     link: string;
     thumbnail: string;
   };
-  translate: any;
+  translate: MotionValue<number>;
 }) => {
   return (
     <motion.div
@@ -144,12 +147,12 @@ export const ProductCard = ({
           src={product.thumbnail}
           height="600"
           width="600"
-          className="object-cover object-left-top absolute h-full w-full inset-0 rounded-lg"
+          className="object-cover object-left-top absolute h-full w-full inset-0"
           alt={product.title}
         />
       </Link>
-      <div className="absolute inset-0 h-full w-full opacity-0 bg-black pointer-events-none group-hover/product:opacity-60 transition-opacity duration-300 rounded-lg"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white text-2xl font-bold transition-opacity duration-300">
+      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
+      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
         {product.title}
       </h2>
     </motion.div>

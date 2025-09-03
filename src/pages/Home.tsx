@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Heart, Sparkles, Stethoscope, Bot } from "lucide-react";
-import { useAppDispatch, useAppSelector } from "@/hooks/useAppSelector";
-import { useEffect } from "react";
-import { authApi } from "@/api/authApi";
-import { toast } from "react-hot-toast";
-import { logout } from "@/store/features/authSlice";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { HoverEffect } from "@/components/ui/hover-effect";
 import treatmentData from "@/assets/treatment.json";
@@ -16,26 +11,6 @@ import DoctorsCarousel from "@/components/DoctorsCarousel";
 import Hero from "@/components/Hero";
 
 export default function Home() {
-  const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.auth);
-
-  useEffect(() => {
-    const checkUserFunc = async () => {
-      if (user) {
-        try {
-          const checkUser = await authApi.checkAuth();
-          if (!checkUser.success) {
-            dispatch(logout());
-            toast.error("Session expired. Please log in again.");
-          }
-        } catch (error) {
-          dispatch(logout());
-        }
-      }
-    };
-    checkUserFunc();
-  }, [user, dispatch]);
-
   const services = treatmentData.slice(0, 6).map((treatment) => ({
     title: treatment.title,
     description: treatment.description,

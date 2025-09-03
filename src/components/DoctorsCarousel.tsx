@@ -1,7 +1,13 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
 interface Doctor {
@@ -15,47 +21,45 @@ interface DoctorsCarouselProps {
   doctors: Doctor[];
 }
 
-const DoctorsCarousel: React.FC<DoctorsCarouselProps> = ({ doctors }) => {
+export default function DoctorsCarousel({ doctors }: DoctorsCarouselProps) {
   return (
-    <div className="relative w-full overflow-x-auto py-8 no-scrollbar">
-      <motion.div
-        className="flex gap-8 px-4"
-        drag="x"
-        dragConstraints={{ left: -200 * doctors.length, right: 0 }}
-        dragElastic={0.1}
+    <div className="w-full max-w-6xl mx-auto px-4">
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        className="w-full"
       >
-        {doctors.map((doctor) => (
-          <motion.div
-            key={doctor.id}
-            className="flex-shrink-0 w-72 bg-white rounded-2xl shadow-lg overflow-hidden group"
-            whileHover={{ y: -10 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <div className="relative h-80">
-              <img
-                src={doctor.image}
-                alt={doctor.name}
-                className="w-full h-full object-cover object-top"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 p-6">
-                <h3 className="text-2xl font-bold text-white">{doctor.name}</h3>
-                <p className="text-white/80">{doctor.designation}</p>
+        <CarouselContent>
+          {doctors.map((doctor) => (
+            <CarouselItem key={doctor.id} className="md:basis-1/2 lg:basis-1/3">
+              <div className="p-1">
+                <Card className="overflow-hidden group">
+                  <CardContent className="flex flex-col items-center text-center p-6">
+                    <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-transparent group-hover:border-primary transition-all">
+                      <img
+                        src={doctor.image}
+                        alt={doctor.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 className="text-xl font-semibold">{doctor.name}</h3>
+                    <p className="text-primary">{doctor.designation}</p>
+                    <Link to={`/doctors/${doctor.id}`}>
+                      <button className="mt-4 bg-secondary text-secondary-foreground px-4 py-2 rounded-full text-sm font-medium hover:bg-secondary/90 transition-colors">
+                        View Profile
+                      </button>
+                    </Link>
+                  </CardContent>
+                </Card>
               </div>
-            </div>
-            <div className="p-6 bg-white">
-              <Link
-                to={`/book-consultation?doctor=${doctor.id}`}
-                className="block w-full bg-primary text-primary-foreground text-center py-3 rounded-lg font-semibold group-hover:bg-primary/90 transition-colors"
-              >
-                Book Appointment
-              </Link>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="hidden sm:flex" />
+        <CarouselNext className="hidden sm:flex" />
+      </Carousel>
     </div>
   );
-};
-
-export default DoctorsCarousel;
+}
