@@ -1,283 +1,316 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calendar, Users, Phone, Clock, Star } from "lucide-react";
-import AnimatedStat from "../components/AnimatedStat";
-import { WhatweCard } from "../components/WhatweCard";
-import ShimmerButton from "../components/ui/shimmer-button";
+import {
+  Heart,
+  BrainCircuit,
+  Sparkles,
+  Stethoscope,
+  Bot,
+  ChevronRight,
+} from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useAppSelector";
 import { useEffect } from "react";
-import Autoplay from "embla-carousel-autoplay";
-// import { api } from '@/api/axios';
 import { authApi } from "@/api/authApi";
 import { toast } from "react-hot-toast";
 import { logout } from "@/store/features/authSlice";
 import Cookies from "js-cookie";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import { HoverEffect } from "@/components/ui/hover-effect";
+import treatmentData from "@/assets/treatment.json";
+import doctorsData from "@/doctors.json";
+import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 
 export default function Home() {
   const dispatch = useAppDispatch();
-
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 },
-  };
-
-  const staggerChildren = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
   const { user } = useAppSelector((state) => state.auth);
+
   useEffect(() => {
-    console.log();
     const checkUserFunc = async () => {
       if (user) {
-        console.log("checking auth");
-
-        const checkUser = await authApi.checkAuth();
-        if (!checkUser.success) {
-          try {
-            localStorage.removeItem("authToken");
-            Cookies.remove("authToken");
+        try {
+          const checkUser = await authApi.checkAuth();
+          if (!checkUser.success) {
             dispatch(logout());
-            toast.success("Logged out successfully");
-          } catch (error) {
-            console.error("Logout failed:", error);
-            toast.error("Failed to logout. Please try again.");
+            toast.error("Session expired. Please log in again.");
           }
+        } catch (error) {
+          dispatch(logout());
         }
       }
     };
     checkUserFunc();
-  }, []);
+  }, [user, dispatch]);
+
+  const services = treatmentData.slice(0, 6).map((treatment) => ({
+    title: treatment.title,
+    description: treatment.description,
+    link: `/treatments${treatment.href}`,
+  }));
+
+  const doctors = doctorsData.doctors.map((doctor) => ({
+    id: doctor.id,
+    name: doctor.name,
+    designation: doctor.specialization,
+    image: doctor.image,
+  }));
 
   return (
-    <>
-      <motion.div initial="initial" animate="animate" className="">
-        {/* Hero Section */}
-        <motion.section
-          className="relative bg-gradient-to-r from-primary-500 to-secondary-600 text-white py-12 md:py-20 px-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+    <motion.div
+      initial="initial"
+      animate="animate"
+      className="bg-background text-foreground"
+    >
+      {/* Hero Section */}
+      <section className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center overflow-hidden text-center px-4 py-20">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/ayurveda3.jpg"
+            alt="Lush Ayurvedic herbs and ingredients"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="relative z-10 space-y-6 max-w-4xl"
         >
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-            <motion.div
-              className="space-y-4 md:space-y-6 text-center md:text-left"
-              variants={fadeIn}
-            >
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white">
-                Your Journey to Wellness Begins Here
-              </h1>
-              <p className="text-lg md:text-xl text-primary-50 max-w-xl mx-auto md:mx-0">
-                Experience the perfect blend of ancient Ayurvedic wisdom and
-                modern healthcare practices and improve health outcomes for your
-                life and family.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <a href="/book-consultation">
-                  <ShimmerButton className="text-black font-semibold text-center hover:scale-105 transition-all w-[70%] md:w-auto">
-                    Book Consultation
-                  </ShimmerButton>
-                </a>
-                <Link
-                  to="/about"
-                  className="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white w-[70%]hover:text-primary-600 transition-all text-center"
-                >
-                  Learn More
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* Hide image on mobile, show on md and up */}
-            <motion.div
-              className="hidden md:block"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <img
-                src="/about-us.jpg"
-                alt="Ayurvedic Treatment"
-                className="rounded-lg shadow-xl"
-              />
-            </motion.div>
-          </div>
-        </motion.section>
-
-        {/* Stats Section */}
-        <motion.section
-          className="max-w-7xl mx-auto px-4 my-16"
-          variants={staggerChildren}
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <AnimatedStat value={1000} label="Happy Patients" />
-            <AnimatedStat value={20} label="Expert Doctors" />
-            <AnimatedStat value={15} label="Years Experience" />
-            <AnimatedStat value={50} label="Treatments" />
-          </div>
-        </motion.section>
-
-        {/* Features */}
-        <motion.section
-          className="max-w-7xl mx-auto px-4 my-16"
-          variants={staggerChildren}
-        >
-          <div className="grid md:grid-cols-4 gap-8">
-            <motion.div
-              className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow"
-              variants={fadeIn}
-              whileHover={{ y: -5 }}
-            >
-              <Calendar className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Easy Scheduling</h3>
-              <p className="text-gray-600">Book appointments online anytime</p>
-            </motion.div>
-            <motion.div
-              className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow"
-              variants={fadeIn}
-              whileHover={{ y: -5 }}
-            >
-              <Users className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Expert Vaidyas</h3>
-              <p className="text-gray-600">
-                Experienced Ayurvedic practitioners
-              </p>
-            </motion.div>
-            <motion.div
-              className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow"
-              variants={fadeIn}
-              whileHover={{ y: -5 }}
-            >
-              <Phone className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">24/7 Support</h3>
-              <p className="text-gray-600">Always here when you need us</p>
-            </motion.div>
-            <motion.div
-              className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow"
-              variants={fadeIn}
-              whileHover={{ y: -5 }}
-            >
-              <Clock className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Holistic Care</h3>
-              <p className="text-gray-600">Complete wellness solutions</p>
-            </motion.div>
-          </div>
-        </motion.section>
-
-        {/* Testimonials */}
-        <motion.section
-          className="bg-gray-50 py-16 flex flex-col items-center"
-          variants={fadeIn}
-        >
-          <div className="w-full max-w-7xl mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              What Our Patients Say
-            </h2>
-            <div className="relative w-full">
-              {/* Left blur gradient */}
-              <div className="hidden sm:block absolute left-0 top-0 w-28 h-full bg-gradient-to-r from-gray-50 to-transparent z-10" />
-              <Carousel
-                opts={{
-                  align: "center",
-                  loop: true,
-                  dragFree: true,
-                  containScroll: "trimSnaps",
-                }}
-                plugins={[
-                  Autoplay({
-                    delay: 2500,
-                  }),
-                ]}
-                className="mx-auto w-[95%]"
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight text-primary-900">
+            Ancient Wisdom, Modern Wellness
+          </h1>
+          <p className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto">
+            Rediscover balance and vitality through authentic Ayurvedic care,
+            personalized for your unique constitution and powered by modern
+            insights.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/book-consultation">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-primary/90 transition-all w-full sm:w-auto"
               >
-                <CarouselContent>
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <CarouselItem
-                      key={index}
-                      className="basis-full sm:basis-1/2 lg:basis-1/3 pl-4"
-                    >
-                      <Card className="h-full mx-auto max-w-[650px]">
-                        <CardContent className="p-4 md:p-6">
-                          <div className="flex items-center mb-4">
-                            <div className="flex text-yellow-400">
-                              {[...Array(5)].map((_, i) => (
-                                <Star
-                                  key={i}
-                                  className="w-4 h-4 fill-current"
-                                />
-                              ))}
-                            </div>
-                          </div>
-                          <p className="text-gray-600 mb-4">
-                            "The Ayurvedic treatment I received here was
-                            transformative. The doctors are knowledgeable and
-                            caring."
-                          </p>
-                          <div className="flex items-center">
-                            <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                              <span className="text-primary-600 font-semibold">
-                                {String.fromCharCode(65 + index)}
-                              </span>
-                            </div>
-                            <div className="ml-4">
-                              <p className="font-semibold">Patient Name</p>
-                              <p className="text-sm text-gray-500">
-                                Treated for: Stress Management
-                              </p>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 w-full z-20">
-                  <CarouselPrevious className="-left-4 md:-left-5 bg-white/90 hover:bg-white" />
-                  <CarouselNext className="-right-4 md:-right-5 bg-white/90 hover:bg-white" />
-                </div>
-              </Carousel>
-              {/* Right blur gradient */}
-              <div className="hidden sm:block absolute right-0 top-0 w-28 h-full bg-gradient-to-l from-gray-50 to-transparent z-10" />
-            </div>
+                Book a Consultation
+              </motion.button>
+            </Link>
+            <Link to="/services">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-primary border border-primary/20 px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-primary-50 transition-all w-full sm:w-auto"
+              >
+                Explore Services
+              </motion.button>
+            </Link>
           </div>
-        </motion.section>
+        </motion.div>
+      </section>
 
-        {/* CTA Section */}
-        <motion.section
-          className="bg-gradient-to-r from-primary-500 to-secondary-600 text-white py-16 mt-16"
-          variants={fadeIn}
-        >
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-4 text-white">
-              Start Your Wellness Journey Today
+      {/* Why Choose Us Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-900">
+              A New Era of Ayurvedic Healing
             </h2>
-            <p className="text-xl mb-8">
-              Book your consultation and experience the power of Ayurveda
+            <p className="text-lg text-foreground/70 mt-4 max-w-3xl mx-auto">
+              We integrate timeless Ayurvedic principles with cutting-edge
+              technology to offer you a truly personalized and effective path
+              to wellness.
             </p>
+          </motion.div>
+          <BentoGrid className="auto-rows-[22rem]">
+            {bentoItems.map((item, i) => (
+              <BentoGridItem
+                key={i}
+                title={item.title}
+                description={item.description}
+                header={item.header}
+                className={item.className}
+                icon={item.icon}
+              />
+            ))}
+          </BentoGrid>
+        </div>
+      </section>
+
+      {/* Our Services Section */}
+      <section className="py-20 px-4 bg-muted/50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-900">
+              Our Signature Treatments
+            </h2>
+            <p className="text-lg text-foreground/70 mt-4 max-w-3xl mx-auto">
+              Discover our range of therapies designed to restore balance,
+              rejuvenate the body, and calm the mind.
+            </p>
+          </motion.div>
+          <HoverEffect items={services} />
+        </div>
+      </section>
+
+      {/* Meet Our Doctors Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold text-primary-900 mb-4"
+          >
+            Meet Our Expert Practitioners
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-foreground/70 mb-12 max-w-3xl mx-auto"
+          >
+            Our team of dedicated and experienced Ayurvedic doctors is here to
+            guide you on your path to health.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="flex flex-row items-center justify-center mb-10 w-full"
+          >
+            <AnimatedTooltip items={doctors} />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-muted/50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-primary-900">
+            Stories of Healing and Hope
+          </h2>
+          <div className="relative flex flex-col items-center justify-center">
+            <InfiniteMovingCards
+              items={testimonials}
+              direction="right"
+              speed="slow"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center bg-gradient-to-br from-primary-50 to-secondary-50 p-12 rounded-2xl">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold text-primary-900"
+          >
+            Ready to Begin Your Transformation?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-foreground/70 mt-4 mb-8"
+          >
+            Your personalized path to wellness is just a click away. Schedule
+            your initial consultation today.
+          </motion.p>
+          <Link to="/book-consultation">
             <motion.button
               whileHover={{ scale: 1.05 }}
-              className="bg-white text-primary-600 px-8 py-3 rounded-full font-semibold hover:bg-primary-50 transition-colors"
+              whileTap={{ scale: 0.95 }}
+              className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-primary/90 transition-all"
             >
-              Schedule Appointment
+              Schedule My Consultation
             </motion.button>
-          </div>
-        </motion.section>
-
-        <div className="bg-[#eef7f7] mt-0 py-16">
-          <WhatweCard />
+          </Link>
         </div>
-      </motion.div>
-    </>
+      </section>
+    </motion.div>
   );
 }
+
+const Skeleton = () => (
+  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 to-neutral-100"></div>
+);
+
+const bentoItems = [
+  {
+    title: "Holistic Approach",
+    description: "We treat the root cause, not just the symptoms, for lasting wellness.",
+    header: <Skeleton />,
+    className: "md:col-span-1",
+    icon: <Heart className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "AI-Powered Wellness Plans",
+    description: "Leveraging AI to create hyper-personalized diet, lifestyle, and treatment plans.",
+    header: <Skeleton />,
+    className: "md:col-span-2",
+    icon: <Bot className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "Expert Practitioners",
+    description: "Our team of certified Vaidyas brings decades of experience.",
+    header: <Skeleton />,
+    className: "md:col-span-1",
+    icon: <Stethoscope className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "Personalized Care",
+    description: "Every treatment is tailored to your unique body constitution (Prakriti).",
+    header: <Skeleton />,
+    className: "md:col-span-2",
+    icon: <Sparkles className="h-4 w-4 text-neutral-500" />,
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "The personalized care I received was exceptional. For the first time, I felt truly understood. My chronic digestive issues have vanished.",
+    name: "Anjali Sharma",
+    title: "Panchakarma Patient",
+  },
+  {
+    quote:
+      "Madhavansh Ayurved's approach to pain management is life-changing. I'm now living pain-free without any side effects. Highly recommended.",
+    name: "Rajesh Kumar",
+    title: "Arthritis Patient",
+  },
+  {
+    quote:
+      "The AI-powered diet plan was a game-changer. It was so easy to follow and perfectly aligned with my body's needs. I've never felt more energetic.",
+    name: "Priya Desai",
+    title: "Wellness Program",
+  },
+  {
+    quote:
+      "I was skeptical about online consultations, but the experience was seamless and the doctor was incredibly attentive. A modern approach to ancient science.",
+    name: "Vikram Singh",
+    title: "Online Consultation",
+  },
+  {
+    quote:
+      "After years of struggling with skin issues, their holistic treatment cleared my acne and gave me a glow I never thought possible. Thank you!",
+    name: "Meera Patel",
+    title: "Skin & Hair Treatment",
+  },
+];
