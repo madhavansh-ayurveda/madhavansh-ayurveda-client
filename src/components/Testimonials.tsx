@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import { motion } from "framer-motion";
-import TestimonialCard from "./TestimonialCard";
+import { Star } from "lucide-react";
 
 const testimonialsData = [
   {
@@ -35,36 +36,26 @@ const testimonialsData = [
     name: "Meera Patel",
     title: "Skin & Hair Treatment",
   },
-  {
-    quote:
-      "The clinic has a serene and calming atmosphere. The staff is professional and caring. My stress levels have reduced significantly.",
-    name: "Sunita Rao",
-    title: "Stress Management",
-  },
 ];
 
 const Testimonials = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    containScroll: "trimSnaps",
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi, setSelectedIndex]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+  }, [emblaApi, onSelect]);
 
   return (
     <section className="py-20 bg-muted/50">
@@ -80,23 +71,40 @@ const Testimonials = () => {
             Stories of Healing and Hope
           </h2>
           <p className="text-lg text-foreground/70 mt-4 max-w-3xl mx-auto">
-            Hear from our patients who have experienced profound transformations
-            on their wellness journey.
+            Hear from our patients who have experienced profound transformations.
           </p>
         </motion.div>
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {testimonialsData.map((testimonial, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <TestimonialCard {...testimonial} />
-            </motion.div>
-          ))}
-        </motion.div>
+
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex">
+            {testimonialsData.map((testimonial, index) => (
+              <div className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4" key={index}>
+                <motion.div
+                  className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200/60 h-full flex flex-col"
+                  initial={{ scale: 0.9, opacity: 0.5 }}
+                  animate={{
+                    scale: selectedIndex === index ? 1 : 0.9,
+                    opacity: selectedIndex === index ? 1 : 0.5,
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                >
+                  <div className="flex mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 text-accent fill-accent" />
+                    ))}
+                  </div>
+                  <blockquote className="text-foreground/80 italic mb-6 flex-grow">
+                    "{testimonial.quote}"
+                  </blockquote>
+                  <div>
+                    <p className="font-semibold text-primary-900">{testimonial.name}</p>
+                    <p className="text-sm text-foreground/60">{testimonial.title}</p>
+                  </div>
+                </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  Heart,
-  Sparkles,
-  Stethoscope,
-  Bot,
-} from "lucide-react";
+import { Heart, Sparkles, Stethoscope, Bot } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useAppSelector";
 import { useEffect } from "react";
 import { authApi } from "@/api/authApi";
@@ -15,8 +10,10 @@ import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { HoverEffect } from "@/components/ui/hover-effect";
 import treatmentData from "@/assets/treatment.json";
 import doctorsData from "@/doctors.json";
-import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import Testimonials from "@/components/Testimonials";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import Sponsors from "@/components/Sponsors";
+import DoctorsCarousel from "@/components/DoctorsCarousel";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -68,21 +65,27 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 space-y-6 max-w-4xl"
-        >
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight text-primary-900">
-            Ancient Wisdom, Modern Wellness
-          </h1>
-          <p className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto">
+        <div className="relative z-10 space-y-6 max-w-4xl">
+          <TextGenerateEffect
+            words="Ancient Wisdom, Modern Wellness"
+            className="text-4xl md:text-6xl font-bold leading-tight text-primary-900"
+          />
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto"
+          >
             Rediscover balance and vitality through authentic Ayurvedic care,
             personalized for your unique constitution and powered by modern
             insights.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
             <Link to="/book-consultation">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -101,8 +104,8 @@ export default function Home() {
                 Explore Services
               </motion.button>
             </Link>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Why Choose Us Section */}
@@ -158,9 +161,12 @@ export default function Home() {
           <HoverEffect items={services} />
         </div>
       </section>
+      
+      {/* Sponsors Section */}
+      <Sponsors />
 
       {/* Meet Our Doctors Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-muted/50">
         <div className="max-w-7xl mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -175,21 +181,13 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-foreground/70 mb-12 max-w-3xl mx-auto"
+            className="text-lg text-foreground/70 mb-8 max-w-3xl mx-auto"
           >
             Our team of dedicated and experienced Ayurvedic doctors is here to
             guide you on your path to health.
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-row items-center justify-center mb-10 w-full"
-          >
-            <AnimatedTooltip items={doctors} />
-          </motion.div>
         </div>
+        <DoctorsCarousel doctors={doctors} />
       </section>
 
       {/* Testimonials Section */}
