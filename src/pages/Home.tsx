@@ -2,24 +2,21 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Heart,
-  BrainCircuit,
   Sparkles,
   Stethoscope,
   Bot,
-  ChevronRight,
 } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useAppSelector";
 import { useEffect } from "react";
 import { authApi } from "@/api/authApi";
 import { toast } from "react-hot-toast";
 import { logout } from "@/store/features/authSlice";
-import Cookies from "js-cookie";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { HoverEffect } from "@/components/ui/hover-effect";
 import treatmentData from "@/assets/treatment.json";
 import doctorsData from "@/doctors.json";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
-import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -196,20 +193,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-muted/50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-primary-900">
-            Stories of Healing and Hope
-          </h2>
-          <div className="relative flex flex-col items-center justify-center">
-            <InfiniteMovingCards
-              items={testimonials}
-              direction="right"
-              speed="slow"
-            />
-          </div>
-        </div>
-      </section>
+      <Testimonials />
 
       {/* CTA Section */}
       <section className="py-20 px-4">
@@ -279,38 +263,5 @@ const bentoItems = [
     header: <Skeleton />,
     className: "md:col-span-2",
     icon: <Sparkles className="h-4 w-4 text-neutral-500" />,
-  },
-];
-
-const testimonials = [
-  {
-    quote:
-      "The personalized care I received was exceptional. For the first time, I felt truly understood. My chronic digestive issues have vanished.",
-    name: "Anjali Sharma",
-    title: "Panchakarma Patient",
-  },
-  {
-    quote:
-      "Madhavansh Ayurved's approach to pain management is life-changing. I'm now living pain-free without any side effects. Highly recommended.",
-    name: "Rajesh Kumar",
-    title: "Arthritis Patient",
-  },
-  {
-    quote:
-      "The AI-powered diet plan was a game-changer. It was so easy to follow and perfectly aligned with my body's needs. I've never felt more energetic.",
-    name: "Priya Desai",
-    title: "Wellness Program",
-  },
-  {
-    quote:
-      "I was skeptical about online consultations, but the experience was seamless and the doctor was incredibly attentive. A modern approach to ancient science.",
-    name: "Vikram Singh",
-    title: "Online Consultation",
-  },
-  {
-    quote:
-      "After years of struggling with skin issues, their holistic treatment cleared my acne and gave me a glow I never thought possible. Thank you!",
-    name: "Meera Patel",
-    title: "Skin & Hair Treatment",
   },
 ];
