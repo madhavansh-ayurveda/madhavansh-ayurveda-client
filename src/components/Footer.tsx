@@ -32,7 +32,7 @@ export default function Footer() {
 
   const renderFooterSection = (title: string, items: any[]) => (
     <div className="relative">
-      <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-white after:content-[''] after:block after:w-12 after:h-1 after:bg-accent-100 after:mt-2">
+      <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-white after:content-[''] after:block after:w-12 after:h-1 after:bg-accent-500 after:mt-2">
         {title}
       </h3>
       <ul className="flex flex-col space-y-2 md:space-y-3">
@@ -54,24 +54,24 @@ export default function Footer() {
 
   const renderContactInfo = () => (
     <div>
-      <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-white after:content-[''] after:block after:w-12 after:h-1 after:bg-accent-100 after:mt-2">
+      <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 text-white after:content-[''] after:block after:w-12 after:h-1 after:bg-accent-500 after:mt-2">
         Contact Us
       </h3>
       <ul className="space-y-3 md:space-y-4">
         <li className="flex items-start space-x-3 md:space-x-4 group">
-          <div className="p-2 md:p-3 rounded-full bg-primary-400 group-hover:bg-accent-100 transition-colors duration-300 mt-1">
+          <div className="p-2 md:p-3 rounded-full bg-primary-400 group-hover:bg-accent-500 transition-colors duration-300 mt-1">
             <MapPin className="w-4 h-4 md:w-5 md:h-5 text-white" />
           </div>
           <span className="text-sm md:text-base text-gray-300 flex-1">{footerLinks.contact.address}</span>
         </li>
         <li className="flex items-center space-x-3 md:space-x-4 group">
-          <div className="p-2 md:p-3 rounded-full bg-primary-400 group-hover:bg-accent-100 transition-colors duration-300">
+          <div className="p-2 md:p-3 rounded-full bg-primary-400 group-hover:bg-accent-500 transition-colors duration-300">
             <Phone className="w-4 h-4 md:w-5 md:h-5 text-white" />
           </div>
           <span className="text-sm md:text-base text-gray-300">{footerLinks.contact.phone}</span>
         </li>
         <li className="flex items-center space-x-3 md:space-x-4 group">
-          <div className="p-2 md:p-3 rounded-full bg-primary-400 group-hover:bg-accent-100 transition-colors duration-300">
+          <div className="p-2 md:p-3 rounded-full bg-primary-400 group-hover:bg-accent-500 transition-colors duration-300">
             <Mail className="w-4 h-4 md:w-5 md:h-5 text-white" />
           </div>
           <span className="text-sm md:text-base text-gray-300">{footerLinks.contact.email}</span>
@@ -81,7 +81,7 @@ export default function Footer() {
   );
 
   return (
-    <footer className="bg-gradient-to-br z-[100] from-primary-600 to-primary-700 text-white relative">
+    <footer className="bg-gradient-to-br z-[100] from-secondary-800 to-secondary-900 text-white relative">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Company Info */}
@@ -103,7 +103,7 @@ export default function Footer() {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer" 
-                    className="p-2 md:p-3 rounded-full bg-primary-400 hover:bg-accent-100 transition-all duration-300 hover:scale-110"
+                    className="p-2 md:p-3 rounded-full bg-primary-400 hover:bg-accent-500 transition-all duration-300 hover:scale-110"
                   >
                     <Icon className="w-4 h-4 md:w-5 md:h-5 text-white" />
                   </a>
@@ -125,4 +125,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-} 
+}

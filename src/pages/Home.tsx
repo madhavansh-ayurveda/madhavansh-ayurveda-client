@@ -66,7 +66,7 @@ export default function Home() {
       <motion.div initial="initial" animate="animate" className="">
         {/* Hero Section */}
         <motion.section
-          className="relative bg-gradient-to-r from-primary-500 to-primary-600 text-white py-12 md:py-20 px-4"
+          className="relative bg-gradient-to-r from-primary-500 to-secondary-600 text-white py-12 md:py-20 px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -255,7 +255,7 @@ export default function Home() {
 
         {/* CTA Section */}
         <motion.section
-          className="bg-primary-500 text-white py-16 mt-16"
+          className="bg-gradient-to-r from-primary-500 to-secondary-600 text-white py-16 mt-16"
           variants={fadeIn}
         >
           <div className="max-w-7xl mx-auto px-4 text-center">
