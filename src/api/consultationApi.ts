@@ -10,7 +10,7 @@ export const consultationApi = {
 	},
 
 	getMyConsultations: async (userId: string) => {
-		const response = await api.get(`/consultations/user/${userId}`);
+		const response = await api.get(`/consultations/all/${userId}`);
 		// console.log(response);
 		return response.data;
 	},
