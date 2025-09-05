@@ -5,42 +5,42 @@ const products = [
   {
     title: "Panchakarma",
     link: "/services/panchakarma",
-    thumbnail: "https://images.unsplash.com/photo-1598685392785-c40430b83a18?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1544161515-cfd836b080e3?q=80&w=2070&auto=format&fit=crop",
   },
   {
     title: "Shirodhara",
     link: "/services/shirodhara",
-    thumbnail: "https://images.unsplash.com/photo-1600334022496-837c4b7de3a4?q=80&w=1974&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1617921623162-584f784753fe?q=80&w=1974&auto=format&fit=crop",
   },
   {
     title: "Abhyanga Massage",
     link: "/services/abhyanga",
-    thumbnail: "https://images.unsplash.com/photo-1519824145371-296894a0d72b?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1512290923902-8a5f896933e5?q=80&w=2070&auto=format&fit=crop",
   },
   {
     title: "Herbal Steam (Swedana)",
     link: "/services/swedana",
-    thumbnail: "https://images.unsplash.com/photo-1581888946354-060a755d59a0?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1582228964233-a20b6b5741a?q=80&w=2070&auto=format&fit=crop",
   },
   {
     title: "AI Diet Plans",
     link: "/treatments/lifestyle",
-    thumbnail: "https://images.unsplash.com/photo-1540420773420-2850a43d215f?q=80&w=1974&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=2070&auto=format&fit=crop",
   },
   {
     title: "Kati Basti",
     link: "/services/kati-basti",
-    thumbnail: "https://images.unsplash.com/photo-1620732933012-52a54a19c25a?q=80&w=1932&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1604513313011-3585ac23f813?q=80&w=1974&auto=format&fit=crop",
   },
   {
     title: "Nasya Therapy",
     link: "/services/nasya",
-    thumbnail: "https://images.unsplash.com/photo-1605299553903-8c4726695b4a?q=80&w=1974&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1620732933012-52a54a19c25a?q=80&w=1932&auto=format&fit=crop",
   },
   {
     title: "Udvartana",
     link: "/services/udvartana",
-    thumbnail: "https://images.unsplash.com/photo-1562003404-263501b9594f?q=80&w=1965&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1600334022496-837c4b7de3a4?q=80&w=1974&auto=format&fit=crop",
   },
   {
     title: "Skin & Hair Care",
@@ -55,7 +55,7 @@ const products = [
   {
     title: "Pain Management",
     link: "/treatments/arthritis-and-pain",
-    thumbnail: "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?q=80&w=1926&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1519824145371-296894a0d72b?q=80&w=2070&auto=format&fit=crop",
   },
   {
     title: "Detox Programs",
@@ -75,7 +75,7 @@ const products = [
   {
     title: "Consultation",
     link: "/book-consultation",
-    thumbnail: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop",
+    thumbnail: "https://images.unsplash.com/photo-1576091160550-2137dba999ef?q=80&w=2070&auto=format&fit=crop",
   },
 ];
 
