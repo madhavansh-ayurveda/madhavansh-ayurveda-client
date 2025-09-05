@@ -113,13 +113,13 @@ export default function About() {
                 <h3 className="text-2xl font-bold text-secondary-foreground">Dr. Priyanka Rajpoot</h3>
                 <p className="text-lg font-semibold text-primary">Founder & Medical Director</p>
                 <p className="text-foreground/80 leading-relaxed">
-                    Dr. Priyanka Rajpoot is a distinguished Ayurvedic expert. She graduated in 2012 from Chhattisgarh Ayurvedic Medical College and completed a Panchakarma therapies course at the National Ayurveda Research Institute of Panchakarma (NARIP Kerala, Gov. of India).
+                    Dr. Priyanka Rajpoot is a distinguished Ayurvedic expert with extensive experience in the domain. She graduated in 2012 from Chhattisgarh Ayurvedic Medical College Rajnandgaon, which is affiliated with Pt Ravi Shankar Shukla University Raipur. In continuation, she has completed Panchakarma therapies course at the National Ayurveda Research Institute of Panchakarma (NARIP Kerla, Gov. of India), acquiring extensive knowledge from highly experienced and knowledgeable doctors.
                 </p>
                 <p className="text-foreground/80 leading-relaxed">
-                    Her practice began in 2013, including over a year with Patanjali and five years as a medical officer with the National Health Mission in Chhattisgarh. Subsequently, she practiced internationally as an Ayurveda physician in Vienna, Austria, for more than three years.
+                    Thereafter, she began her practice with various organizations in 2013. Initially, she became part of the Patanjali organization as an Ayurvedic medicine practitioner for over a year. Later on, she has given services as a medical officer for over 5 years with the National Health Mission in various areas of Chhattisgarh, including Uttar Bastar Kanker and Janjgir Champa. Subsequently, she practiced internationally as an Ayurveda physician in Vienna, Austria for more than 3 years (Nov. 2018 to Aug. 2021).
                 </p>
                 <p className="text-foreground/80 leading-relaxed">
-                    She has experienced great success in the fields of infertility treatment, glaucoma, pain management, and obesity, among others.
+                    She has experienced great success in the fields of infertility treatment, renal stone, cholelithiasis, glaucoma, pain management, obesity, among others.
                 </p>
             </motion.div>
           </div>
