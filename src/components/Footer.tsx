@@ -1,5 +1,7 @@
 import { MapPin, Phone, Mail, Facebook, X, Instagram, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ContactInfo } from '../../constants';
+
 const footerLinks = {
   quickLinks: [
     { name: 'Find a Doctor', path: '/doctors' },
@@ -16,7 +18,7 @@ const footerLinks = {
   ],
   contact: {
     address: 'Indraprasth Phase 2, A20B, near MG Motor India, Raipur, Chhattisgarh 492013',
-    phone: '+91 123-4567-890',
+    phone: ContactInfo.CONTACT,
     email: 'info@madhavayurved.com'
   },
   socials: [

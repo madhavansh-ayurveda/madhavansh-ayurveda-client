@@ -122,17 +122,17 @@ export default function AppNavbar() {
 
   return (
     <div className="border-b sticky top-0 bg-background z-50">
-      <div className="flex h-16 items-center px-4 w-full max-w-7xl mx-auto relative">
+      <div className="flex h- items-center px-4 w-full max-w-7xl mx-auto relative">
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">
             <img
-              src="/Madhav-Ayurveda-Logo.png"
+              src="Logo.jpg"
               alt="Logo"
-              className="h-8 w-8 md:h-12 md:w-12"
+              className="md:w-"
             />
-            <span className="text-xl md:text-2xl font-bold">
+            {/* <span className="text-xl md:text-2xl font-bold">
               Shree Madhavansh Ayurved
-            </span>
+            </span> */}
           </Link>
         </div>
 

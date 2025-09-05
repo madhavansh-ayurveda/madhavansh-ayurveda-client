@@ -1,19 +1,21 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Heart, Sparkles, Stethoscope, Bot } from "lucide-react";
+import { Heart, Stethoscope, Leaf } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useAppSelector";
 import { useEffect } from "react";
 import { authApi } from "@/api/authApi";
 import { toast } from "react-hot-toast";
 import { logout } from "@/store/features/authSlice";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+
+// UI Components
 import { HoverEffect } from "@/components/ui/hover-effect";
-import treatmentData from "@/assets/treatment.json";
-import doctorsData from "@/doctors.json";
-import Testimonials from "@/components/Testimonials";
-import Sponsors from "@/components/Sponsors";
 import DoctorsCarousel from "@/components/DoctorsCarousel";
 import Hero from "@/components/Hero";
+import Testimonials from "@/components/Testimonials";
+
+// Data
+import treatmentData from "@/assets/treatment.json";
+import doctorsData from "@/doctors.json";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -55,43 +57,46 @@ export default function Home() {
       animate="animate"
       className="bg-background text-foreground"
     >
-      {/* New Hero Section */}
+      {/* Hero Section */}
       <Hero />
 
-      {/* Why Choose Us Section */}
+      {/* Core Principles Section */}
       <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-primary-900">
-              A New Era of Ayurvedic Healing
+              The Madhavansh Way: Ancient Wisdom, Modern Care
             </h2>
             <p className="text-lg text-foreground/70 mt-4 max-w-3xl mx-auto">
-              We integrate timeless Ayurvedic principles with cutting-edge
-              technology to offer you a truly personalized and effective path
-              to wellness.
+              We blend the timeless science of Ayurveda with a compassionate, personalized approach to guide you toward holistic well-being.
             </p>
           </motion.div>
-          <BentoGrid className="auto-rows-[22rem]">
-            {bentoItems.map((item, i) => (
-              <BentoGridItem
-                key={i}
-                title={item.title}
-                description={item.description}
-                header={item.header}
-                className={item.className}
-                icon={item.icon}
-              />
-            ))}
-          </BentoGrid>
+          <div className="grid md:grid-cols-3 gap-12">
+            <FeatureCard
+              icon={<Heart className="w-8 h-8 text-primary" />}
+              title="Holistic Healing"
+              description="We look beyond symptoms to treat the root cause, restoring your body's natural balance for long-term health."
+            />
+            <FeatureCard
+              icon={<Stethoscope className="w-8 h-8 text-primary" />}
+              title="Expert Guidance"
+              description="Our team of experienced Vaidyas provides authentic Ayurvedic care, tailored to your unique constitution."
+            />
+            <FeatureCard
+              icon={<Leaf className="w-8 h-8 text-primary" />}
+              title="Natural Therapies"
+              description="Embrace the healing power of nature with our pure herbal remedies, therapeutic massages, and detoxification programs."
+            />
+          </div>
         </div>
       </section>
 
-      {/* Our Services Section */}
+      {/* Our Treatments Section */}
       <section className="py-20 px-4 bg-muted/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -112,8 +117,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sponsors Section */}
-      <Sponsors />
+      {/* A Glimpse Into Our Clinic */}
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-900">
+              A Sanctuary for Healing
+            </h2>
+            <p className="text-lg text-foreground/70 mt-4 max-w-3xl mx-auto">
+              Step into a space designed for tranquility and rejuvenation, where your healing journey begins.
+            </p>
+          </motion.div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-[500px]">
+            <GalleryImage src="https://images.unsplash.com/photo-1581888946354-060a755d59a0?q=80&w=2070&auto=format&fit=crop" alt="Herbal oils" className="row-span-2" />
+            <GalleryImage src="https://images.unsplash.com/photo-1600334022496-837c4b7de3a4?q=80&w=1974&auto=format&fit=crop" alt="Shirodhara treatment" />
+            <GalleryImage src="https://images.unsplash.com/photo-1598685392785-c40430b83a18?q=80&w=2070&auto=format&fit=crop" alt="Ayurvedic herbs" />
+            <GalleryImage src="https://images.unsplash.com/photo-1519824145371-296894a0d72b?q=80&w=2070&auto=format&fit=crop" alt="Relaxing massage" className="col-span-2" />
+          </div>
+        </div>
+      </section>
 
       {/* Meet Our Doctors Section */}
       <section className="py-20 px-4 bg-muted/50">
@@ -179,45 +206,32 @@ export default function Home() {
   );
 }
 
-const BentoImage = ({ src, alt }: { src: string; alt: string }) => (
-  <img
-    src={src}
-    alt={alt}
-    className="flex-1 w-full h-full object-cover rounded-xl"
-  />
+// Helper component for Core Principles
+const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+    className="text-center"
+  >
+    <div className="flex justify-center items-center mb-4">
+      <div className="bg-primary/10 p-4 rounded-full">
+        {icon}
+      </div>
+    </div>
+    <h3 className="text-xl font-bold mb-2">{title}</h3>
+    <p className="text-foreground/70">{description}</p>
+  </motion.div>
 );
 
-const bentoItems = [
-  {
-    title: "Holistic Approach",
-    description:
-      "We treat the root cause, not just the symptoms, for lasting wellness.",
-    header: <BentoImage src="https://images.unsplash.com/photo-1540420773420-2850a43d215f?q=80&w=1974&auto=format&fit=crop" alt="Holistic healing" />,
-    className: "md:col-span-1",
-    icon: <Heart className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "AI-Powered Wellness Plans",
-    description:
-      "Leveraging AI to create hyper-personalized diet, lifestyle, and treatment plans.",
-    header: <BentoImage src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="AI and technology" />,
-    className: "md:col-span-2",
-    icon: <Bot className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "Expert Practitioners",
-    description:
-      "Our team of certified Vaidyas brings decades of experience.",
-    header: <BentoImage src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop" alt="Expert doctor" />,
-    className: "md:col-span-1",
-    icon: <Stethoscope className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "Personalized Care",
-    description:
-      "Every treatment is tailored to your unique body constitution (Prakriti).",
-    header: <BentoImage src="https://images.unsplash.com/photo-1584515933487-779824d27937?q=80&w=2070&auto=format&fit=crop" alt="Personalized consultation" />,
-    className: "md:col-span-2",
-    icon: <Sparkles className="h-4 w-4 text-neutral-500" />,
-  },
-];
+// Helper component for Gallery
+const GalleryImage = ({ src, alt, className }: { src: string; alt: string; className?: string }) => (
+  <motion.div
+    className={`overflow-hidden rounded-lg shadow-lg ${className}`}
+    whileHover={{ scale: 1.03 }}
+    transition={{ type: "spring", stiffness: 300 }}
+  >
+    <img src={src} alt={alt} className="w-full h-full object-cover" />
+  </motion.div>
+);
