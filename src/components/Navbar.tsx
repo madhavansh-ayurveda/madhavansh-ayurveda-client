@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { Menu, User, ChevronDown, X } from "lucide-react";
+import { Menu, User, ChevronDown, X, Calendar } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,11 +28,16 @@ import Cookies from "js-cookie";
 import services from "../assets/service.json";
 import treatments from "../assets/treatment.json";
 
+import { motion } from "framer-motion"
+import { ScaleOnHover } from "./framer-animations";
+
+
 // First, add this CSS class to handle the transition
 const expandTransition = "grid transition-[grid-template-rows] duration-200";
 const expandContent = "overflow-hidden";
 const expanded = "grid-rows-[1fr]";
 const collapsed = "grid-rows-[0fr]";
+
 
 // Update the mobile menu transition constant
 const mobileMenuTransition = "transition-all duration-300 ease-in-out";
@@ -123,18 +128,32 @@ export default function AppNavbar() {
   return (
     <div className="border-b sticky top-0 bg-background z-50">
       <div className="flex h- items-center px-4 w-full max-w-7xl mx-auto relative">
+        {/* <div className="flex h-16 items-center px-4 w-full max-w-7xl mx-auto relative"> */}
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">
             <img
               src="Logo.jpg"
               alt="Logo"
-              className="md:w-"
+              className="md:h-28"
             />
             {/* <span className="text-xl md:text-2xl font-bold">
               Shree Madhavansh Ayurved
             </span> */}
           </Link>
         </div>
+
+        {/* <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
+            <img
+              src="/Madhav-Ayurveda-Logo.png"
+              alt="Logo"
+              className="h-8 w-8 md:h-12 md:w-12"
+            />
+            <span className="text-xl md:text-2xl font-bold">
+              Shree Madhavansh Ayurved
+            </span>
+          </Link>
+        </div> */}
 
         <Button
           variant="ghost"
@@ -364,13 +383,37 @@ export default function AppNavbar() {
                     </>
                   ) : (
                     <div className="flex flex-col gap-2">
-                      <Link
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 1, duration: 0.5 }}
+                      >
+                        <ScaleOnHover scale={1.05}>
+                          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
+                            <Calendar className="mr-2 h-4 w-4" />
+                            Book Now
+                          </Button>
+                        </ScaleOnHover>
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 1, duration: 0.5 }}
+                      >
+                        <ScaleOnHover scale={1.05}>
+                          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
+                            <Calendar className="mr-2 h-4 w-4" />
+                            Book Now
+                          </Button>
+                        </ScaleOnHover>
+                      </motion.div>
+                      {/* <Link
                         to="/auth"
                         className={getMobileMenuStyle("/auth")}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         <Button className="w-full">Register</Button>
-                      </Link>
+                      </Link> */}
                     </div>
                   )}
                 </div>
