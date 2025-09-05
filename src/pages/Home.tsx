@@ -179,8 +179,12 @@ export default function Home() {
   );
 }
 
-const Skeleton = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 to-neutral-100"></div>
+const BentoImage = ({ src, alt }: { src: string; alt: string }) => (
+  <img
+    src={src}
+    alt={alt}
+    className="flex-1 w-full h-full object-cover rounded-xl"
+  />
 );
 
 const bentoItems = [
@@ -188,7 +192,7 @@ const bentoItems = [
     title: "Holistic Approach",
     description:
       "We treat the root cause, not just the symptoms, for lasting wellness.",
-    header: <Skeleton />,
+    header: <BentoImage src="https://images.unsplash.com/photo-1540420773420-2850a43d215f?q=80&w=1974&auto=format&fit=crop" alt="Holistic healing" />,
     className: "md:col-span-1",
     icon: <Heart className="h-4 w-4 text-neutral-500" />,
   },
@@ -196,7 +200,7 @@ const bentoItems = [
     title: "AI-Powered Wellness Plans",
     description:
       "Leveraging AI to create hyper-personalized diet, lifestyle, and treatment plans.",
-    header: <Skeleton />,
+    header: <BentoImage src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="AI and technology" />,
     className: "md:col-span-2",
     icon: <Bot className="h-4 w-4 text-neutral-500" />,
   },
@@ -204,7 +208,7 @@ const bentoItems = [
     title: "Expert Practitioners",
     description:
       "Our team of certified Vaidyas brings decades of experience.",
-    header: <Skeleton />,
+    header: <BentoImage src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop" alt="Expert doctor" />,
     className: "md:col-span-1",
     icon: <Stethoscope className="h-4 w-4 text-neutral-500" />,
   },
@@ -212,7 +216,7 @@ const bentoItems = [
     title: "Personalized Care",
     description:
       "Every treatment is tailored to your unique body constitution (Prakriti).",
-    header: <Skeleton />,
+    header: <BentoImage src="https://images.unsplash.com/photo-1584515933487-779824d27937?q=80&w=2070&auto=format&fit=crop" alt="Personalized consultation" />,
     className: "md:col-span-2",
     icon: <Sparkles className="h-4 w-4 text-neutral-500" />,
   },

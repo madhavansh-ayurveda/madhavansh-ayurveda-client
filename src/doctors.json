@@ -5,7 +5,7 @@
         "name": "Dr. Sarah Johnson",
         "specialization": "Ayurvedic Physician",
         "experience": 12,
-        "image": "/doctors/1.jpeg",
+        "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop",
         "expertise": ["General Consultation", "Panchakarma", "Herbal Medicine"]
       },
       {
@@ -13,7 +13,7 @@
         "name": "Dr. Michael Chen",
         "specialization": "Panchakarma Specialist",
         "experience": 8,
-        "image": "/doctors/2.jpeg",
+        "image": "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=2070&auto=format&fit=crop",
         "expertise": ["Panchakarma", "Massage Therapy", "Stress Management"]
       },
       {
@@ -21,7 +21,7 @@
         "name": "Dr. Priya Sharma",
         "specialization": "Ayurvedic Nutritionist",
         "experience": 15,
-        "image": "/doctors/3.jpeg",
+        "image": "https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1974&auto=format&fit=crop",
         "expertise": ["Nutrition Counseling", "Diet Planning", "Lifestyle Medicine"]
       },
       {
@@ -29,7 +29,7 @@
         "name": "Dr. James Wilson",
         "specialization": "Ayurvedic Dermatologist",
         "experience": 10,
-        "image": "/doctors/4.jpeg",
+        "image": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1964&auto=format&fit=crop",
         "expertise": ["Skin Care", "Natural Remedies", "Beauty Treatments"]
       },
       {
@@ -37,7 +37,7 @@
         "name": "Dr. Anita Patel",
         "specialization": "Yoga Therapist",
         "experience": 14,
-        "image": "/doctors/5.jpeg",
+        "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop",
         "expertise": ["Yoga Therapy", "Meditation", "Stress Relief"]
       },
       {
@@ -45,7 +45,7 @@
         "name": "Dr. David Kim",
         "specialization": "Ayurvedic Cardiologist",
         "experience": 18,
-        "image": "/doctors/6.jpeg",
+        "image": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1780&auto=format&fit=crop",
         "expertise": ["Heart Health", "Preventive Care", "Lifestyle Diseases"]
       },
       {
@@ -53,7 +53,7 @@
         "name": "Dr. Lisa Anderson",
         "specialization": "Mental Health Specialist",
         "experience": 11,
-        "image": "/doctors/7.jpeg",
+        "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop",
         "expertise": ["Mental Wellness", "Anxiety Management", "Depression Care"]
       },
       {
@@ -61,7 +61,7 @@
         "name": "Dr. Rajesh Kumar",
         "specialization": "Pain Management Expert",
         "experience": 16,
-        "image": "/doctors/8.jpeg",
+        "image": "https://images.unsplash.com/photo-1590086782792-42dd2350140d?q=80&w=1974&auto=format&fit=crop",
         "expertise": ["Pain Relief", "Joint Care", "Rehabilitation"]
       }
     ]
