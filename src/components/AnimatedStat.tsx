@@ -11,7 +11,7 @@ export default function AnimatedStat({ value, label, duration = 2000 }: Animated
 
   return (
     <div ref={ref} className="text-center">
-      <p className="text-4xl font-bold text-primary-600">
+      <p className="text-4xl font-bold text-primary">
         {count}
         <span>+</span>
       </p>
