@@ -86,3 +86,38 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.gradient-bg {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #f0f9ff 100%);
+}
+
+.hero-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(217, 119, 6, 0.08) 0%,
+    rgba(22, 163, 74, 0.05) 50%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+}
+
+/* Enhanced scroll animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.25, 0, 1);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Premium card hover effects */
+.premium-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.25, 0, 1);
+}
+
+.premium-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(217, 119, 6, 0.2); /* Updated shadow color */
+}

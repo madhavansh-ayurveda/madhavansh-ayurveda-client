@@ -68,10 +68,7 @@ const AuthVerification = ({ onError }: authVerificationProps) => {
       isValid = false;
     }
 
-    if (!email) {
-      newErrors.email = "Email is required";
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
+    if (email && !/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = "Invalid email format";
       isValid = false;
     }
@@ -221,7 +218,7 @@ const AuthVerification = ({ onError }: authVerificationProps) => {
       {/* Email */}
       <div className="">
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          Email
+          Email <span className="text-gray-500">(Optional)</span>
         </label>
         <div className="email flex gap-2">
             <Input
@@ -231,7 +228,6 @@ const AuthVerification = ({ onError }: authVerificationProps) => {
               setErrors(prev => ({ ...prev, email: "" }));
             }}
             type="email"
-            required
             disabled={isOtpSent || isOtpVerified || !!user}
             className={`flex-1 md:max-w-[37%] tracking-wider focus:ring-1 focus:ring-primary-500 focus:border-primary-500 focus:outline-none ${
               errors.email ? 'border-red-500' : ''
@@ -243,7 +239,7 @@ const AuthVerification = ({ onError }: authVerificationProps) => {
               <Button
                 className="py-3 text-sm w-[100px] bg-gray-700"
                 onClick={handleSendOTP}
-                disabled={contact.length !== 10 || !email || isLoading}
+                disabled={contact.length !== 10 || isLoading}
               >
                 {isLoading ? "Sending..." : "Send OTP"}
               </Button>

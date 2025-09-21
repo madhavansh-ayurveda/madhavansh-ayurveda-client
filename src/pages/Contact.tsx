@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "react-hot-toast";
+import { ContactInfo } from "../../constants";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -70,7 +71,7 @@ export default function Contact() {
       {/* Hero Section with Parallax */}
       <motion.section
         variants={itemVariants}
-        className="relative h-[60vh] bg-primary-600 flex items-center justify-center overflow-hidden"
+        className="relative h-[60vh] bg-gradient-to-tl from-primary to-secondary flex items-center justify-center overflow-hidden"
       >
         <div className="absolute inset-0 z-0">
           <img
@@ -107,7 +108,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900">Phone</h3>
-                    <p className="text-gray-600">+91 123 456 7890</p>
+                    <p className="text-gray-600">{ContactInfo.CONTACT}</p>
                   </div>
                 </div>
               </div>

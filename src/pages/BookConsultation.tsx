@@ -35,14 +35,14 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 interface FormData {
   name: string;
   contact: string;
-  email: string;
+  email?: string;
   doctor: { doctorName: string; doctorId: string };
   consultationType: Consultation["consultationType"];
   date: Date;
   timeSlot: string;
   department: string;
   symptoms: string;
-  previousConsultationId?: string; // Add this property to the type definition
+  previousConsultationId?: string;
   mode: "online" | "offline";
 }
 
@@ -179,7 +179,6 @@ export default function BookConsultation() {
       let formdata: FormData = {
         name: user?.name || "",
         contact: user?.contact || "",
-        email: user?.email || "",
         doctor: selectedDoctor,
         consultationType: consultationType as Consultation["consultationType"],
         department: department,
@@ -188,6 +187,10 @@ export default function BookConsultation() {
         symptoms,
         mode,
       };
+
+      if (user?.email) {
+        formdata.email = user.email;
+      }
 
       if (prevConsultId.length > 0) {
         formdata = { ...formdata, previousConsultationId: prevConsultId };

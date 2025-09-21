@@ -12,7 +12,6 @@ import {
   StaggerItem,
   ParallaxSection,
   ScaleOnHover,
-  FloatingElement,
   SlideIn,
 } from "@/components/framer-animations"
 import {
@@ -32,19 +31,19 @@ import {
   ArrowRight,
 } from "lucide-react"
 import { motion } from "framer-motion"
-import doctorsData from "@/doctors.json";
+// import doctorsData from "@/doctors.json";
 import Sponsors from "@/components/Sponsors"
 
 export default function AyurvedicClinicLanding() {
-  const doctors = doctorsData.doctors.map((doctor) => ({
-    id: doctor.id,
-    name: doctor.name,
-    designation: doctor.specialization,
-    image: doctor.image,
-  }));
+  // const doctors = doctorsData.doctors.map((doctor) => ({
+  //   id: doctor.id,
+  //   name: doctor.name,
+  //   designation: doctor.specialization,
+  //   image: doctor.image,
+  // }));
 
   return (
-    <div className="min-h-screen bg">
+    <div className="min-h-screen bg-white">
       {/* <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -105,8 +104,8 @@ export default function AyurvedicClinicLanding() {
         </div>
       </motion.header> */}
 
-      <section id="home" className="relative lg:py-32 overflow-hidden hero-gradient">
-        <ParallaxSection offset={50} className="absolute inset-0 -z-10">
+      <section id="home" className="relative lg:py-10 overflow-hidden hero-gradient">
+        {/* <ParallaxSection offset={50} className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5" />
           <motion.div
             className="absolute top-20 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl"
@@ -118,7 +117,7 @@ export default function AyurvedicClinicLanding() {
             animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }}
             transition={{ duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
           />
-        </ParallaxSection>
+        </ParallaxSection> */}
 
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -230,7 +229,7 @@ export default function AyurvedicClinicLanding() {
                   <img
                     src="/indian-female-ayurvedic-doctor-in-traditional-whit.jpg"
                     alt="Ayurvedic wellness center"
-                    className="relative rounded-2xl shadow-2xl w-full h-[600px] object-cover"
+                    className="relative rounded-2xl shadow-2xl w-full h-[550px] object-cover"
                   />
                   <motion.div
                     className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg"
@@ -494,101 +493,112 @@ export default function AyurvedicClinicLanding() {
                   ].map((doctor, index) => (
                     <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
                       <ScaleOnHover scale={1.02}>
-                        <Card className="group hover:shadow-xl transition-all duration-500 border-border hover:border-primary/30 overflow-hidden h-full">
+                        <Card className="group hover:shadow-xl transition-all duration-500 border-border hover:border-primary/30 overflow h-full mt-24 bg-background">
                           <motion.div
-                            className="relative overflow-hidden"
-                            whileHover={{ scale: 1.05 }}
+                            className="relative overflow"
+                            whileHover={{
+                              scale: 1.03,
+                              // rotateY: 5,
+                              transition: { type: "spring", stiffness: 300, damping: 10 },
+                            }}
                             transition={{ duration: 0.3 }}
                           >
-                            <img
-                              src={doctor.image || "/placeholder.svg"}
-                              alt={doctor.name}
-                              className="w-full h-64 object-cover"
-                            />
                             <motion.div
-                              className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1"
-                              initial={{ scale: 0 }}
-                              whileInView={{ scale: 1 }}
-                              transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                              className="relative overflow rounded"
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.3 }}
                             >
-                              <Star className="h-3 w-3 fill-primary text-primary" />
-                              <span className="text-xs font-medium">{doctor.rating}</span>
-                            </motion.div>
-                          </motion.div>
-
-                          <CardHeader className="pb-2">
-                            <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                              {doctor.name}
-                            </CardTitle>
-                            <CardDescription className="text-primary font-medium">
-                              {doctor.specialization}
-                            </CardDescription>
-                          </CardHeader>
-
-                          <CardContent className="space-y-4">
-                            <StaggerContainer staggerDelay={0.1} className="grid grid-cols-2 gap-4 text-sm">
-                              <StaggerItem>
-                                <div className="flex items-center gap-2">
-                                  <Award className="h-4 w-4 text-muted-foreground" />
-                                  <span className="text-muted-foreground">{doctor.experience}</span>
-                                </div>
-                              </StaggerItem>
-                              <StaggerItem>
-                                <div className="flex items-center gap-2">
-                                  <Users className="h-4 w-4 text-muted-foreground" />
-                                  <span className="text-muted-foreground">{doctor.consultations}</span>
-                                </div>
-                              </StaggerItem>
-                            </StaggerContainer>
-
-                            <motion.div
-                              initial={{ opacity: 0, y: 20 }}
-                              whileInView={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.2 }}
-                            >
-                              <div className="flex items-center gap-2 mb-2">
-                                <BookOpen className="h-4 w-4 text-muted-foreground" />
-                                <span className="text-sm font-medium">Education</span>
-                              </div>
-                              <p className="text-sm text-muted-foreground">{doctor.education}</p>
+                              <img
+                                src={doctor.image || "/placeholder.svg"}
+                                alt={doctor.name}
+                                className="w-full h-64 object-cover rounded-xl"
+                              />
+                              <motion.div
+                                className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1"
+                                initial={{ scale: 0 }}
+                                whileInView={{ scale: 1 }}
+                                transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                              >
+                                <Star className="h-3 w-3 fill-primary text-primary" />
+                                <span className="text-xs font-medium">{doctor.rating}</span>
+                              </motion.div>
                             </motion.div>
 
-                            <div>
-                              <h4 className="text-sm font-medium mb-2">Expertise</h4>
-                              <StaggerContainer staggerDelay={0.05} className="flex flex-wrap gap-1">
-                                {doctor.expertise.map((skill, skillIndex) => (
-                                  <StaggerItem key={skillIndex}>
-                                    <Badge variant="secondary" className="text-xs">
-                                      {skill}
-                                    </Badge>
-                                  </StaggerItem>
-                                ))}
+                            <CardHeader className="pb-2">
+                              <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                                {doctor.name}
+                              </CardTitle>
+                              <CardDescription className="text-primary font-medium">
+                                {doctor.specialization}
+                              </CardDescription>
+                            </CardHeader>
+
+                            <CardContent className="space-y-4">
+                              <StaggerContainer staggerDelay={0.1} className="grid grid-cols-2 gap-4 text-sm">
+                                <StaggerItem>
+                                  <div className="flex items-center gap-2">
+                                    <Award className="h-4 w-4 text-muted-foreground" />
+                                    <span className="text-muted-foreground">{doctor.experience}</span>
+                                  </div>
+                                </StaggerItem>
+                                <StaggerItem>
+                                  <div className="flex items-center gap-2">
+                                    <Users className="h-4 w-4 text-muted-foreground" />
+                                    <span className="text-muted-foreground">{doctor.consultations}</span>
+                                  </div>
+                                </StaggerItem>
                               </StaggerContainer>
-                            </div>
 
-                            <motion.div
-                              className="flex gap-2 pt-2"
-                              initial={{ opacity: 0, y: 20 }}
-                              whileInView={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.4 }}
-                            >
-                              <ScaleOnHover>
-                                <Button
-                                  size="sm"
-                                  className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
-                                >
-                                  <Calendar className="mr-1 h-3 w-3" />
-                                  Book Now
-                                </Button>
-                              </ScaleOnHover>
-                              <ScaleOnHover>
-                                <Button size="sm" variant="outline" className="flex-1 bg-transparent">
-                                  <Phone className="mr-1 h-3 w-3" />
-                                  Call
-                                </Button>
-                              </ScaleOnHover>
-                            </motion.div>
-                          </CardContent>
+                              <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 }}
+                              >
+                                <div className="flex items-center gap-2 mb-2">
+                                  <BookOpen className="h-4 w-4 text-muted-foreground" />
+                                  <span className="text-sm font-medium">Education</span>
+                                </div>
+                                <p className="text-sm text-muted-foreground">{doctor.education}</p>
+                              </motion.div>
+
+                              <div>
+                                <h4 className="text-sm font-medium mb-2">Expertise</h4>
+                                <StaggerContainer staggerDelay={0.05} className="flex flex-wrap gap-1">
+                                  {doctor.expertise.map((skill, skillIndex) => (
+                                    <StaggerItem key={skillIndex}>
+                                      <Badge variant="secondary" className="text-xs">
+                                        {skill}
+                                      </Badge>
+                                    </StaggerItem>
+                                  ))}
+                                </StaggerContainer>
+                              </div>
+
+                              <motion.div
+                                className="flex gap-2 pt-2"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4 }}
+                              >
+                                <ScaleOnHover>
+                                  <Button
+                                    size="sm"
+                                    className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
+                                  >
+                                    <Calendar className="mr-1 h-3 w-3" />
+                                    Book Now
+                                  </Button>
+                                </ScaleOnHover>
+                                <ScaleOnHover>
+                                  <Button size="sm" variant="outline" className="flex-1 bg-transparent">
+                                    <Phone className="mr-1 h-3 w-3" />
+                                    Call
+                                  </Button>
+                                </ScaleOnHover>
+                              </motion.div>
+                            </CardContent>
+
+                          </motion.div>
                         </Card>
                       </ScaleOnHover>
                     </CarouselItem>

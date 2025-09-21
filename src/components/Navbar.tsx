@@ -407,13 +407,13 @@ export default function AppNavbar() {
                           </Button>
                         </ScaleOnHover>
                       </motion.div>
-                      {/* <Link
+                      <Link
                         to="/auth"
                         className={getMobileMenuStyle("/auth")}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         <Button className="w-full">Register</Button>
-                      </Link> */}
+                      </Link>
                     </div>
                   )}
                 </div>
@@ -591,14 +591,37 @@ export default function AppNavbar() {
             </DropdownMenu>
           ) : (
             <>
-              <Link to="/auth">
-                <Button>Register</Button>
-              </Link>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1, duration: 0.5 }}
+              >
+                <ScaleOnHover scale={1.05}>
+                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
+                    <Calendar className="mr-2 h-4 w-4" />
+                    Book Now
+                  </Button>
+                </ScaleOnHover>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1, duration: 0.5 }}
+              >
+                <ScaleOnHover scale={1.05}>
+                  <Link to="/auth">
+                    <Button className="bg-secondary hover:bg-secondary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
+                      <Calendar className="mr-2 h-4 w-4" />
+                      Register
+                    </Button>
+                  </Link>
+                </ScaleOnHover>
+              </motion.div>
             </>
           )}
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

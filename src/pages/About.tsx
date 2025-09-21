@@ -30,26 +30,26 @@ export default function About() {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="overflow-hidden bg-background"
+      className="overflow-hidden bg-white"
     >
       {/* Hero Section */}
       <motion.section
         variants={itemVariants}
-        className="relative h-[60vh] bg-primary/90 flex items-center justify-center overflow-hidden"
+        className="relative h-[60vh] bg-/90 flex items-center justify-center overflow-hidden"
       >
         <div className="absolute inset-0 z-0">
           <img
             src="/ayurveda2.jpg"
             alt="Ayurveda Background"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover brightness-75 blur-sm"
             style={{
-              opacity: 0.2,
+              opacity: 0.80,
             }}
           />
         </div>
         <div className="relative z-10 text-center space-y-6 max-w-4xl mx-auto px-4">
           <h1 className="text-5xl md:text-6xl font-bold text-white">
-            About <span className="text-accent">Madhavansh Ayurved</span>
+            About <span className="text-destructive bg-white rounded-xl px-4">Madhavansh Ayurved</span>
           </h1>
           <p className="text-gray-200 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
             Dedicated to providing authentic Ayurvedic healthcare services by
@@ -110,7 +110,7 @@ export default function About() {
                 </div>
             </motion.div>
             <motion.div variants={itemVariants} className="w-full md:w-2/3 space-y-4">
-                <h3 className="text-2xl font-bold text-secondary-foreground">Dr. Priyanka Rajpoot</h3>
+                <h3 className="text-3xl font-bold text-secondary">Dr. Priyanka Rajpoot</h3>
                 <p className="text-lg font-semibold text-primary">Founder & Medical Director</p>
                 <p className="text-foreground/80 leading-relaxed">
                     Dr. Priyanka Rajpoot is a distinguished Ayurvedic expert with extensive experience in the domain. She graduated in 2012 from Chhattisgarh Ayurvedic Medical College Rajnandgaon, which is affiliated with Pt Ravi Shankar Shukla University Raipur. In continuation, she has completed Panchakarma therapies course at the National Ayurveda Research Institute of Panchakarma (NARIP Kerla, Gov. of India), acquiring extensive knowledge from highly experienced and knowledgeable doctors.
@@ -179,7 +179,7 @@ export default function About() {
       {/* Meteor Mission */}
       <motion.section
         variants={itemVariants}
-        className="bg-primary my-20 max-w-7xl relative mx-auto text-white p-12 rounded-2xl"
+        className="bg-accent my-20 max-w-7xl relative mx-auto text-white p-12 rounded-2xl"
       >
         <div className="relative text-white overflow-hidden">
           <div className="relative flex h-[200px] w-full flex-col items-center justify-center">
