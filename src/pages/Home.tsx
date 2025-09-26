@@ -43,7 +43,7 @@ export default function AyurvedicClinicLanding() {
   // }));
 
   return (
-    <div className="min-h-screen" style={{ backgroundImage: "url('/home-background.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+    <div className="min-h-screen" style={{ backgroundImage: "url('/home-background.jpg')", backgroundRepeat: 'repeat' }}>
       {/* <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
