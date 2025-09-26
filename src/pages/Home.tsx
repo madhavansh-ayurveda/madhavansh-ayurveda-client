@@ -43,7 +43,7 @@ export default function AyurvedicClinicLanding() {
   // }));
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ backgroundImage: "url('/home-background.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
       {/* <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -104,7 +104,7 @@ export default function AyurvedicClinicLanding() {
         </div>
       </motion.header> */}
 
-      <section id="home" className="relative lg:py-10 overflow-hidden hero-gradient">
+      <section id="home" className="relative lg:py-10 overflow-hidden">
         {/* <ParallaxSection offset={50} className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5" />
           <motion.div
@@ -249,7 +249,7 @@ export default function AyurvedicClinicLanding() {
         </div>
       </section>
 
-      <section id="services" className="py-24 gradient-bg">
+      <section id="services" className="py-24">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center mb-20">
@@ -627,7 +627,7 @@ export default function AyurvedicClinicLanding() {
       </section>
 
       {/* Traditional Therapies Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center mb-16">
