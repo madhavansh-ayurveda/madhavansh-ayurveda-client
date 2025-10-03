@@ -66,38 +66,34 @@ export default function Contact() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-background"
     >
-      {/* Hero Section with Parallax */}
+      {/* Hero Section */}
       <motion.section
         variants={itemVariants}
-        className="relative h-[60vh] bg-gradient-to-tl from-primary to-secondary flex items-center justify-center overflow-hidden"
+        className="relative h-[50vh] bg-gradient-to-br from-primary-50 to-accent-50 flex items-center justify-center overflow-hidden"
       >
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 opacity-20">
           <img
-            src="/hero-bg.jpg"
+            src="/ayurveda3.jpg"
             alt="Ayurveda Background"
             className="w-full h-full object-cover"
-            style={{
-              transform: "scale(1.1)",
-              opacity: 0.3,
-            }}
           />
         </div>
         <div className="relative z-10 text-center space-y-6 max-w-4xl mx-auto px-4">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-100">
-            Contact <span className="text-yellow-400">Us</span>
+          <h1 className="text-5xl md:text-6xl font-bold text-primary-900">
+            Contact <span className="text-secondary-700">Us</span>
           </h1>
-          <p className="text-gray-300 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+          <p className="text-primary-800 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
             Get in touch with us for any questions about our services or
             appointments
           </p>
         </div>
       </motion.section>
 
-      <div className="container mx-auto p-10 py-28">
+      <div className="container mx-auto py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-12">
             {/* Contact Information */}
             <div className="md:col-span-1 space-y-6">
               {/* Contact Cards */}

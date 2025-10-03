@@ -113,21 +113,21 @@ export default function AppNavbar() {
   const getNavMenuStyle = (path: string) => {
     return cn(
       navigationMenuTriggerStyle(),
-      "bg-transparent text-white hover:bg-white/10 focus:bg-white/10",
-      isActivePath(path) ? "bg-white/20 text-white font-medium" : ""
+      "bg-transparent text-foreground hover:bg-muted focus:bg-muted",
+      isActivePath(path) ? "bg-primary/10 text-primary font-medium" : ""
     );
   };
 
   // Helper for mobile menu link style
   const getMobileMenuStyle = (path: string) => {
     return cn(
-      "text-base transition-colors text-white",
-      isActivePath(path) ? "text-primary-300 font-medium" : "hover:text-primary-300"
+      "text-base transition-colors text-foreground",
+      isActivePath(path) ? "text-primary font-medium" : "hover:text-primary"
     );
   };
 
   return (
-    <div className="border-b border-white/10 sticky top-0 bg-secondary-900 z-50">
+    <div className="border-b border-border sticky top-0 bg-background z-50">
       <div className="flex h-20 items-center px-4 w-full max-w-7xl mx-auto relative">
         <div className="flex items-center gap-4">
           <Link to="/" className="flex items-center gap-4">
@@ -136,7 +136,7 @@ export default function AppNavbar() {
               alt="Logo"
               className="h-16"
             />
-            <span className="text-xl md:text-2xl font-bold text-white">
+            <span className="text-xl md:text-2xl font-bold text-foreground">
               Shree Madhavansh Ayurved
             </span>
           </Link>
@@ -144,7 +144,7 @@ export default function AppNavbar() {
 
         <Button
           variant="ghost"
-          className="ml-auto md:hidden text-white hover:bg-white/10"
+          className="ml-auto md:hidden text-foreground hover:bg-muted"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <Menu
@@ -167,7 +167,7 @@ export default function AppNavbar() {
 
             {/* Menu */}
             <div
-              className={`fixed top-0 right-0 h-screen bg-secondary-900 border-l border-white/10 md:hidden z-[50] ${mobileMenuTransition}`}
+              className={`fixed top-0 right-0 h-screen bg-background border-l border-border md:hidden z-[50] ${mobileMenuTransition}`}
               style={{
                 width: "100%",
                 maxWidth: "300px",
@@ -179,12 +179,12 @@ export default function AppNavbar() {
                 boxShadow: "-4px 0 6px -1px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <div className="flex justify-between items-center p-4 border-b border-white/10">
-                <span className="font-semibold text-white">Menu</span>
+              <div className="flex justify-between items-center p-4 border-b border-border">
+                <span className="font-semibold text-foreground">Menu</span>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-white hover:bg-white/10"
+                  className="text-foreground hover:bg-muted"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <X className="h-5 w-5" />
@@ -208,7 +208,7 @@ export default function AppNavbar() {
                     onClick={() => {
                       toggleSection("services");
                     }}
-                    className="flex items-center justify-between w-full text-base text-white hover:text-primary-300 transition-colors"
+                    className="flex items-center justify-between w-full text-base text-foreground hover:text-primary transition-colors"
                   >
                     <span>
                       <Link
@@ -252,7 +252,7 @@ export default function AppNavbar() {
                 <div className="space-y-2">
                   <button
                     onClick={() => toggleSection("treatments")}
-                    className="flex items-center justify-between w-full text-base text-white hover:text-primary-300 transition-colors"
+                    className="flex items-center justify-between w-full text-base text-foreground hover:text-primary transition-colors"
                   >
                     <span>
                       <Link
@@ -304,7 +304,7 @@ export default function AppNavbar() {
                   Contact
                 </Link>
 
-                <div className="pt-3 border-t border-white/10">
+                <div className="pt-3 border-t border-border">
                   {user ? (
                     <>
                       <div className="flex flex-col gap-2">
@@ -315,7 +315,7 @@ export default function AppNavbar() {
                         >
                           <Button
                             variant="ghost"
-                            className="w-full justify-start text-white hover:bg-white/10"
+                            className="w-full justify-start text-foreground hover:bg-muted"
                           >
                             Current Appointments
                           </Button>
@@ -327,7 +327,7 @@ export default function AppNavbar() {
                         >
                           <Button
                             variant="ghost"
-                            className="w-full justify-start text-white hover:bg-white/10"
+                            className="w-full justify-start text-foreground hover:bg-muted"
                           >
                             History
                           </Button>
@@ -339,7 +339,7 @@ export default function AppNavbar() {
                         >
                           <Button
                             variant="ghost"
-                            className="w-full justify-start text-white hover:bg-white/10"
+                            className="w-full justify-start text-foreground hover:bg-muted"
                           >
                             Profile Settings
                           </Button>
@@ -368,7 +368,7 @@ export default function AppNavbar() {
                         to="/auth"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
-                        <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">Register</Button>
+                        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Register</Button>
                       </Link>
                     </div>
                   )}
@@ -389,10 +389,10 @@ export default function AppNavbar() {
 
             {/* Services */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 focus:bg-white/10">
+              <NavigationMenuTrigger className="bg-transparent text-foreground hover:bg-muted focus:bg-muted">
                 <p
                   className={cn(
-                    "hover:text-primary-300",
+                    "hover:text-primary",
                     location.pathname.includes("/services") ? "font-medium" : ""
                   )}
                   onClick={() => navigate("/services")}
@@ -426,9 +426,9 @@ export default function AppNavbar() {
 
             {/* Treatment */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-transparent text-white hover:bg-white/10 focus:bg-white/10">
+              <NavigationMenuTrigger className="bg-transparent text-foreground hover:bg-muted focus:bg-muted">
                 <Link to="/treatments">
-                  <p className={cn("hover:text-primary-300")}>
+                  <p className={cn("hover:text-primary")}>
                     Treatments
                   </p>
                 </Link>
@@ -488,7 +488,7 @@ export default function AppNavbar() {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="flex items-center gap-2 px-3 text-white hover:bg-white/10"
+                  className="flex items-center gap-2 px-3 text-foreground hover:bg-muted"
                 >
                   <User className="h-5 w-5" />
                   <span>Account</span>
@@ -545,7 +545,7 @@ export default function AppNavbar() {
               >
                 <ScaleOnHover scale={1.05}>
                   <Link to="/auth">
-                    <Button className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg hover:shadow-xl transition-all duration-300">
+                    <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
                       Register
                     </Button>
                   </Link>

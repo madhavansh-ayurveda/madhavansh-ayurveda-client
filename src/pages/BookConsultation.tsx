@@ -231,15 +231,15 @@ export default function BookConsultation() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="min-h-screen bg-gray-50"
+      className="min-h-screen bg-background"
     >
       {/* Hero Section */}
-      <div className="bg-primary-500 text-white py-8">
+      <div className="bg-gradient-to-br from-primary-50 to-accent-50 py-12">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-center text-white">
+          <h1 className="text-3xl md:text-4xl font-bold text-center text-primary-900">
             Book Your Consultation
           </h1>
-          <p className="text-center mt-2 text-primary-100 max-w-2xl mx-auto">
+          <p className="text-center mt-2 text-primary-800 max-w-2xl mx-auto">
             Schedule your appointment with our experienced Ayurvedic
             practitioners
           </p>
@@ -247,7 +247,7 @@ export default function BookConsultation() {
       </div>
 
       {/* Main Form Section */}
-      <div className="container mx-auto py-8 px-4">
+      <div className="container mx-auto py-12 px-4">
         <div className="flex justify-around">
           <div className="flex-1 max-w-4xl">
             <form onSubmit={handleSubmit} className="space-y-8">
