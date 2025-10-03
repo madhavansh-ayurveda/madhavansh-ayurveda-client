@@ -6,8 +6,9 @@ import { useParams } from "react-router-dom";
 import { FeedbackRadioRating } from "@/components/FeedbackRadioRating";
 import { consultationApi } from "@/api/consultationApi";
 import { Input } from "@/components/ui/input";
-// import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
+import { toast } from "react-hot-toast";
+import { getErrorMessage } from "@/utils/apiErrorHandler";
 
 export const FeedbackForm = () => {
   const [experienceRating, setExperienceRating] = useState<number | null>(null);
@@ -28,12 +29,14 @@ export const FeedbackForm = () => {
   useEffect(() => {
     const fetchConsultations = async () => {
       if (id) {
-        console.log(id);
-        const response = await consultationApi.getConsultationById(id);
-        console.log(response);
-        if (response.success) {
-          setName(response.data.name);
-          setEmail(response.data.email);
+        try {
+          const response = await consultationApi.getConsultationById(id);
+          if (response.success) {
+            setName(response.data.name);
+            setEmail(response.data.email);
+          }
+        } catch (error) {
+          toast.error(getErrorMessage(error));
         }
       }
     };
@@ -50,11 +53,11 @@ export const FeedbackForm = () => {
         })),
         additionalComments,
       };
-      console.log(feedbackData);
 
       await feedbackApi.sendFeedback(feedbackData);
-      alert("Feedback sent successfully!");
+      toast.success("Feedback sent successfully!");
     } catch (error) {
+      toast.error(getErrorMessage(error));
       console.error("Error sending feedback:", error);
     }
   };

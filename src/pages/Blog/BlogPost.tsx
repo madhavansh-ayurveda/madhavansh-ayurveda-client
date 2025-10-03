@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import { api } from '@/api/axios';
 import { Skeleton } from '@/components/ui/skeleton';
+import { toast } from 'react-hot-toast';
+import { getErrorMessage } from '@/utils/apiErrorHandler';
 
 interface BlogPost {
   title: string;
@@ -30,6 +32,7 @@ export default function BlogPost() {
         setPost(response.data.data);
       } catch (error) {
         console.error('Error fetching blog post:', error);
+        toast.error(getErrorMessage(error));
       } finally {
         setLoading(false);
       }
