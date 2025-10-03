@@ -42,6 +42,10 @@ export const navLinks = [
     href: "/track_consultation",
   },
   {
+    title: "Blog",
+    href: "/blog",
+  },
+  {
     title: "Contact",
     href: "/contact",
   },

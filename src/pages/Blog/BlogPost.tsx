@@ -21,6 +21,7 @@ export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
+  const serverUrl = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -71,7 +72,7 @@ export default function BlogPost() {
 
       {post.featuredImage && (
         <img
-          src={post.featuredImage}
+          src={`${serverUrl}${post.featuredImage}`}
           alt={post.title}
           className="w-full h-96 object-cover rounded-lg mb-8"
         />
@@ -83,4 +84,4 @@ export default function BlogPost() {
       />
     </article>
   );
-} 
+}
