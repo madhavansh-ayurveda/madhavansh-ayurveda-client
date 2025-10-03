@@ -53,7 +53,7 @@ export default function AyurvedicClinicLanding() {
       .replace(/-+$/, "") // Trim - from end of text
 
   return (
-    <div className="min-h-screen" style={{ backgroundImage: "url('/home-background.jpg')", backgroundRepeat: "repeat", backgroundClip: 'cover' }}>
+    <div className="min-h-screen" style={{ backgroundImage: "url('/home-background.jpg')", backgroundRepeat: "repeat", backgroundSize: 'cover' }}>
       {/* <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
