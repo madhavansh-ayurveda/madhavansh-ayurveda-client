@@ -102,7 +102,7 @@ export function AuthNav({ onOpenChange }: AuthNavProps) {
         transition={{ delay: 1, duration: 0.5 }}
       >
         <ScaleOnHover scale={1.05}>
-          <Link to="/auth">
+          <Link to="/register">
             <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary shadow-lg hover:shadow-xl transition-all duration-300">
               Register
             </Button>

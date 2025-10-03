@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { AlertCircle } from 'lucide-react';
 import AuthVerification from '@/components/AuthVerification';
 
@@ -28,7 +29,12 @@ export default function Login() {
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900">Sign In</h2>
-            <p className="text-gray-600 mt-2">Welcome back! Please enter your details.</p>
+            <p className="text-gray-600 mt-2">
+              Don't have an account?{' '}
+              <Link to="/register" className="font-medium text-primary hover:underline">
+                Register
+              </Link>
+            </p>
           </div>
 
           {error && (
