@@ -103,7 +103,7 @@ export function AuthNav({ onOpenChange }: AuthNavProps) {
       >
         <ScaleOnHover scale={1.05}>
           <Link to="/auth">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
+            <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary shadow-lg hover:shadow-xl transition-all duration-300">
               Register
             </Button>
           </Link>

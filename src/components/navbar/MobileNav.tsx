@@ -132,7 +132,7 @@ export function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
                   </Button>
                 </Link>
                 <Link to="/auth" onClick={() => setIsOpen(false)}>
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Register</Button>
+                  <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary/10 hover:text-primary">Register</Button>
                 </Link>
               </div>
             )}

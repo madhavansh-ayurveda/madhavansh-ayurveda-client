@@ -5,9 +5,19 @@ import { Logo } from "./navbar/Logo";
 import { DesktopNav } from "./navbar/DesktopNav";
 import { MobileNav } from "./navbar/MobileNav";
 import { AuthNav } from "./navbar/AuthNav";
+import { cn } from "@/lib/utils";
 
 export default function AppNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -21,7 +31,14 @@ export default function AppNavbar() {
   }, [isMobileMenuOpen]);
 
   return (
-    <header className="border-b border-border sticky top-0 bg-background z-50">
+    <header
+      className={cn(
+        "sticky top-0 z-50 transition-all duration-300",
+        isScrolled
+          ? "bg-background/95 backdrop-blur-sm shadow-sm border-b border-border"
+          : "bg-background border-b border-transparent"
+      )}
+    >
       <div className="flex h-20 items-center px-4 w-full max-w-7xl mx-auto relative">
         <div className="flex items-center gap-4">
           <Logo />
