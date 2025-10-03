@@ -8,27 +8,9 @@ import {
   StaggerItem,
   ScaleOnHover,
 } from "@/components/framer-animations"
+import servicesData from "@/assets/service.json";
 
-const therapies = [
-    { name: "Abhyanga", desc: "Full-body oil massage for detoxification and rejuvenation" },
-    { name: "Nadi Sweda", desc: "Localized steam therapy with herbal decoctions" },
-    { name: "Patra Pinda Sweda", desc: "Leaf bundle massage therapy" },
-    { name: "Shalishashtika Pinda Sweda", desc: "Navara rice bolus therapy" },
-    { name: "Snehana", desc: "Oleation therapy using medicated oils/ghee" },
-    { name: "Swedana", desc: "Herbal steam therapy for toxin elimination" },
-    { name: "Talam", desc: "Cranial herbal pack therapy" },
-    { name: "Udvartana", desc: "Herbal powder massage for weight management" },
-];
-
-const slugify = (text: string) =>
-    text
-        .toString()
-        .toLowerCase()
-        .replace(/\s+/g, "-") // Replace spaces with -
-        .replace(/[^\w\-]+/g, "") // Remove all non-word chars
-        .replace(/\-\-+/g, "-") // Replace multiple - with single -
-        .replace(/^-+/, "") // Trim - from start of text
-        .replace(/-+$/, "") // Trim - from end of text
+const therapies = servicesData.slice(0, 8);
 
 export default function TherapiesSection() {
     return (
@@ -49,14 +31,14 @@ export default function TherapiesSection() {
                 <StaggerContainer staggerDelay={0.1} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {therapies.map((therapy, index) => (
                         <StaggerItem key={index}>
-                            <a href={`/services/${slugify(therapy.name)}`}>
+                            <a href={`/services/${therapy.route}`}>
                                 <ScaleOnHover scale={1.05}>
                                     <Card className="text-center hover:shadow-md transition-all duration-300 h-full">
                                         <CardHeader className="pb-2">
-                                            <CardTitle className="text-lg">{therapy.name}</CardTitle>
+                                            <CardTitle className="text-lg">{therapy.title}</CardTitle>
                                         </CardHeader>
                                         <CardContent>
-                                            <p className="text-sm text-muted-foreground">{therapy.desc}</p>
+                                            <p className="text-sm text-muted-foreground">{therapy.description}</p>
                                         </CardContent>
                                     </Card>
                                 </ScaleOnHover>

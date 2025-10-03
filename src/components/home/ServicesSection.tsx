@@ -23,9 +23,9 @@ import { motion } from "framer-motion"
 const services = [
     {
         icon: Leaf,
-        title: "Skin & Hair Wellness",
+        title: "Skin and Hair",
         href: "/treatments/skin&hair",
-        description: "Restore natural radiance with traditional Ayurvedic cleansing and nourishing treatments.",
+        description: "Traditional Ayurvedic cleansing and rejuvenation therapies for deep healing.",
         treatments: [
             "Abhyanga - Therapeutic oil massage",
             "Shirah Lepa - Herbal scalp therapy",
@@ -36,9 +36,9 @@ const services = [
     },
     {
         icon: Heart,
-        title: "Pain & Arthritis Relief",
+        title: "Arthritis and Pain Management",
         href: "/treatments/arthritis&pain",
-        description: "Natural pain management through time-tested herbal remedies and therapeutic techniques.",
+        description: "Custom-formulated herbal remedies based on your constitution.",
         treatments: [
             "Patra Pinda Sweda - Medicinal leaf therapy",
             "Churna Pinda Sweda - Herbal bolus treatment",
@@ -49,9 +49,9 @@ const services = [
     },
     {
         icon: Shield,
-        title: "Immunity Enhancement",
+        title: "Immunity booster dose",
         href: "/treatments/immunity",
-        description: "Strengthen your body's natural defenses with powerful Rasayana therapies and herbs.",
+        description: "Custom-formulated herbal remedies based on your constitution.",
         treatments: [
             "Rasayana rejuvenation therapy",
             "Immune-boosting formulations",
@@ -62,10 +62,10 @@ const services = [
     },
     {
         icon: Heart,
-        title: "Women's Reproductive Health",
+        title: "Infertility and PCOD",
         href: "/treatments/infertility&pCOD",
         description:
-            "Specialized care for fertility, PCOD, and hormonal balance through gentle Ayurvedic methods.",
+            "Traditional Ayurvedic massage techniques for relaxation and healing.",
         treatments: [
             "Fertility enhancement protocols",
             "PCOD management programs",
@@ -76,10 +76,10 @@ const services = [
     },
     {
         icon: Users,
-        title: "Lifestyle Disorder Management",
+        title: "Life style disorder",
         href: "/treatments/lifestyle",
         description:
-            "Address modern health challenges with holistic Ayurvedic approaches and lifestyle modifications.",
+            "Custom-formulated herbal remedies based on your constitution.",
         treatments: [
             "Diabetes management",
             "Stress & anxiety relief",
@@ -90,9 +90,9 @@ const services = [
     },
     {
         icon: Shield,
-        title: "Kidney & Gallbladder Care",
+        title: "Kidney and Gallbladder Stone",
         href: "/treatments/kidney&gallbladder",
-        description: "Natural stone management and prevention through specialized herbal formulations.",
+        description: "Custom-formulated herbal remedies based on your constitution.",
         treatments: [
             "Stone dissolution therapy",
             "Preventive formulations",
@@ -103,9 +103,9 @@ const services = [
     },
     {
         icon: Eye,
-        title: "Eye Health & Vision Care",
+        title: "Glaucoma",
         href: "/treatments/glucoma",
-        description: "Preserve and enhance vision through traditional Netra Chikitsa and herbal treatments.",
+        description: "Custom-formulated herbal remedies based on your constitution.",
         treatments: [
             "Glaucoma management",
             "Vision preservation",
