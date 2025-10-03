@@ -1,11 +1,10 @@
-// client/src/pages/BookConsultation.tsx
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Calendar } from "../components/ui/calendar";
-import { User, CalendarDays, Stethoscope, FileText } from "lucide-react";
+import { User, CalendarDays, Stethoscope, FileText, Loader2, AlertCircle } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -59,7 +58,6 @@ export default function BookConsultation() {
   const { doctors: doctorsData, lastFetched } = useAppSelector(
     (state) => state.doctors
   );
-  // console.log(doctorsData);
   const [timeSlot, setTimeSlot] = useState("");
   const [prevConsultId, setPrevConsultId] = useState("");
   const dispatch = useAppDispatch();
@@ -112,7 +110,6 @@ export default function BookConsultation() {
   }, [dispatch]);
 
   useEffect(() => {
-
     const currentDoctor = doctorsData.find(
       (doctor) => doctor._id === selectedDoctor.doctorId
     );
@@ -139,13 +136,10 @@ export default function BookConsultation() {
         const availableDaySlots = DaySlots.filter((slot) => !slot.isBooked);
         setTimeSlots(availableDaySlots);
       } else {
-        setTimeSlots([]); // Reset time slots if no slots available for the day
+        setTimeSlots([]);
       }
     }
   }, [doctor, date]);
-
-  console.log(calendarDays);
-
 
   const handleAuthError = (error: Error) => {
     toast.error("Authentication failed: " + error.message);
@@ -156,26 +150,15 @@ export default function BookConsultation() {
     e.preventDefault();
     setLoading(true);
     try {
-      if (!date) {
-        throw new Error("Please select a date");
-      }
-      if (!timeSlot) {
-        throw new Error("Please select a time slot");
-      }
-      if (!consultationType) {
-        throw new Error("Please select a consultation type");
-      }
-      if (!selectedDoctor.doctorId) {
-        throw new Error("Please select a doctor");
-      }
-      if (!department) {
-        throw new Error("Please select a department");
-      }
+      if (!date) throw new Error("Please select a date");
+      if (!timeSlot) throw new Error("Please select a time slot");
+      if (!consultationType) throw new Error("Please select a consultation type");
+      if (!selectedDoctor.doctorId) throw new Error("Please select a doctor");
+      if (!department) throw new Error("Please select a department");
       if (consultationType === "Follow-up" && !prevConsultId) {
         throw new Error("Please enter previous consultation ID for follow-up");
       }
 
-      // Prepare formdata including name, contact, and consultation from Redux
       let formdata: FormData = {
         name: user?.name || "",
         contact: user?.contact || "",
@@ -188,22 +171,10 @@ export default function BookConsultation() {
         mode,
       };
 
-      if (user?.email) {
-        formdata.email = user.email;
-      }
+      if (user?.email) formdata.email = user.email;
+      if (prevConsultId) formdata.previousConsultationId = prevConsultId;
 
-      if (prevConsultId.length > 0) {
-        formdata = { ...formdata, previousConsultationId: prevConsultId };
-      }
-
-      console.log(formdata);
-
-      const consultation = await consultationService.createConsultation(
-        formdata
-      );
-      console.log(consultation);
-      
-      // Dispatch the action to store the consultation ID
+      const consultation = await consultationService.createConsultation(formdata);
       dispatch(storeConsultationId(consultation._id));
 
       const note = consultation.contact + "_" + consultation._id;
@@ -220,7 +191,6 @@ export default function BookConsultation() {
       });
     } catch (error) {
       toast.error(getErrorMessage(error));
-      console.error("Booking error:", error);
     } finally {
       setLoading(false);
     }
@@ -228,31 +198,43 @@ export default function BookConsultation() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className="min-h-screen bg-background"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen bg-gray-50/50"
     >
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-primary-50 to-accent-50 py-12">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-center text-primary-900">
-            Book Your Consultation
-          </h1>
-          <p className="text-center mt-2 text-primary-800 max-w-2xl mx-auto">
-            Schedule your appointment with our experienced Ayurvedic
-            practitioners
-          </p>
+      <section className="relative py-20 bg-primary-50">
+        <div className="absolute inset-0 z-0 opacity-10">
+          <img src="/ayurveda2.jpg" alt="Ayurveda background" className="w-full h-full object-cover" />
         </div>
-      </div>
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl md:text-5xl font-bold text-primary-900"
+          >
+            Book Your Consultation
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-4 text-lg text-primary-800 max-w-3xl mx-auto"
+          >
+            Your path to holistic wellness starts here. Fill out the form below to schedule your appointment.
+          </motion.p>
+        </div>
+      </section>
 
       {/* Main Form Section */}
-      <div className="container mx-auto py-12 px-4">
-        <div className="flex justify-around">
-          <div className="flex-1 max-w-4xl">
-            <form onSubmit={handleSubmit} className="space-y-8">
-              {/* Patient Information Card */}
-              <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+      <div className="container mx-auto py-16 px-4">
+        <form onSubmit={handleSubmit} className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Left Column */}
+            <div className="space-y-8">
+              <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
                 <div className="flex items-center gap-3 mb-4">
                   <User className="w-5 h-5 text-primary-500" />
                   <h2 className="text-xl font-semibold">Patient Information</h2>
@@ -260,327 +242,101 @@ export default function BookConsultation() {
                 <AuthVerification onError={handleAuthError} />
               </div>
 
-              {/* Consultation Details Card */}
-              <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+              <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
                 <div className="flex items-center gap-3 mb-4">
                   <FileText className="w-5 h-5 text-primary-500" />
-                  <h2 className="text-xl font-semibold">
-                    Consultation Details
-                  </h2>
+                  <h2 className="text-xl font-semibold">Consultation Details</h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Consultation Type */}
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Type
-                    </label>
-                    <Select
-                      onValueChange={setConsultationType}
-                      value={consultationType}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select consultation type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {consultationTypesList.map((type) => (
-                          <SelectItem key={type} value={type}>
-                            {type}
+                  <Select onValueChange={setConsultationType} value={consultationType}>
+                    <SelectTrigger><SelectValue placeholder="Consultation type" /></SelectTrigger>
+                    <SelectContent>
+                      {consultationTypesList.map((type) => <SelectItem key={type} value={type}>{type}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                  <Select onValueChange={setDepartment} value={department}>
+                    <SelectTrigger><SelectValue placeholder="Department" /></SelectTrigger>
+                    <SelectContent>
+                      {departmentSpeciality.map((type) => <SelectItem key={type} value={type}>{type}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                  <Select onValueChange={(v) => setSelectedDoctor(JSON.parse(v))} value={selectedDoctor.doctorId ? JSON.stringify(selectedDoctor) : undefined}>
+                    <SelectTrigger><SelectValue placeholder="Choose a doctor" /></SelectTrigger>
+                    <SelectContent>
+                      {doctorsData?.filter(d => d.department.includes(department)).length > 0 ? (
+                        doctorsData.filter(d => d.department.includes(department)).map(doc => (
+                          <SelectItem key={doc._id} value={JSON.stringify({ doctorName: doc.name, doctorId: doc._id })}>
+                            {doc.name} - {doc.specialization.join(", ")}
                           </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {/* Department */}
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Department
-                    </label>
-                    <Select onValueChange={setDepartment} value={department}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select Department" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {departmentSpeciality.map((type) => (
-                          <SelectItem key={type} value={type}>
-                            {type}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                    {/* Doctor */}
-                    <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Doctor
-                    </label>
-                    <Select
-                      onValueChange={(value) => {
-                      const doctor = JSON.parse(value);
-                      setSelectedDoctor(doctor);
-                      }}
-                      value={
-                      selectedDoctor.doctorId
-                        ? JSON.stringify(selectedDoctor)
-                        : undefined
-                      }
-                    >
-                      <SelectTrigger>
-                      <SelectValue placeholder="Choose a doctor" />
-                      </SelectTrigger>
-                      <SelectContent>
-                      {doctorsData &&
-                        doctorsData.filter((doctor) =>
-                        doctor.department.includes(department)
-                        ).length > 0 ? (
-                        doctorsData.map(
-                        (doctor) =>
-                          doctor.department.includes(department) && (
-                          <SelectItem
-                            key={doctor._id}
-                            value={JSON.stringify({
-                            doctorName: doctor.name,
-                            doctorId: doctor._id,
-                            })}
-                          >
-                            {doctor.name} -{" "}
-                            {doctor.specialization.join(", ")}
-                          </SelectItem>
-                          )
-                        )
-                      ) : (
-                        <SelectItem value="no-doctors" disabled>No doctors found</SelectItem>
-                      )}
-                      </SelectContent>
-                    </Select>
-                    {doctorError && (
-                      <p className="mt-2 text-sm text-red-500">
-                      {doctorError}
-                      </p>
-                    )}
-                    </div>
-
-                  {/* Previous COnsultationID */}
-                  <div className="flex-1">
-                    {consultationType === "Follow-up" && (
-                      <>
-                        <div className="flex-1">
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Previous Consultaion ID
-                          </label>
-                          <Input
-                            value={prevConsultId}
-                            onChange={(e) => setPrevConsultId(e.target.value)}
-                            className="focus:ring-1 focus:ring-primary-500 focus:border-primary-500 focus:outline-none"
-                          />
-                        </div>
-                      </>
-                    )}
-                  </div>
+                        ))
+                      ) : <SelectItem value="no-doctors" disabled>No doctors found</SelectItem>}
+                    </SelectContent>
+                  </Select>
+                  {consultationType === "Follow-up" && <Input value={prevConsultId} onChange={(e) => setPrevConsultId(e.target.value)} placeholder="Previous Consultation ID" />}
                 </div>
+                {doctorError && <p className="mt-2 text-sm text-red-500">{doctorError}</p>}
               </div>
+            </div>
 
-              {/* Schedule Card */}
-              <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-                <div className="flex items-center gap-3">
+            {/* Right Column */}
+            <div className="space-y-8">
+              <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                <div className="flex items-center gap-3 mb-4">
                   <CalendarDays className="w-5 h-5 text-primary-500" />
-                  <h2 className="text-xl font-semibold">Schedule</h2>
+                  <h2 className="text-xl font-semibold">Schedule Appointment</h2>
                 </div>
-                <div className="availableDays flex gap-10 p-5 items-center">
-                  {doctor ? (
-                    <>
-                      Available Days:
-                      <div className="availableDaysList flex flex-wrap p-2 border rounded-lg">
-                        {doctor.availability.days.map((day, index) => (
-                          <>
-                            <div key={day} className="flex">
-                              {index !== 0 && (
-                                <Separator
-                                  className="mx-2"
-                                  orientation="vertical"
-                                />
-                              )}
-                              {day}
-                            </div>
-                          </>
-                        ))}
-                      </div>
-                    </>
-                  ) : (
-                    <div className="flex font-bold ">
-                      Please select a doctor
-                    </div>
-                  )}
+                <div className="border rounded-lg">
+                  <Calendar mode="single" selected={date} onSelect={setDate} className="p-0" disabled={(d) => d < new Date() || !calendarDays.includes(d.getDay())} />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Calendar */}
-                  <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Date
-                    </label>
-                    <div className="border rounded-lg p-3">
-                      <Calendar
-                        mode="single"
-                        selected={date}
-                        onSelect={setDate}
-                        className="rounded-md justify-center"
-                        disabled={(date) => {
-                          const today = new Date();
-                          const twoMonthsFromNow = new Date();
-                          twoMonthsFromNow.setMonth(today.getMonth() + 2);
-                          // console.log(date.getDay());
-                          return (
-                            (date < today || date > twoMonthsFromNow) || !calendarDays.includes(date.getDay())
-                            // (date < today || date > twoMonthsFromNow) || calendarDays.includes(date.getDay())
-                          );
-                        }}
-                      />
-                    </div>
+                <div className="mt-6">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Available Time Slots</label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {timeSlots && timeSlots.length > 0 ? timeSlots.map(slot => (
+                      <Button key={slot.startTime} type="button" variant={timeSlot === slot.startTime ? "default" : "outline"} onClick={() => setTimeSlot(slot.startTime)}>
+                        {slot.startTime}
+                      </Button>
+                    )) : <p className="col-span-3 text-sm text-gray-500">Please select a date to see available slots.</p>}
                   </div>
-
-                  <div className="flex-1 flex flex-col gap-10">
-                    {/* Time Slot */}
-                    <div className="timeSlot">
-                      <label className="block text-sm font-medium text-gray-700 mb-1 pb-3">
-                        Time Slot
-                      </label>
-                      <Select onValueChange={setTimeSlot} value={timeSlot}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select time slot" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {timeSlots?.map((slot) => (
-                            <SelectItem
-                              key={slot.startTime}
-                              value={slot.startTime}
-                            >
-                              {slot.startTime}-{slot.endTime}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      {timeSlots && timeSlots.length === 0 ? (
-                        <p className="mt-2 text-sm text-red-500">
-                          No available time slots for the selected date
-                        </p>
-                      ) : (
-                        <p className="mt-2 text-sm text-gray-500">
-                          Available slots are shown based on doctor's schedule
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Consultation Mode */}
-                    <div className="mode">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Consultation Mode
-                      </label>
-                      <div className="flex gap-4">
-                        <Button
-                          type="button"
-                          onClick={() => setMode("offline")}
-                          variant={mode === "offline" ? "default" : "outline"}
-                          className={`flex-1 ${mode === "offline"
-                            ? "bg-primary-500 text-white"
-                            : "bg-white text-gray-700"
-                            }`}
-                        >
-                          <span className="flex items-center gap-2">
-                            🏥 In-Person
-                          </span>
-                        </Button>
-                        <Button
-                          type="button"
-                          onClick={() => setMode("online")}
-                          variant={mode === "online" ? "default" : "outline"}
-                          className={`flex-1 ${mode === "online"
-                            ? "bg-primary-500 text-white"
-                            : "bg-white text-gray-700"
-                            }`}
-                        >
-                          <span className="flex items-center gap-2">
-                            💻 Online
-                          </span>
-                        </Button>
-                      </div>
-                      {mode === "online" && (
-                        <p className="mt-2 text-sm text-gray-500">
-                          Online consultations will be conducted via video call.
-                          Link will be shared before the appointment.
-                        </p>
-                      )}
-                      {mode === "offline" && (
-                        <p className="mt-2 text-sm text-gray-500">
-                          Please arrive 15 minutes before your scheduled
-                          appointment time at our clinic.
-                        </p>
-                      )}
-                    </div>
+                </div>
+                <div className="mt-6">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Consultation Mode</label>
+                  <div className="flex gap-4">
+                    <Button type="button" onClick={() => setMode("offline")} variant={mode === "offline" ? "default" : "outline"} className="flex-1">In-Person</Button>
+                    <Button type="button" onClick={() => setMode("online")} variant={mode === "online" ? "default" : "outline"} className="flex-1">Online</Button>
                   </div>
                 </div>
               </div>
 
-              {/* Symptoms Card */}
-              <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+              <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
                 <div className="flex items-center gap-3 mb-4">
                   <Stethoscope className="w-5 h-5 text-primary-500" />
-                  <h2 className="text-xl font-semibold">Symptoms</h2> (optional)
+                  <h2 className="text-xl font-semibold">Symptoms (Optional)</h2>
                 </div>
-                <Textarea
-                  value={symptoms}
-                  onChange={(e) => setSymptoms(e.target.value)}
-                  placeholder="Please describe your symptoms or reason for consultation..."
-                  className="h-32"
-                />
+                <Textarea value={symptoms} onChange={(e) => setSymptoms(e.target.value)} placeholder="Describe your symptoms..." className="h-24" />
               </div>
-
-              {/* Submit Button */}
-              <Button
-                type="submit"
-                className="w-full py-6 text-lg"
-                disabled={
-                  !date || !timeSlot || !consultationType || !selectedDoctor
-                }
-              >
-                Confirm Booking
-              </Button>
-            </form>
+            </div>
           </div>
 
-          {/* Important Notes Sidebar */}
-          <div className="hidden lg:block w-80 sticky top-24 h-fit">
-            <div className="bg-blue-50 rounded-lg p-6 border border-blue-100">
-              <h3 className="font-semibold text-lg text-blue-800 mb-3">
-                Important Notes:
-              </h3>
-              <ul className="list-disc list-inside space-y-2 text-base text-blue-700">
-                <li>
-                  Your preferred doctor may not be available in the selected
-                  time slot.
-                </li>
-                <li>
-                  We will confirm the appointment and send details to your
-                  email.
-                </li>
-                <li>
-                  Please arrive 15 minutes before your scheduled appointment
-                  time.
-                </li>
+          <div className="mt-8 bg-blue-50 rounded-lg p-4 border border-blue-100 flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
+            <div>
+              <h3 className="font-medium text-blue-900">Important Notes</h3>
+              <ul className="list-disc list-inside mt-1 text-sm text-blue-700 space-y-1">
+                <li>We will confirm your appointment via email and phone.</li>
+                <li>For in-person consultations, please arrive 15 minutes early.</li>
+                <li>Online consultation links will be sent prior to your scheduled time.</li>
               </ul>
             </div>
           </div>
-        </div>
-      </div>
 
-      {loading && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-4 rounded-lg shadow-lg flex items-center gap-2">
-            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-500"></div>
-            <span>Processing your booking...</span>
+          <div className="mt-8 text-center">
+            <Button type="submit" className="w-full max-w-md py-6 text-lg" disabled={loading || !date || !timeSlot || !consultationType || !selectedDoctor.doctorId}>
+              {loading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : null}
+              {loading ? "Booking..." : "Confirm Booking"}
+            </Button>
           </div>
-        </div>
-      )}
+        </form>
+      </div>
     </motion.div>
   );
 }
