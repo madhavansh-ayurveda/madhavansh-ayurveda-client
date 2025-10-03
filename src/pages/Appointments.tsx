@@ -9,6 +9,7 @@ import { toast } from 'react-hot-toast';
 import { format } from 'date-fns';
 import { ConsultationDetails } from "../components/ConsultationDetails";
 import { useAppSelector } from '../store/hooks';
+import { getErrorMessage } from '@/utils/apiErrorHandler';
 
 interface Appointment {
   _id: string;
@@ -44,7 +45,7 @@ export default function Appointments() {
       const response = await consultationService.getMyConsultations(userId);
       setAppointments(response.data);
     } catch (error) {
-      toast.error('Failed to fetch appointments');
+      toast.error(getErrorMessage(error));
       console.error('Error fetching appointments:', error);
     } finally {
       setLoading(false);

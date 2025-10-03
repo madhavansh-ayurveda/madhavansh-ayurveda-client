@@ -36,74 +36,77 @@ import serviceJson from "./assets/service.json"
 import AppNavbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ServiceDetailPage from "./pages/Service";
+import AuthChecker from "./components/AuthChecker";
 
 const App = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router>
-          <AppNavbar />
-          <ScrollToTopButton />
-          <div className="min-h-screen flex flex-col bg-surface-50">
-            {/* Main Content Wrapper */}
-            <main className="flex-1 overflow-hidden">
-              <AnimatePresence mode="wait">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/auth" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/doctors" element={<Doctors />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/appointments" element={<Appointments />} />
-                  <Route path="/feedback/:id" element={<FeedbackForm />} />
-                  <Route path="/book-consultation" element={<BookConsultation />} />
-                  <Route path="/consultation/:id" element={<ConsultationTracker />} />
-                  <Route path="/track_consultation/" element={<ConsultationTracker />} />
-                  <Route path="/payment/:contactNote" element={<PaymentGateway />} />
-
-                  <Route path="treatments" element={<Treatments />}>
-                    <Route index element={<TreatmentDefault />} />
-                    <Route path="skin&hair" element={<SkinAndHairTreatment />} />
-                    <Route path="infertility&pCOD" element={<InfertilityAndPCOD />} />
-                    <Route path="kidney&gallbladder" element={<KidneyAndBladder />} />
-                    <Route path="arthritis&pain" element={<ArthritisAndPain />} />
-                    <Route path="lifestyle" element={<Lifestyle />} />
-                    <Route path="glucoma" element={<Glucoma />} />
-                    <Route path="immunity" element={<Immunity />} />
-                  </Route>
-
-                  <Route
-                    path="/services"
-                    element={
-                      <ServicesLayout>
-                        <ServicesOverview services={serviceJson} />
-                      </ServicesLayout>
-                    }
-                  />
-                  <Route
-                    path="/services/:serviceId"
-                    element={
-                      <ServicesLayout>
-                        <ServiceDetailPage />
-                      </ServicesLayout>
-                    }
-                  />
-
-                  <Route path="/blog" element={<BlogList />} />
-                  <Route path="/blog/:slug" element={<BlogPost />} />
-                </Routes>
-              </AnimatePresence>
-            </main>
-
-            {/* Floating Buttons (placed above the footer) */}
-            <FloatingConsultButton />
+          <AuthChecker>
+            <AppNavbar />
             <ScrollToTopButton />
+            <div className="min-h-screen flex flex-col bg-surface-50">
+              {/* Main Content Wrapper */}
+              <main className="flex-1 overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/auth" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/doctors" element={<Doctors />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/appointments" element={<Appointments />} />
+                    <Route path="/feedback/:id" element={<FeedbackForm />} />
+                    <Route path="/book-consultation" element={<BookConsultation />} />
+                    <Route path="/consultation/:id" element={<ConsultationTracker />} />
+                    <Route path="/track_consultation/" element={<ConsultationTracker />} />
+                    <Route path="/payment/:contactNote" element={<PaymentGateway />} />
 
-            {/* Footer with no overlap */}
-            <Footer />
-          </div>
+                    <Route path="treatments" element={<Treatments />}>
+                      <Route index element={<TreatmentDefault />} />
+                      <Route path="skin&hair" element={<SkinAndHairTreatment />} />
+                      <Route path="infertility&pCOD" element={<InfertilityAndPCOD />} />
+                      <Route path="kidney&gallbladder" element={<KidneyAndBladder />} />
+                      <Route path="arthritis&pain" element={<ArthritisAndPain />} />
+                      <Route path="lifestyle" element={<Lifestyle />} />
+                      <Route path="glucoma" element={<Glucoma />} />
+                      <Route path="immunity" element={<Immunity />} />
+                    </Route>
+
+                    <Route
+                      path="/services"
+                      element={
+                        <ServicesLayout>
+                          <ServicesOverview services={serviceJson} />
+                        </ServicesLayout>
+                      }
+                    />
+                    <Route
+                      path="/services/:serviceId"
+                      element={
+                        <ServicesLayout>
+                          <ServiceDetailPage />
+                        </ServicesLayout>
+                      }
+                    />
+
+                    <Route path="/blog" element={<BlogList />} />
+                    <Route path="/blog/:slug" element={<BlogPost />} />
+                  </Routes>
+                </AnimatePresence>
+              </main>
+
+              {/* Floating Buttons (placed above the footer) */}
+              <FloatingConsultButton />
+              <ScrollToTopButton />
+
+              {/* Footer with no overlap */}
+              <Footer />
+            </div>
+          </AuthChecker>
         </Router>
 
         <Toaster
