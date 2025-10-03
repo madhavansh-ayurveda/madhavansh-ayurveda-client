@@ -50,7 +50,7 @@ export default function TherapiesSection() {
                 <StaggerContainer staggerDelay={0.1} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {therapies.map((therapy, index) => (
                         <StaggerItem key={index}>
-                            <a href={`/treatments/${slugify(therapy.name)}`}>
+                            <a href={`/services/${slugify(therapy.name)}`}>
                                 <ScaleOnHover scale={1.05}>
                                     <Card className="text-center hover:shadow-md transition-all duration-300 h-full">
                                         <CardHeader className="pb-2">

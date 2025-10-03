@@ -24,6 +24,7 @@ const services = [
     {
         icon: Leaf,
         title: "Skin & Hair Wellness",
+        href: "/treatments/skin&hair",
         description: "Restore natural radiance with traditional Ayurvedic cleansing and nourishing treatments.",
         treatments: [
             "Abhyanga - Therapeutic oil massage",
@@ -36,6 +37,7 @@ const services = [
     {
         icon: Heart,
         title: "Pain & Arthritis Relief",
+        href: "/treatments/arthritis&pain",
         description: "Natural pain management through time-tested herbal remedies and therapeutic techniques.",
         treatments: [
             "Patra Pinda Sweda - Medicinal leaf therapy",
@@ -48,6 +50,7 @@ const services = [
     {
         icon: Shield,
         title: "Immunity Enhancement",
+        href: "/treatments/immunity",
         description: "Strengthen your body's natural defenses with powerful Rasayana therapies and herbs.",
         treatments: [
             "Rasayana rejuvenation therapy",
@@ -60,6 +63,7 @@ const services = [
     {
         icon: Heart,
         title: "Women's Reproductive Health",
+        href: "/treatments/infertility&pCOD",
         description:
             "Specialized care for fertility, PCOD, and hormonal balance through gentle Ayurvedic methods.",
         treatments: [
@@ -73,6 +77,7 @@ const services = [
     {
         icon: Users,
         title: "Lifestyle Disorder Management",
+        href: "/treatments/lifestyle",
         description:
             "Address modern health challenges with holistic Ayurvedic approaches and lifestyle modifications.",
         treatments: [
@@ -86,6 +91,7 @@ const services = [
     {
         icon: Shield,
         title: "Kidney & Gallbladder Care",
+        href: "/treatments/kidney&gallbladder",
         description: "Natural stone management and prevention through specialized herbal formulations.",
         treatments: [
             "Stone dissolution therapy",
@@ -98,6 +104,7 @@ const services = [
     {
         icon: Eye,
         title: "Eye Health & Vision Care",
+        href: "/treatments/glucoma",
         description: "Preserve and enhance vision through traditional Netra Chikitsa and herbal treatments.",
         treatments: [
             "Glaucoma management",
@@ -108,16 +115,6 @@ const services = [
         color: "from-indigo-500/10 to-blue-500/5",
     },
 ];
-
-const slugify = (text: string) =>
-    text
-        .toString()
-        .toLowerCase()
-        .replace(/\s+/g, "-") // Replace spaces with -
-        .replace(/[^\w\-]+/g, "") // Remove all non-word chars
-        .replace(/\-\-+/g, "-") // Replace multiple - with single -
-        .replace(/^-+/, "") // Trim - from start of text
-        .replace(/-+$/, "") // Trim - from end of text
 
 export default function ServicesSection() {
     return (
@@ -180,7 +177,7 @@ export default function ServicesSection() {
                                                 </motion.li>
                                             ))}
                                         </ul>
-                                        <a href={`/services/${slugify(service.title)}`}>
+                                        <a href={service.href}>
                                             <Button
                                                 variant="outline"
                                                 className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 bg-white/50 backdrop-blur-sm"
