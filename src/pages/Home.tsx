@@ -3,8 +3,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import {
   FadeIn,
@@ -16,7 +14,6 @@ import {
 } from "@/components/framer-animations"
 import {
   Calendar,
-  Clock,
   Star,
   Users,
   Leaf,
@@ -31,17 +28,9 @@ import {
   ArrowRight,
 } from "lucide-react"
 import { motion } from "framer-motion"
-// import doctorsData from "@/doctors.json";
 import Sponsors from "@/components/Sponsors"
 
 export default function AyurvedicClinicLanding() {
-  // const doctors = doctorsData.doctors.map((doctor) => ({
-  //   id: doctor.id,
-  //   name: doctor.name,
-  //   designation: doctor.specialization,
-  //   image: doctor.image,
-  // }));
-
   const slugify = (text: string) =>
     text
       .toString()
@@ -53,8 +42,8 @@ export default function AyurvedicClinicLanding() {
       .replace(/-+$/, "") // Trim - from end of text
 
   return (
-    <div className="min-h-screen" style={{ backgroundImage: "url('/home-background.jpg')", backgroundRepeat: "repeat", backgroundSize: 'cover' }}>
-      {/* <motion.header
+    <div className="min-h-screen" style={{ backgroundImage: "url('/home-background.jpg')", backgroundRepeat: "repeat" }}>
+      <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.25, 0.25, 0, 1] }}
@@ -66,16 +55,14 @@ export default function AyurvedicClinicLanding() {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <FloatingElement duration={6}>
-              <div className="relative">
-                <Leaf className="h-10 w-10 text-primary" />
-                <motion.div
-                  className="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full"
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                />
-              </div>
-            </FloatingElement>
+            <div className="relative">
+              <Leaf className="h-10 w-10 text-primary" />
+              <motion.div
+                className="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+              />
+            </div>
             <div>
               <span className="text-2xl font-bold text-foreground">AyurVeda</span>
               <div className="text-sm text-primary font-medium">Wellness Center</div>
@@ -83,7 +70,7 @@ export default function AyurvedicClinicLanding() {
           </motion.div>
 
           <nav className="hidden md:flex items-center space-x-8">
-            {["Home", "Services", "Doctors", "Therapies", "Testimonials", "Contact"].map((item, index) => (
+            {["Home", "Services", "Doctors", "Therapies", "Testimonials"].map((item, index) => (
               <motion.a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -97,6 +84,17 @@ export default function AyurvedicClinicLanding() {
                 <motion.div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
+            <motion.a
+              href="/book-consultation"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 relative group"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.5 }}
+              whileHover={{ y: -2 }}
+            >
+              Contact
+              <motion.div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+            </motion.a>
           </nav>
 
           <motion.div
@@ -105,30 +103,18 @@ export default function AyurvedicClinicLanding() {
             transition={{ delay: 1, duration: 0.5 }}
           >
             <ScaleOnHover scale={1.05}>
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
-                <Calendar className="mr-2 h-4 w-4" />
-                Book Now
-              </Button>
+              <a href="/book-consultation">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Calendar className="mr-2 h-4 w-4" />
+                  Book Now
+                </Button>
+              </a>
             </ScaleOnHover>
           </motion.div>
         </div>
-      </motion.header> */}
+      </motion.header>
 
       <section id="home" className="relative lg:py-10 overflow-hidden">
-        {/* <ParallaxSection offset={50} className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5" />
-          <motion.div
-            className="absolute top-20 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl"
-            animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
-            transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-          />
-          <motion.div
-            className="absolute bottom-20 left-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
-            animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }}
-            transition={{ duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-          />
-        </ParallaxSection> */}
-
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <SlideIn direction="left">
@@ -177,7 +163,7 @@ export default function AyurvedicClinicLanding() {
                   transition={{ delay: 1, duration: 0.8 }}
                 >
                   <ScaleOnHover scale={1.05}>
-                    <a href="/#contact">
+                    <a href="/book-consultation">
                       <Button
                         size="lg"
                         className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl hover:shadow-2xl transition-all duration-300 text-lg px-8 py-6"
@@ -427,7 +413,6 @@ export default function AyurvedicClinicLanding() {
         </div>
       </section>
 
-      {/* Doctors Section with Enhanced Animations */}
       <section id="doctors" className="py-20">
         <div className="container mx-auto px-4">
           <FadeIn>
@@ -512,7 +497,6 @@ export default function AyurvedicClinicLanding() {
                             className="relative overflow"
                             whileHover={{
                               scale: 1.03,
-                              // rotateY: 5,
                               transition: { type: "spring", stiffness: 300, damping: 10 },
                             }}
                             transition={{ duration: 0.3 }}
@@ -595,7 +579,7 @@ export default function AyurvedicClinicLanding() {
                                 transition={{ delay: 0.4 }}
                               >
                                 <ScaleOnHover>
-                                  <a href="/#contact">
+                                  <a href="/book-consultation">
                                     <Button
                                       size="sm"
                                       className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
@@ -643,8 +627,7 @@ export default function AyurvedicClinicLanding() {
         </div>
       </section>
 
-      {/* Traditional Therapies Section */}
-      <section className="py-20">
+      <section id="therapies" className="py-20">
         <div className="container mx-auto px-4">
           <FadeIn>
             <div className="text-center mb-16">
@@ -689,7 +672,6 @@ export default function AyurvedicClinicLanding() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <section id="testimonials" className="py-20">
         <div className="container mx-auto px-4">
           <FadeIn>
@@ -756,130 +738,25 @@ export default function AyurvedicClinicLanding() {
 
       <Sponsors />
 
-      {/* Booking Section */}
       <section id="contact" className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <FadeIn>
-              <div className="text-center mb-12">
-                <Badge variant="secondary" className="mb-4">
+        <div className="container mx-auto px-4 text-center">
+          <FadeIn>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">Ready to Start Your Healing Journey?</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty mb-8">
+              Click the button below to schedule your consultation with one of our expert Ayurvedic doctors.
+            </p>
+            <ScaleOnHover>
+              <a href="/book-consultation">
+                <Button
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl hover:shadow-2xl transition-all duration-300 text-lg px-8 py-6"
+                >
+                  <Calendar className="mr-3 h-5 w-5" />
                   Book Your Consultation
-                </Badge>
-                <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">Start Your Healing Journey Today</h2>
-                <p className="text-lg text-muted-foreground text-pretty">
-                  Schedule a consultation with our experienced Ayurvedic doctors and receive personalized treatment
-                  plans.
-                </p>
-              </div>
-            </FadeIn>
-
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <SlideIn direction="left" delay={0.2}>
-                <div className="space-y-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Why Choose Our Clinic?</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <StaggerContainer staggerDelay={0.1}>
-                        {[
-                          {
-                            icon: Clock,
-                            title: "Experienced Practitioners",
-                            desc: "Over 20 years of combined experience in traditional Ayurveda",
-                          },
-                          {
-                            icon: Leaf,
-                            title: "Natural Remedies",
-                            desc: "Custom-formulated herbal medicines using pure ingredients",
-                          },
-                          {
-                            icon: Heart,
-                            title: "Holistic Approach",
-                            desc: "Treating the root cause, not just symptoms",
-                          },
-                        ].map((item, index) => (
-                          <StaggerItem key={index}>
-                            <div className="flex items-start gap-3">
-                              <motion.div
-                                className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                                whileHover={{ rotate: 360 }}
-                                transition={{ duration: 0.5 }}
-                              >
-                                <item.icon className="h-3 w-3 text-primary" />
-                              </motion.div>
-                              <div>
-                                <h4 className="font-medium">{item.title}</h4>
-                                <p className="text-sm text-muted-foreground">{item.desc}</p>
-                              </div>
-                            </div>
-                          </StaggerItem>
-                        ))}
-                      </StaggerContainer>
-                    </CardContent>
-                  </Card>
-                </div>
-              </SlideIn>
-
-              <SlideIn direction="right" delay={0.4}>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Book Your Consultation</CardTitle>
-                    <CardDescription>
-                      Fill out the form below and we'll contact you to schedule your appointment.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <StaggerContainer staggerDelay={0.1}>
-                      <StaggerItem>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <label className="text-sm font-medium mb-2 block">First Name</label>
-                            <Input placeholder="Enter your first name" />
-                          </div>
-                          <div>
-                            <label className="text-sm font-medium mb-2 block">Last Name</label>
-                            <Input placeholder="Enter your last name" />
-                          </div>
-                        </div>
-                      </StaggerItem>
-                      <StaggerItem>
-                        <div>
-                          <label className="text-sm font-medium mb-2 block">Email</label>
-                          <Input type="email" placeholder="Enter your email" />
-                        </div>
-                      </StaggerItem>
-                      <StaggerItem>
-                        <div>
-                          <label className="text-sm font-medium mb-2 block">Phone Number</label>
-                          <Input type="tel" placeholder="Enter your phone number" />
-                        </div>
-                      </StaggerItem>
-                      <StaggerItem>
-                        <div>
-                          <label className="text-sm font-medium mb-2 block">Health Concern</label>
-                          <Textarea placeholder="Briefly describe your health concern or condition" rows={3} />
-                        </div>
-                      </StaggerItem>
-                      <StaggerItem>
-                        <ScaleOnHover>
-                          <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                            <Calendar className="mr-2 h-4 w-4" />
-                            Schedule Consultation
-                          </Button>
-                        </ScaleOnHover>
-                      </StaggerItem>
-                      <StaggerItem>
-                        <p className="text-xs text-muted-foreground text-center">
-                          We'll contact you within 24 hours to confirm your appointment.
-                        </p>
-                      </StaggerItem>
-                    </StaggerContainer>
-                  </CardContent>
-                </Card>
-              </SlideIn>
-            </div>
-          </div>
+                </Button>
+              </a>
+            </ScaleOnHover>
+          </FadeIn>
         </div>
       </section>
     </div>
