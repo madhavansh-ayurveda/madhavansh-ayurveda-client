@@ -39,10 +39,9 @@ export default function TherapiesSection() {
                         <Badge variant="secondary" className="mb-4">
                             Traditional Therapies
                         </Badge>
-                        <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">Authentic Ayurvedic Treatments</h2>
+                        <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">Comprehensive Ayurvedic Care</h2>
                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-                            Experience time-tested therapeutic techniques passed down through generations of Ayurvedic
-                            practitioners.
+                            Explore our wide range of individual therapies, each designed to restore balance and promote well-being.
                         </p>
                     </div>
                 </FadeIn>

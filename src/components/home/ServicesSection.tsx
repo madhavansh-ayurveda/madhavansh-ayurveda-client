@@ -133,10 +133,9 @@ export default function ServicesSection() {
                                 Our Specializations
                             </Badge>
                         </motion.div>
-                        <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-balance">Comprehensive Ayurvedic Care</h2>
+                        <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-balance">Authentic Ayurvedic Treatments</h2>
                         <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
-                            Experience the healing power of traditional Ayurveda with our specialized treatments, custom-formulated
-                            remedies, and personalized wellness programs.
+                            We offer specialized care for a wide range of health concerns, focusing on holistic and natural healing methods.
                         </p>
                     </div>
                 </FadeIn>
