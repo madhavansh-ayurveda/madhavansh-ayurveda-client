@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import Doctors from "./pages/Doctors";
 import BookConsultation from "./pages/BookConsultation";
 import Contact from "./pages/Contact";
+import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import FloatingConsultButton from "./components/FloatingConsultButton";
 import "./index.css";
@@ -44,6 +45,7 @@ const App = () => {
       <PersistGate loading={null} persistor={persistor}>
         <Router>
           <AuthChecker>
+            <ScrollToTop />
             <AppNavbar />
             <ScrollToTopButton />
             <div className="min-h-screen flex flex-col bg-surface-50">
