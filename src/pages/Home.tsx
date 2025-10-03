@@ -42,8 +42,18 @@ export default function AyurvedicClinicLanding() {
   //   image: doctor.image,
   // }));
 
+  const slugify = (text: string) =>
+    text
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, "-") // Replace spaces with -
+      .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+      .replace(/\-\-+/g, "-") // Replace multiple - with single -
+      .replace(/^-+/, "") // Trim - from start of text
+      .replace(/-+$/, "") // Trim - from end of text
+
   return (
-    <div className="min-h-screen" style={{ backgroundImage: "url('/home-background.jpg')", backgroundRepeat: 'repeat' }}>
+    <div className="min-h-screen" style={{ backgroundImage: "url('/home-background.jpg')", backgroundRepeat: "repeat" }}>
       {/* <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -167,14 +177,16 @@ export default function AyurvedicClinicLanding() {
                   transition={{ delay: 1, duration: 0.8 }}
                 >
                   <ScaleOnHover scale={1.05}>
-                    <Button
-                      size="lg"
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl hover:shadow-2xl transition-all duration-300 text-lg px-8 py-6"
-                    >
-                      <Calendar className="mr-3 h-5 w-5" />
-                      Book Consultation
-                      <ArrowRight className="ml-3 h-5 w-5" />
-                    </Button>
+                    <a href="/#contact">
+                      <Button
+                        size="lg"
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl hover:shadow-2xl transition-all duration-300 text-lg px-8 py-6"
+                      >
+                        <Calendar className="mr-3 h-5 w-5" />
+                        Book Consultation
+                        <ArrowRight className="ml-3 h-5 w-5" />
+                      </Button>
+                    </a>
                   </ScaleOnHover>
                   <ScaleOnHover scale={1.05}>
                     <Button
@@ -396,13 +408,15 @@ export default function AyurvedicClinicLanding() {
                         ))}
                       </ul>
                       <ScaleOnHover scale={1.02}>
-                        <Button
-                          variant="outline"
-                          className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 bg-white/50 backdrop-blur-sm"
-                        >
-                          Learn More
-                          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                        </Button>
+                        <a href={`/services/${slugify(service.title)}`}>
+                          <Button
+                            variant="outline"
+                            className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 bg-white/50 backdrop-blur-sm"
+                          >
+                            Learn More
+                            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                          </Button>
+                        </a>
                       </ScaleOnHover>
                     </CardContent>
                   </Card>
@@ -581,13 +595,15 @@ export default function AyurvedicClinicLanding() {
                                 transition={{ delay: 0.4 }}
                               >
                                 <ScaleOnHover>
-                                  <Button
-                                    size="sm"
-                                    className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
-                                  >
-                                    <Calendar className="mr-1 h-3 w-3" />
-                                    Book Now
-                                  </Button>
+                                  <a href="/#contact">
+                                    <Button
+                                      size="sm"
+                                      className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
+                                    >
+                                      <Calendar className="mr-1 h-3 w-3" />
+                                      Book Now
+                                    </Button>
+                                  </a>
                                 </ScaleOnHover>
                                 <ScaleOnHover>
                                   <Button size="sm" variant="outline" className="flex-1 bg-transparent">
@@ -597,7 +613,6 @@ export default function AyurvedicClinicLanding() {
                                 </ScaleOnHover>
                               </motion.div>
                             </CardContent>
-
                           </motion.div>
                         </Card>
                       </ScaleOnHover>
@@ -613,13 +628,15 @@ export default function AyurvedicClinicLanding() {
           <FadeIn delay={0.4}>
             <div className="text-center mt-12">
               <ScaleOnHover>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="hover:bg-primary hover:text-primary-foreground bg-transparent"
-                >
-                  View All Doctors
-                </Button>
+                <a href="/doctors">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="hover:bg-primary hover:text-primary-foreground bg-transparent"
+                  >
+                    View All Doctors
+                  </Button>
+                </a>
               </ScaleOnHover>
             </div>
           </FadeIn>
@@ -654,16 +671,18 @@ export default function AyurvedicClinicLanding() {
               { name: "Udvartana", desc: "Herbal powder massage for weight management" },
             ].map((therapy, index) => (
               <StaggerItem key={index}>
-                <ScaleOnHover scale={1.05}>
-                  <Card className="text-center hover:shadow-md transition-all duration-300 h-full">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-lg">{therapy.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground">{therapy.desc}</p>
-                    </CardContent>
-                  </Card>
-                </ScaleOnHover>
+                <a href={`/treatments/${slugify(therapy.name)}`}>
+                  <ScaleOnHover scale={1.05}>
+                    <Card className="text-center hover:shadow-md transition-all duration-300 h-full">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-lg">{therapy.name}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm text-muted-foreground">{therapy.desc}</p>
+                      </CardContent>
+                    </Card>
+                  </ScaleOnHover>
+                </a>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -738,7 +757,7 @@ export default function AyurvedicClinicLanding() {
       <Sponsors />
 
       {/* Booking Section */}
-      <section className="py-20">
+      <section id="contact" className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <FadeIn>
