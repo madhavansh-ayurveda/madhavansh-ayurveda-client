@@ -67,11 +67,11 @@ export default function BookingSection() {
                                                 <StaggerItem key={index}>
                                                     <div className="flex items-start gap-3">
                                                         <motion.div
-                                                            className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                                                            className="w-6 h-6 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                                                             whileHover={{ rotate: 360 }}
                                                             transition={{ duration: 0.5 }}
                                                         >
-                                                            <item.icon className="h-3 w-3 text-primary" />
+                                                            <item.icon className="h-3 w-3 text-accent" />
                                                         </motion.div>
                                                         <div>
                                                             <h4 className="font-medium">{item.title}</h4>

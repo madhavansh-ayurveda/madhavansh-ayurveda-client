@@ -104,7 +104,7 @@ export default function DoctorsSection() {
                                 {doctors.map((doctor, index) => (
                                     <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
                                         <ScaleOnHover scale={1.02}>
-                                            <Card className="group hover:shadow-xl transition-all duration-500 border-border hover:border-primary/30 overflow h-full bg-background">
+                                            <Card className="group hover:shadow-xl transition-all duration-500 border-border hover:border-accent/30 overflow h-full bg-background">
                                                 <motion.div
                                                     className="relative overflow"
                                                     whileHover={{
@@ -129,16 +129,16 @@ export default function DoctorsSection() {
                                                             whileInView={{ scale: 1 }}
                                                             transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
                                                         >
-                                                            <Star className="h-3 w-3 fill-primary text-primary" />
+                                                            <Star className="h-3 w-3 fill-accent text-accent" />
                                                             <span className="text-xs font-medium">{doctor.rating}</span>
                                                         </motion.div>
                                                     </motion.div>
 
                                                     <CardHeader className="pb-2">
-                                                        <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                                                        <CardTitle className="text-xl group-hover:text-accent transition-colors">
                                                             {doctor.name}
                                                         </CardTitle>
-                                                        <CardDescription className="text-primary font-medium">
+                                                        <CardDescription className="text-accent font-medium">
                                                             {doctor.specialization}
                                                         </CardDescription>
                                                     </CardHeader>
@@ -194,7 +194,7 @@ export default function DoctorsSection() {
                                                                 <a href="/#contact">
                                                                     <Button
                                                                         size="sm"
-                                                                        className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
+                                                                        className="flex-1 bg-destructive hover:bg-destructive/90 text-destructive-foreground"
                                                                     >
                                                                         <Calendar className="mr-1 h-3 w-3" />
                                                                         Book Now
@@ -215,8 +215,8 @@ export default function DoctorsSection() {
                                     </CarouselItem>
                                 ))}
                             </CarouselContent>
-                            <CarouselPrevious className="hidden md:flex -left-12 bg-primary/10 border-primary/20 hover:bg-primary hover:text-primary-foreground" />
-                            <CarouselNext className="hidden md:flex -right-12 bg-primary/10 border-primary/20 hover:bg-primary hover:text-primary-foreground" />
+                            <CarouselPrevious className="hidden md:flex -left-12 bg-accent/10 border-accent/20 hover:bg-accent hover:text-accent-foreground" />
+                            <CarouselNext className="hidden md:flex -right-12 bg-accent/10 border-accent/20 hover:bg-accent hover:text-accent-foreground" />
                         </Carousel>
                     </div>
                 </SlideIn>
@@ -228,7 +228,7 @@ export default function DoctorsSection() {
                                 <Button
                                     size="lg"
                                     variant="outline"
-                                    className="hover:bg-primary hover:text-primary-foreground bg-transparent"
+                                    className="hover:bg-accent hover:text-accent-foreground bg-transparent"
                                 >
                                     View All Doctors
                                 </Button>

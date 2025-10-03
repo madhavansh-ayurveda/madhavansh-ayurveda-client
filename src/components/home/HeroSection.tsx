@@ -27,12 +27,12 @@ export default function HeroSection() {
             <ParallaxSection offset={50} className="absolute inset-0 -z-10">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5" />
                 <motion.div
-                    className="absolute top-20 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl"
+                    className="absolute top-20 right-20 w-72 h-72 bg-accent/5 rounded-full blur-3xl"
                     animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
                     transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 />
                 <motion.div
-                    className="absolute bottom-20 left-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
+                    className="absolute bottom-20 left-20 w-96 h-96 bg-destructive/5 rounded-full blur-3xl"
                     animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }}
                     transition={{ duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 />
@@ -48,7 +48,7 @@ export default function HeroSection() {
                                 transition={{ delay: 0.3, duration: 0.6 }}
                                 className="flex items-center gap-2"
                             >
-                                <Sparkles className="h-5 w-5 text-primary" />
+                                <Sparkles className="h-5 w-5 text-accent" />
                                 <Badge variant="secondary" className="text-sm font-medium">
                                     Authentic Ayurvedic Healing Since 2010
                                 </Badge>
@@ -61,10 +61,10 @@ export default function HeroSection() {
                                 transition={{ delay: 0.5, duration: 1, ease: [0.25, 0.25, 0, 1] }}
                             >
                                 Heal Naturally with{" "}
-                                <span className="text-primary relative">
+                                <span className="text-accent relative">
                                     Ayurveda
                                     <motion.div
-                                        className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent rounded-full"
+                                        className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-accent to-destructive rounded-full"
                                         initial={{ scaleX: 0 }}
                                         animate={{ scaleX: 1 }}
                                         transition={{ delay: 1.2, duration: 0.8 }}
@@ -89,7 +89,7 @@ export default function HeroSection() {
                                     <a href="/#contact">
                                         <Button
                                             size="lg"
-                                            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl hover:shadow-2xl transition-all duration-300 text-lg px-8 py-6"
+                                            className="bg-destructive hover:bg-destructive/90 text-destructive-foreground shadow-xl hover:shadow-2xl transition-all duration-300 text-lg px-8 py-6"
                                         >
                                             <Calendar className="mr-3 h-5 w-5" />
                                             Book Consultation
@@ -101,7 +101,7 @@ export default function HeroSection() {
                                     <Button
                                         size="lg"
                                         variant="outline"
-                                        className="border-2 border-primary/20 hover:border-primary hover:bg-primary/5 text-lg px-8 py-6 bg-transparent"
+                                        className="border-2 border-accent/20 hover:border-accent hover:bg-accent/5 text-lg px-8 py-6 bg-transparent"
                                     >
                                         <Phone className="mr-3 h-5 w-5" />
                                         Call Now
@@ -112,8 +112,8 @@ export default function HeroSection() {
                             <StaggerContainer staggerDelay={0.2} className="flex items-center gap-8 pt-8">
                                 <StaggerItem>
                                     <div className="flex items-center gap-3">
-                                        <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                                            <Users className="h-6 w-6 text-primary" />
+                                        <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+                                            <Users className="h-6 w-6 text-accent" />
                                         </div>
                                         <div>
                                             <div className="text-2xl font-bold text-foreground">2000+</div>
@@ -146,7 +146,7 @@ export default function HeroSection() {
                                     transition: { type: "spring", stiffness: 300, damping: 10 },
                                 }}
                             >
-                                <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-2xl" />
+                                <div className="absolute -inset-4 bg-gradient-to-r from-accent/20 to-destructive/20 rounded-2xl blur-2xl" />
                                 <img
                                     src="/indian-female-ayurvedic-doctor-in-traditional-whit.jpg"
                                     alt="Ayurvedic wellness center"
@@ -159,7 +159,7 @@ export default function HeroSection() {
                                     transition={{ delay: 1.5, type: "spring", stiffness: 200 }}
                                 >
                                     <div className="flex items-center gap-2">
-                                        <CheckCircle className="h-5 w-5 text-primary" />
+                                        <CheckCircle className="h-5 w-5 text-destructive" />
                                         <span className="text-sm font-medium">Certified Practitioners</span>
                                     </div>
                                 </motion.div>

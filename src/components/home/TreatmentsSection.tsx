@@ -86,13 +86,13 @@ export default function TreatmentsSection() {
                                 >
                                     <CardHeader className="pb-4">
                                         <motion.div
-                                            className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300"
+                                            className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors duration-300"
                                             whileHover={{ rotate: 360, scale: 1.1 }}
                                             transition={{ duration: 0.8 }}
                                         >
-                                            <treatment.icon className="h-8 w-8 text-primary" />
+                                            <treatment.icon className="h-8 w-8 text-accent" />
                                         </motion.div>
-                                        <CardTitle className="text-2xl group-hover:text-primary transition-colors duration-300">
+                                        <CardTitle className="text-2xl group-hover:text-accent transition-colors duration-300">
                                             {treatment.title}
                                         </CardTitle>
                                         <CardDescription className="text-base leading-relaxed">{treatment.description}</CardDescription>
@@ -108,7 +108,7 @@ export default function TreatmentsSection() {
                                                     viewport={{ once: true }}
                                                     className="flex items-start gap-3 text-sm text-muted-foreground"
                                                 >
-                                                    <CheckCircle className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                                                    <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
                                                     <span>{detail}</span>
                                                 </motion.li>
                                             ))}
@@ -116,7 +116,7 @@ export default function TreatmentsSection() {
                                         <a href={`/treatments${treatment.href}`}>
                                             <Button
                                                 variant="outline"
-                                                className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 bg-white/50 backdrop-blur-sm"
+                                                className="w-full group-hover:bg-accent group-hover:text-accent-foreground group-hover:border-accent transition-all duration-300 bg-white/50 backdrop-blur-sm"
                                             >
                                                 Learn More
                                                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />

@@ -60,12 +60,12 @@ export default function TestimonialsSection() {
                                         <StaggerContainer staggerDelay={0.1} className="flex items-center gap-1 mb-2">
                                             {[...Array(testimonial.rating)].map((_, i) => (
                                                 <StaggerItem key={i}>
-                                                    <Star className="h-4 w-4 fill-primary text-primary" />
+                                                    <Star className="h-4 w-4 fill-accent text-accent" />
                                                 </StaggerItem>
                                             ))}
                                         </StaggerContainer>
                                         <CardTitle className="text-lg">{testimonial.name}</CardTitle>
-                                        <CardDescription className="text-primary font-medium">{testimonial.condition}</CardDescription>
+                                        <CardDescription className="text-accent font-medium">{testimonial.condition}</CardDescription>
                                     </CardHeader>
                                     <CardContent>
                                         <p className="text-muted-foreground italic">"{testimonial.testimonial}"</p>
