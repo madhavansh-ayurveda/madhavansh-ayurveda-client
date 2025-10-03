@@ -10,9 +10,9 @@ import {
 } from "@/components/framer-animations"
 import servicesData from "@/assets/service.json";
 
-const therapies = servicesData.slice(0, 8);
+const services = servicesData.slice(0, 8);
 
-export default function TherapiesSection() {
+export default function ServicesGridSection() {
     return (
         <section className="py-20">
             <div className="container mx-auto px-4">
@@ -29,16 +29,16 @@ export default function TherapiesSection() {
                 </FadeIn>
 
                 <StaggerContainer staggerDelay={0.1} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {therapies.map((therapy, index) => (
+                    {services.map((service, index) => (
                         <StaggerItem key={index}>
-                            <a href={`/services/${therapy.route}`}>
+                            <a href={`/services/${service.route}`}>
                                 <ScaleOnHover scale={1.05}>
                                     <Card className="text-center hover:shadow-md transition-all duration-300 h-full">
                                         <CardHeader className="pb-2">
-                                            <CardTitle className="text-lg">{therapy.title}</CardTitle>
+                                            <CardTitle className="text-lg">{service.title}</CardTitle>
                                         </CardHeader>
                                         <CardContent>
-                                            <p className="text-sm text-muted-foreground">{therapy.description}</p>
+                                            <p className="text-sm text-muted-foreground">{service.description}</p>
                                         </CardContent>
                                     </Card>
                                 </ScaleOnHover>
