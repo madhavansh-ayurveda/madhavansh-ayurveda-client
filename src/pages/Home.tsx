@@ -1,5 +1,3 @@
-"use client";
-
 import HeroSection from "@/components/home/HeroSection";
 import TreatmentsSection from "@/components/home/TreatmentsSection";
 import DoctorsSection from "@/components/home/DoctorsSection";

@@ -97,7 +97,7 @@ export default function TreatmentsSection() {
                                         </CardTitle>
                                         <CardDescription className="text-base leading-relaxed">{treatment.description}</CardDescription>
                                     </CardHeader>
-                                    <CardContent className="space-y-6">
+                                    <CardContent className="space-y-6 py-2">
                                         <ul className="space-y-3">
                                             {treatment.details.map((detail, detailIndex) => (
                                                 <motion.li
