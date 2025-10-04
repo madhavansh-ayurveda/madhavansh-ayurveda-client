@@ -13,7 +13,6 @@ export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState(true);
-  const serverUrl = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -104,7 +103,7 @@ export default function BlogPost() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              src={`${serverUrl}${post.featuredImage}`}
+              src={post.featuredImage}
               alt={post.title}
               className="w-full h-auto max-h-[500px] object-cover rounded-xl mb-8"
             />

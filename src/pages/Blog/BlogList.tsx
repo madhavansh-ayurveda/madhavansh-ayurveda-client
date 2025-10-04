@@ -10,7 +10,6 @@ import { Loader2, BookOpen } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const BlogCard = ({ post }: { post: BlogPost }) => {
-  const serverUrl = import.meta.env.VITE_SERVER_URL;
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -24,7 +23,7 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
       >
         <div className="aspect-w-16 aspect-h-9">
           <img
-            src={`${serverUrl}${post?.featuredImage}`}
+            src={post?.featuredImage}
             alt={post.title}
             className="object-cover w-full h-48 group-hover:scale-105 transition-transform duration-300"
           />
