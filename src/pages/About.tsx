@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Heart, Users, Shield, MapPin, Phone, Mail, Award } from "lucide-react";
+import { Heart, Users, Shield, MapPin, Phone, Mail, Award } from "lucide-react";
 import Meteors from "../components/ui/meteors";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function About() {
@@ -33,12 +35,14 @@ export default function About() {
       className="overflow-hidden bg-white"
     >
       {/* Hero Section */}
+      {/* Hero Section */}
       <motion.section
         variants={itemVariants}
         className="relative h-[60vh] bg-/90 flex items-center justify-center overflow-hidden"
       >
         <div className="absolute inset-0 z-0">
           <img
+            src="/ayurveda2.jpg"
             src="/ayurveda2.jpg"
             alt="Ayurveda Background"
             className="w-full h-full object-cover brightness-75 blur-sm"
@@ -52,6 +56,7 @@ export default function About() {
             About <span className="text-destructive bg-white rounded-xl px-4">Madhavansh Ayurved</span>
           </h1>
           <p className="text-gray-200 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+          <p className="text-gray-200 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
             Dedicated to providing authentic Ayurvedic healthcare services by
             combining ancient wisdom with modern medical practices.
           </p>
@@ -60,8 +65,10 @@ export default function About() {
 
       {/* Introduction Section */}
       <motion.section variants={containerVariants} className="py-20">
+      <motion.section variants={containerVariants} className="py-20">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-12 px-4">
+            <motion.div variants={itemVariants} className="w-full md:w-1/2 relative">
             <motion.div variants={itemVariants} className="w-full md:w-1/2 relative">
               <img
                 src="/Clinic.JPG"
@@ -73,9 +80,16 @@ export default function About() {
             <motion.div variants={itemVariants} className="w-full md:w-1/2 space-y-6">
               <h2 className="text-3xl font-bold text-primary">
                 Welcome to Our Center of Healing
+              <div className="absolute inset-0 bg-primary/10 rounded-2xl" />
+            </motion.div>
+            <motion.div variants={itemVariants} className="w-full md:w-1/2 space-y-6">
+              <h2 className="text-3xl font-bold text-primary">
+                Welcome to Our Center of Healing
               </h2>
               <div className="space-y-4 text-foreground/80">
+              <div className="space-y-4 text-foreground/80">
                 <p className="leading-relaxed">
+                  Shree Madhavansh Ayurved is an Ayurvedic Hospital and Panchkarma Kendra in Raipur, Chhattisgarh, that provides traditional Ayurvedic healing therapies in a comfortable, holistic, and natural environment.
                   Shree Madhavansh Ayurved is an Ayurvedic Hospital and Panchkarma Kendra in Raipur, Chhattisgarh, that provides traditional Ayurvedic healing therapies in a comfortable, holistic, and natural environment.
                 </p>
                 <p className="leading-relaxed">
@@ -127,11 +141,17 @@ export default function About() {
       </motion.section>
 
       {/* Values Section */}
+      {/* Values Section */}
       <motion.section
         variants={containerVariants}
         className="py-20"
+        className="py-20"
       >
         <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-primary">Our Core Values</h2>
+            <p className="text-lg text-foreground/70 mt-2">The principles that guide our practice.</p>
+          </div>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-primary">Our Core Values</h2>
             <p className="text-lg text-foreground/70 mt-2">The principles that guide our practice.</p>
@@ -142,8 +162,12 @@ export default function About() {
                 icon: Heart,
                 title: "Quality Care",
                 desc: "Committed to providing authentic and effective treatments.",
+                desc: "Committed to providing authentic and effective treatments.",
               },
               {
+                icon: Shield,
+                title: "Patient First",
+                desc: "Your health, privacy, and comfort are our top priorities.",
                 icon: Shield,
                 title: "Patient First",
                 desc: "Your health, privacy, and comfort are our top priorities.",
@@ -152,8 +176,12 @@ export default function About() {
                 icon: Users,
                 title: "Expert Team",
                 desc: "A dedicated team of experienced Vaidyas at your service.",
+                desc: "A dedicated team of experienced Vaidyas at your service.",
               },
               {
+                icon: Award,
+                title: "Holistic Approach",
+                desc: "Treating the root cause, not just the symptoms, for lasting wellness.",
                 icon: Award,
                 title: "Holistic Approach",
                 desc: "Treating the root cause, not just the symptoms, for lasting wellness.",
@@ -164,11 +192,16 @@ export default function About() {
                 variants={itemVariants}
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
                 className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 text-center"
+                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 text-center"
               >
                 <div className="inline-block p-4 bg-primary/10 rounded-full mb-6">
                     <item.icon className="w-10 h-10 text-primary" />
                 </div>
+                <div className="inline-block p-4 bg-primary/10 rounded-full mb-6">
+                    <item.icon className="w-10 h-10 text-primary" />
+                </div>
                 <h3 className="text-xl font-semibold mb-4">{item.title}</h3>
+                <p className="text-foreground/70">{item.desc}</p>
                 <p className="text-foreground/70">{item.desc}</p>
               </motion.div>
             ))}
@@ -203,7 +236,15 @@ export default function About() {
         variants={containerVariants}
         className="py-20 bg-muted/50"
       >
+        className="py-20 bg-muted/50"
+      >
         <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-primary">Get in Touch</h2>
+            <p className="text-lg text-foreground/70 mt-2">We're here to help you on your journey to wellness.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div variants={itemVariants} className="space-y-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-primary">Get in Touch</h2>
             <p className="text-lg text-foreground/70 mt-2">We're here to help you on your journey to wellness.</p>
@@ -217,6 +258,7 @@ export default function About() {
                     info: "Indraprasth Phase 2, A20B, near MG Motor India, Raipur, Chhattisgarh 492013",
                   },
                   { icon: Phone, title: "Phone", info: "+91 7509181081" },
+                  { icon: Phone, title: "Phone", info: "+91 7509181081" },
                   {
                     icon: Mail,
                     title: "Email",
@@ -227,14 +269,20 @@ export default function About() {
                     key={index}
                     whileHover={{ x: 5 }}
                     className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-sm"
+                    whileHover={{ x: 5 }}
+                    className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-sm"
                   >
+                    <div className="bg-primary/10 p-3 rounded-full mt-1">
+                      <item.icon className="w-6 h-6 text-primary" />
                     <div className="bg-primary/10 p-3 rounded-full mt-1">
                       <item.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground">
+                      <h3 className="font-semibold text-foreground">
                         {item.title}
                       </h3>
+                      <p className="text-foreground/80">{item.info}</p>
                       <p className="text-foreground/80">{item.info}</p>
                     </div>
                   </motion.div>
@@ -243,6 +291,7 @@ export default function About() {
 
             <motion.div
               variants={itemVariants}
+              className="h-[400px] rounded-xl overflow-hidden shadow-xl border-4 border-white"
               className="h-[400px] rounded-xl overflow-hidden shadow-xl border-4 border-white"
             >
               <iframe
