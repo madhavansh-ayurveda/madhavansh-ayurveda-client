@@ -4,6 +4,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
+import {
     ScaleOnHover,
 } from "@/components/framer-animations"
 import {
@@ -22,6 +28,12 @@ interface DoctorCardProps {
 }
 
 export default function DoctorCard({ doctor }: DoctorCardProps) {
+    const firstDepartment = doctor.department[0];
+    const remainingDepartmentsCount = doctor.department.length - 1;
+    const departmentBadgeText = remainingDepartmentsCount > 0
+        ? `${firstDepartment} +${remainingDepartmentsCount}`
+        : firstDepartment;
+
     return (
         <ScaleOnHover scale={1.02}>
             <Card className="group hover:shadow-xl transition-all duration-500 border-border hover:border-accent/30 overflow-hidden h-full bg-background flex flex-col">
@@ -52,10 +64,21 @@ export default function DoctorCard({ doctor }: DoctorCardProps) {
                                 <Award className="h-3.5 w-3.5" />
                                 <span className="font-normal">{doctor.experience}+ Years Exp.</span>
                             </Badge>
-                            <Badge variant="secondary" className="flex items-center gap-1.5 py-1 px-2">
-                                <Users className="h-3.5 w-3.5" />
-                                <span className="font-normal">{doctor.department.join(', ')}</span>
-                            </Badge>
+                            <TooltipProvider>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Badge variant="secondary" className="flex items-center gap-1.5 py-1 px-2 cursor-pointer">
+                                            <Users className="h-3.5 w-3.5" />
+                                            <span className="font-normal">{departmentBadgeText}</span>
+                                        </Badge>
+                                    </TooltipTrigger>
+                                    {remainingDepartmentsCount > 0 && (
+                                        <TooltipContent>
+                                            <p>{doctor.department.join(', ')}</p>
+                                        </TooltipContent>
+                                    )}
+                                </Tooltip>
+                            </TooltipProvider>
                         </div>
 
                         <div>
@@ -87,7 +110,7 @@ export default function DoctorCard({ doctor }: DoctorCardProps) {
                             </Link>
                         </ScaleOnHover>
                         <ScaleOnHover>
-                            <a href={`tel:${doctor.phone}`} className="w-full">
+                            <a href="tel:7509181081" className="w-full">
                                 <Button size="sm" variant="outline" className="w-full bg-transparent">
                                     <Phone className="mr-1.5 h-3.5 w-3.5" />
                                     Call
