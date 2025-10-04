@@ -57,7 +57,7 @@ export default function BlogList() {
             className="group hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden"
           >
             <div className="aspect-video relative">
-              <img src={`${serverUrl}${post?.featuredImage}`} alt={post.title} className="object-cover w-full h-full"/>
+              <img src={`${post?.featuredImage}`} alt={post.title} className="object-cover w-full h-full"/>
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <div className="p-4">
