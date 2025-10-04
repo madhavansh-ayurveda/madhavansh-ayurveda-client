@@ -16,8 +16,8 @@ export default function BlogList() {
     const fetchPosts = async () => {
       try {
         const response = await blogApi.getAllPosts();
-        if (response.success) {
-          setPosts(response.data.data);
+        if (response.success && Array.isArray(response.data)) {
+          setPosts(response.data);
         } else {
           throw new Error(response.message || 'Failed to fetch posts');
         }

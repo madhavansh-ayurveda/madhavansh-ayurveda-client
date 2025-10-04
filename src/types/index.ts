@@ -126,6 +126,8 @@ export interface BlogPost {
 }
 
 export interface BlogListResponse {
+  success: boolean;
+  message?: string;
   count: number;
   currentPage: number;
   totalPages: number;
