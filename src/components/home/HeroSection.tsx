@@ -50,7 +50,7 @@ export default function HeroSection() {
                             >
                                 <Sparkles className="h-5 w-5 text-accent" />
                                 <Badge variant="secondary" className="text-sm font-medium">
-                                    Authentic Ayurvedic Healing Since 2010
+                                    Authentic Ayurvedic Healing Since 2019
                                 </Badge>
                             </motion.div>
 
