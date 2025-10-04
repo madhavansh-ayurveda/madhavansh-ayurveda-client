@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
@@ -28,7 +26,6 @@ export const BentoGridItem = ({
   description,
   header,
   icon,
-  link,
 }: {
   className?: string;
   title?: string | React.ReactNode;

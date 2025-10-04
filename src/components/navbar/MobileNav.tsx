@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { X, ChevronDown, Calendar } from "lucide-react";
@@ -24,7 +24,6 @@ export function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const handleLogout = () => {
     try {
