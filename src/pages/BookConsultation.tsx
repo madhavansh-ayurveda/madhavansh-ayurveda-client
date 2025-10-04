@@ -27,7 +27,6 @@ import {
 } from "@/store/features/doctorsSlice";
 import AuthVerification from "@/components/AuthVerification";
 import { storeConsultationId } from "@/store/features/consultationSlice";
-import { Separator } from "@/components/ui/separator";
 
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 
@@ -263,8 +262,8 @@ export default function BookConsultation() {
                   <Select onValueChange={(v) => setSelectedDoctor(JSON.parse(v))} value={selectedDoctor.doctorId ? JSON.stringify(selectedDoctor) : undefined}>
                     <SelectTrigger><SelectValue placeholder="Choose a doctor" /></SelectTrigger>
                     <SelectContent>
-                      {doctorsData?.filter(d => d.department.includes(department)).length > 0 ? (
-                        doctorsData.filter(d => d.department.includes(department)).map(doc => (
+                      {doctorsData?.filter(d => d.department?.includes(department)).length > 0 ? (
+                        doctorsData?.filter(d => d.department?.includes(department)).map(doc => (
                           <SelectItem key={doc._id} value={JSON.stringify({ doctorName: doc.name, doctorId: doc._id })}>
                             {doc.name} - {doc.specialization.join(", ")}
                           </SelectItem>

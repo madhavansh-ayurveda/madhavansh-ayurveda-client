@@ -1,35 +1,31 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
-import { api } from '@/api/axios';
 import { Skeleton } from '@/components/ui/skeleton';
 import { toast } from 'react-hot-toast';
 import { getErrorMessage } from '@/utils/apiErrorHandler';
-
-interface BlogPost {
-  title: string;
-  content: string;
-  featuredImage: string;
-  author: {
-    name: string;
-  };
-  category: {
-    name: string;
-  };
-  createdAt: string;
-}
+import { blogApi } from '@/api/blogApi';
+import { BlogPost as BlogPostType } from '@/types';
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = useState<BlogPost | null>(null);
+  const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState(true);
   const serverUrl = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
     const fetchPost = async () => {
+      if (!slug) {
+        setLoading(false);
+        return;
+      }
       try {
-        const response = await api.get(`/blogs/${slug}`);
-        setPost(response.data.data);
+        const response = await blogApi.getPostBySlug(slug);
+        if (response.success) {
+          setPost(response.data);
+        } else {
+          throw new Error(response.message || 'Failed to fetch post');
+        }
       } catch (error) {
         console.error('Error fetching blog post:', error);
         toast.error(getErrorMessage(error));
@@ -57,7 +53,7 @@ export default function BlogPost() {
   }
 
   if (!post) {
-    return <div>Post not found</div>;
+    return <div className="max-w-4xl mx-auto px-4 py-8 text-center">Post not found</div>;
   }
 
   return (

@@ -156,6 +156,8 @@ const AuthVerification = ({ onError }: authVerificationProps) => {
       if (response.data) {
         localStorage.setItem("authToken", response.data.token);
         Cookies.set("authToken", response.data.token, { expires: 7 });
+        console.log(response.data.user);
+        
 
         toast.success("Phone number verified successfully!");
         setIsOtpVerified(true);

@@ -23,7 +23,7 @@ import { motion } from "framer-motion"
 
 export default function HeroSection() {
     return (
-        <section id="home" className="relative py-20 lg:py-32 overflow-hidden">
+        <section id="home" className="relative lg:py-16 overflow-hidden">
             <ParallaxSection offset={50} className="absolute inset-0 -z-10">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5" />
                 <motion.div

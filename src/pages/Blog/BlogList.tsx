@@ -1,25 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
-import { api } from '@/api/axios';
 import { Skeleton } from '@/components/ui/skeleton';
 import { toast } from 'react-hot-toast';
 import { getErrorMessage } from '@/utils/apiErrorHandler';
-
-interface BlogPost {
-  _id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  featuredImage: string;
-  author: {
-    name: string;
-  };
-  category: {
-    name: string;
-  };
-  createdAt: string;
-}
+import { blogApi } from '@/api/blogApi';
+import { BlogPost } from '@/types';
 
 export default function BlogList() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -29,8 +15,12 @@ export default function BlogList() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await api.get('/blogs');
-        setPosts(response.data.data);
+        const response = await blogApi.getAllPosts();
+        if (response.success) {
+          setPosts(response.data.data);
+        } else {
+          throw new Error(response.message || 'Failed to fetch posts');
+        }
       } catch (error) {
         console.error('Error fetching blog posts:', error);
         toast.error(getErrorMessage(error));

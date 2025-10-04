@@ -97,3 +97,37 @@ export interface ApiDoctorSchema {
   updatedAt: string;
   __v: number;
 }
+
+export interface BlogPost {
+  _id: string;
+  title: string;
+  slug: string;
+  content: string;
+  excerpt: string;
+  featuredImage: string;
+  category: {
+    _id: string;
+    name: string;
+  };
+  author: {
+    _id: string;
+    name: string;
+  };
+  tags: string[];
+  status: 'published' | 'draft';
+  views: number;
+  seo: {
+    metaTitle: string;
+    metaDescription: string;
+    keywords: string[];
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BlogListResponse {
+  count: number;
+  currentPage: number;
+  totalPages: number;
+  data: BlogPost[];
+}

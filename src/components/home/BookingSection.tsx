@@ -6,17 +6,17 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import {
-  FadeIn,
-  StaggerContainer,
-  StaggerItem,
-  ScaleOnHover,
-  SlideIn,
+    FadeIn,
+    StaggerContainer,
+    StaggerItem,
+    ScaleOnHover,
+    SlideIn,
 } from "@/components/framer-animations"
 import {
-  Calendar,
-  Clock,
-  Leaf,
-  Heart,
+    Calendar,
+    Clock,
+    Leaf,
+    Heart,
 } from "lucide-react"
 import { motion } from "framer-motion"
 
@@ -38,7 +38,7 @@ export default function BookingSection() {
                         </div>
                     </FadeIn>
 
-                    <div className="grid lg:grid-cols-2 gap-12 items-start">
+                    <div className=" lg:grid-cols-2 gap-12 items-start">
                         <SlideIn direction="left" delay={0.2}>
                             <div className="space-y-6">
                                 <Card>
@@ -86,8 +86,8 @@ export default function BookingSection() {
                             </div>
                         </SlideIn>
 
-                        <SlideIn direction="right" delay={0.4}>
-                            <Card>
+                        <SlideIn direction="right" delay={0.4} className="mt-8 my-auto">
+                            {/* <Card>
                                 <CardHeader>
                                     <CardTitle>Book Your Consultation</CardTitle>
                                     <CardDescription>
@@ -141,7 +141,8 @@ export default function BookingSection() {
                                         </StaggerItem>
                                     </StaggerContainer>
                                 </CardContent>
-                            </Card>
+                            </Card> */}
+                            <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">Book Consulation</Button>
                         </SlideIn>
                     </div>
                 </div>
