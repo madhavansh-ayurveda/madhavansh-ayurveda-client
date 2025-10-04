@@ -1,24 +1,18 @@
-"use client"
-
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import {
     FadeIn,
     StaggerContainer,
     StaggerItem,
-    ScaleOnHover,
     SlideIn,
 } from "@/components/framer-animations"
 import {
-    Calendar,
     Clock,
     Leaf,
     Heart,
 } from "lucide-react"
 import { motion } from "framer-motion"
+import { Badge } from "../ui/badge"
 
 export default function BookingSection() {
     return (
@@ -38,7 +32,7 @@ export default function BookingSection() {
                         </div>
                     </FadeIn>
 
-                    <div className=" lg:grid-cols-2 gap-12 items-start">
+                    <div className="flex flex= lg:grid-cols-2 gap-12 items-start">
                         <SlideIn direction="left" delay={0.2}>
                             <div className="space-y-6">
                                 <Card>
@@ -142,7 +136,7 @@ export default function BookingSection() {
                                     </StaggerContainer>
                                 </CardContent>
                             </Card> */}
-                            <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">Book Consulation</Button>
+                            <Button onClick={() => { window.location.href = "/book-consultation" }} className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">Book Consulation</Button>
                         </SlideIn>
                     </div>
                 </div>

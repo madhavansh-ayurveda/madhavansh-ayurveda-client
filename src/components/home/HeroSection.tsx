@@ -86,7 +86,7 @@ export default function HeroSection() {
                                 transition={{ delay: 1, duration: 0.8 }}
                             >
                                 <ScaleOnHover scale={1.05}>
-                                    <a href="/#contact">
+                                    <a href="/book-consultation">
                                         <Button
                                             size="lg"
                                             className="bg-destructive hover:bg-destructive/90 text-destructive-foreground shadow-xl hover:shadow-2xl transition-all duration-300 text-lg px-8 py-6"
