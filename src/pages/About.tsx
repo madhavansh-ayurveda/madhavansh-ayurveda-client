@@ -33,7 +33,6 @@ export default function About() {
       className="overflow-hidden bg-white"
     >
       {/* Hero Section */}
-      {/* Hero Section */}
       <motion.section
         variants={itemVariants}
         className="relative h-[60vh] bg-/90 flex items-center justify-center overflow-hidden"
@@ -77,7 +76,6 @@ export default function About() {
               </h2>
               <div className="space-y-4 text-foreground/80">
                 <p className="leading-relaxed">
-                  Shree Madhavansh Ayurved is an Ayurvedic Hospital and Panchkarma Kendra in Raipur, Chhattisgarh, that provides traditional Ayurvedic healing therapies in a comfortable, holistic, and natural environment.
                   Shree Madhavansh Ayurved is an Ayurvedic Hospital and Panchkarma Kendra in Raipur, Chhattisgarh, that provides traditional Ayurvedic healing therapies in a comfortable, holistic, and natural environment.
                 </p>
                 <p className="leading-relaxed">
@@ -129,16 +127,11 @@ export default function About() {
       </motion.section>
 
       {/* Values Section */}
-      {/* Values Section */}
       <motion.section
         variants={containerVariants}
         className="py-20"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary">Our Core Values</h2>
-            <p className="text-lg text-foreground/70 mt-2">The principles that guide our practice.</p>
-          </div>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-primary">Our Core Values</h2>
             <p className="text-lg text-foreground/70 mt-2">The principles that guide our practice.</p>
@@ -175,11 +168,7 @@ export default function About() {
                 <div className="inline-block p-4 bg-primary/10 rounded-full mb-6">
                   <item.icon className="w-10 h-10 text-primary" />
                 </div>
-                <div className="inline-block p-4 bg-primary/10 rounded-full mb-6">
-                  <item.icon className="w-10 h-10 text-primary" />
-                </div>
                 <h3 className="text-xl font-semibold mb-4">{item.title}</h3>
-                <p className="text-foreground/70">{item.desc}</p>
                 <p className="text-foreground/70">{item.desc}</p>
               </motion.div>
             ))}
@@ -228,7 +217,6 @@ export default function About() {
                   info: "Indraprasth Phase 2, A20B, near MG Motor India, Raipur, Chhattisgarh 492013",
                 },
                 { icon: Phone, title: "Phone", info: "+91 7509181081" },
-                { icon: Phone, title: "Phone", info: "+91 7509181081" },
                 {
                   icon: Mail,
                   title: "Email",
@@ -247,7 +235,6 @@ export default function About() {
                     <h3 className="font-semibold text-foreground">
                       {item.title}
                     </h3>
-                    <p className="text-foreground/80">{item.info}</p>
                     <p className="text-foreground/80">{item.info}</p>
                   </div>
                 </motion.div>
