@@ -148,7 +148,7 @@ export default function HeroSection() {
                             >
                                 <div className="absolute -inset-4 bg-gradient-to-r from-accent/20 to-destructive/20 rounded-2xl blur-2xl" />
                                 <img
-                                    src="/indian-female-ayurvedic-doctor-in-traditional-whit.jpg"
+                                    src="/Home_page_dr_priyanka.jpg"
                                     alt="Ayurvedic wellness center"
                                     className="relative rounded-2xl shadow-2xl w-full h-[550px] object-cover"
                                 />
