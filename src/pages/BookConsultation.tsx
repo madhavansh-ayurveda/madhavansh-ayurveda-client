@@ -116,7 +116,7 @@ export default function BookConsultation() {
     setDoctorError(null);
 
     if (currentDoctor) {
-      const calendarDaysIndex = currentDoctor.availability.days.map((day) =>
+      const calendarDaysIndex = currentDoctor.availability.days?.map((day) =>
         dayList.indexOf(day)
       );
       setCalendarDays(calendarDaysIndex);
@@ -250,20 +250,20 @@ export default function BookConsultation() {
                   <Select onValueChange={setConsultationType} value={consultationType}>
                     <SelectTrigger><SelectValue placeholder="Consultation type" /></SelectTrigger>
                     <SelectContent>
-                      {consultationTypesList.map((type) => <SelectItem key={type} value={type}>{type}</SelectItem>)}
+                      {consultationTypesList?.map((type) => <SelectItem key={type} value={type}>{type}</SelectItem>)}
                     </SelectContent>
                   </Select>
                   <Select onValueChange={setDepartment} value={department}>
                     <SelectTrigger><SelectValue placeholder="Department" /></SelectTrigger>
                     <SelectContent>
-                      {departmentSpeciality.map((type) => <SelectItem key={type} value={type}>{type}</SelectItem>)}
+                      {departmentSpeciality?.map((type) => <SelectItem key={type} value={type}>{type}</SelectItem>)}
                     </SelectContent>
                   </Select>
                   <Select onValueChange={(v) => setSelectedDoctor(JSON.parse(v))} value={selectedDoctor.doctorId ? JSON.stringify(selectedDoctor) : undefined}>
                     <SelectTrigger><SelectValue placeholder="Choose a doctor" /></SelectTrigger>
                     <SelectContent>
                       {doctorsData?.filter(d => d.department?.includes(department)).length > 0 ? (
-                        doctorsData?.filter(d => d.department?.includes(department)).map(doc => (
+                        doctorsData?.filter(d => d.department?.includes(department))?.map(doc => (
                           <SelectItem key={doc._id} value={JSON.stringify({ doctorName: doc.name, doctorId: doc._id })}>
                             {doc.name} - {doc.specialization.join(", ")}
                           </SelectItem>
@@ -275,6 +275,14 @@ export default function BookConsultation() {
                 </div>
                 {doctorError && <p className="mt-2 text-sm text-red-500">{doctorError}</p>}
               </div>
+              
+              <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                <div className="flex items-center gap-3 mb-4">
+                  <Stethoscope className="w-5 h-5 text-primary-500" />
+                  <h2 className="text-xl font-semibold">Symptoms (Optional)</h2>
+                </div>
+                <Textarea value={symptoms} onChange={(e) => setSymptoms(e.target.value)} placeholder="Describe your symptoms..." className="h-24" />
+              </div>
             </div>
 
             {/* Right Column */}
@@ -284,13 +292,13 @@ export default function BookConsultation() {
                   <CalendarDays className="w-5 h-5 text-primary-500" />
                   <h2 className="text-xl font-semibold">Schedule Appointment</h2>
                 </div>
-                <div className="border rounded-lg">
-                  <Calendar mode="single" selected={date} onSelect={setDate} className="p-0" disabled={(d) => d < new Date() || !calendarDays.includes(d.getDay())} />
+                <div className="border h-[400px] flex items-center justify-center rounded-lg">
+                  <Calendar mode="single" selected={date} onSelect={setDate} className="large-calendar p-2 scale-110 origin-center" disabled={(d) => d < new Date() || !calendarDays?.includes(d.getDay())} />
                 </div>
                 <div className="mt-6">
                   <label className="block text-sm font-medium text-gray-700 mb-2">Available Time Slots</label>
                   <div className="grid grid-cols-3 gap-2">
-                    {timeSlots && timeSlots.length > 0 ? timeSlots.map(slot => (
+                    {timeSlots && timeSlots.length > 0 ? timeSlots?.map(slot => (
                       <Button key={slot.startTime} type="button" variant={timeSlot === slot.startTime ? "default" : "outline"} onClick={() => setTimeSlot(slot.startTime)}>
                         {slot.startTime}
                       </Button>
@@ -306,13 +314,6 @@ export default function BookConsultation() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-                <div className="flex items-center gap-3 mb-4">
-                  <Stethoscope className="w-5 h-5 text-primary-500" />
-                  <h2 className="text-xl font-semibold">Symptoms (Optional)</h2>
-                </div>
-                <Textarea value={symptoms} onChange={(e) => setSymptoms(e.target.value)} placeholder="Describe your symptoms..." className="h-24" />
-              </div>
             </div>
           </div>
 

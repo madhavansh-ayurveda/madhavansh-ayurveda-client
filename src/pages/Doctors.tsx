@@ -82,7 +82,7 @@ export default function Doctors() {
         <div className="absolute inset-0 z-0">
           <img
             src="/ayurveda2.jpg"
-            alt="Ayurveda Background"
+            alt="/doctor-placeholder.webp"
             className="w-full h-full object-cover"
             style={{
               transform: "scale(1.1)",
