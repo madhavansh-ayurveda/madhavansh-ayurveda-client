@@ -1,8 +1,9 @@
 import axios from 'axios';
 
+export const BASE_URL = import.meta.env.VITE_SERVER_API_URL;
 // Create a configured axios instance
 export const api = axios.create({
-    baseURL: import.meta.env.VITE_SERVER_API_URL,
+    baseURL: BASE_URL,
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json'

@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardContent,
@@ -21,6 +19,8 @@ import { motion } from "framer-motion";
 import { Doctor } from "@/types";
 import { Link } from "react-router-dom";
 
+import { BASE_URL } from "@/api/axios";
+
 interface DoctorCardProps {
   doctor: Doctor;
 }
@@ -35,7 +35,7 @@ export default function DoctorCard({ doctor }: DoctorCardProps) {
 
   const getImageUrl = (relativePath?: string) => {
     if (!relativePath) return undefined;
-    const API_URL = import.meta.env.VITE_SERVER_API_URL;
+    const API_URL = BASE_URL;
     const pathParts = relativePath.replace(/\\/g, "/").split("/");
     if (pathParts.length < 3) return undefined;
     // const folder = pathParts[1];
