@@ -38,9 +38,9 @@ export default function DoctorCard({ doctor }: DoctorCardProps) {
     const API_URL = import.meta.env.VITE_SERVER_API_URL;
     const pathParts = relativePath.replace(/\\/g, "/").split("/");
     if (pathParts.length < 3) return undefined;
-    const folder = pathParts[1];
-    const filename = pathParts[2];
-    return `${API_URL}/files/${folder}/${filename}`;
+    // const folder = pathParts[1];
+    // const filename = pathParts[2];
+    return `${API_URL}/files/${relativePath}}`;
   };
 
   return (

@@ -10,7 +10,8 @@ import {
 import { toast } from "react-hot-toast";
 import DoctorCard from "@/components/DoctorCard";
 
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
+// const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
+const CACHE_DURATION = 5 * 60; // 5 minutes in milliseconds
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
