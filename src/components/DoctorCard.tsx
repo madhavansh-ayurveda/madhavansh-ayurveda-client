@@ -40,7 +40,7 @@ export default function DoctorCard({ doctor }: DoctorCardProps) {
     if (pathParts.length < 3) return undefined;
     // const folder = pathParts[1];
     // const filename = pathParts[2];
-    return `${API_URL}/files/${relativePath}}`;
+    return `${API_URL}/files/${pathParts.join("-")}`;
   };
 
   return (
